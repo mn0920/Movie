@@ -1,13 +1,13 @@
-﻿# Created by https://www.gitignore.io/api/java-web 
- 
-### Java-Web ### 
-## ignoring target file 
-target/ 
- 
- 
-# End of https://www.gitignore.io/api/java-web 
-\.classpath 
- 
-\.settings/org\.eclipse\.wst\.common\.component 
- 
-\.settings/org\.eclipse\.wst\.validation\.prefs 
+﻿# Build Artifacts
+
+.gradle/
+build/
+target/
+bin/
+dependency-reduced-pom.xml
+
+# Eclipse Project Files
+
+.classpath
+.project
+.settings/
