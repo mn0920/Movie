@@ -1,10 +1,12 @@
-﻿# Build Artifacts
+# Build Artifacts
 
 .gradle/
 build/
 target/
 bin/
 dependency-reduced-pom.xml
+
+src/main/webapp/resources/post
 
 # Eclipse Project Files
 
