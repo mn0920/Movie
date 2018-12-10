@@ -1,0 +1,210 @@
+@charset "UTF-8";
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* 가운데정렬 */
+.Center-Container {
+  position: relative;
+  height: 100%;
+}
+
+.Absolute-Center {
+  width: 60%;
+  height: 60%;
+  min-height:490px;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  /* border: solid black; */
+  padding : 10px;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+
+.tabcontent {
+  color: black;
+  display: none;
+  /* padding: 100px 20px; */
+  height: 100%;
+  padding: 0;
+  height: 95%;
+}
+
+.mainDiv{
+  height: 93%;
+  display: block;
+  padding:0px;
+  
+}
+
+.mainTitle{
+  margin-top: 30px;
+  text-align: center;
+}
+
+.subTitle{
+  margin-top: 5px;
+  text-align: center;
+}
+
+.btn-next{
+  height: 30px;
+  margin: 0;
+  margin-right: 13px;
+  float: right;
+  font-size: 14px;
+  text-align: center;
+  line-height: 29px;
+  padding: 0 10px;
+  /* text-align: start; */
+}
+
+.input-text{
+  margin: auto;
+  display: inline-block;
+}
+
+.form-group{
+  margin-bottom:5px;
+}
+/* textEffect */
+
+input[type="text"],
+input[type="password"],
+input[type="email"]{
+  font: 17px "Lato", Arial, sans-serif;
+  color: #333;
+  width: 80%;
+  height:33px;
+  margin-bottom:5px;
+  letter-spacing: 1px;
+  background:transparent;
+}
+/* end of style for tab1 */
+
+/* tab2 style */
+input[type=checkbox]:before+button {
+  content: "";
+  display: none inline-block;
+  width: 12px;
+  height: 12px;
+  background: red;
+}
+
+input[type=checkbox]:checked:before+button {
+  background: green;
+}
+/* 
+input[type="checkbox"]+label {
+  display:none;
+  background-color:white;
+}
+
+input[type="checkbox"]:checked+ label:active:after {
+  display:none;
+  background-color: black;
+} */
+
+/* .checkbox-container input[type="checkbox"]:checked+button {
+  display:none;
+  background-color: #666665;
+
+} */
+
+/* .checkbox button{
+  background-color: transparent;
+} */
+
+/* end of style for tab2 */
+
+/* start tab3 */ 
+.title-arch {
+  text-align: center;
+  margin: 50px 0;
+  font-size: 22px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.project {
+  width: 100%;
+  height: 300px;
+  background-image: url("/movie/resources/images/director.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 0 !important;
+  float: left;
+}
+
+.project-2 {
+  background-image: url("/movie/resources/images/actor.jpg");
+}
+
+.project-3 {
+    background-image: url("/movie/resources/images/genre.jpg");
+}
+
+.project-4 {
+    background-image: url("/movie/resources/images/apprisal.jpg");
+}
+
+.project-hover {
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  opacity: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  background-color: rgba(81, 81, 81, 0.7);
+  padding: 40% 30px !important;
+}
+
+.project-hover hr {
+  height: 30px;
+  width: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  background-color: rgba(255, 255, 255, 1);
+  border: 0;
+}
+
+.project-hover a {
+  color: rgba(255, 255, 255, 1);
+  padding: 2px 22px;
+  line-height: 40px;
+  border: 2px solid rgba(255, 255, 255, 1);
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.project-hover a:hover {
+  border-color: rgba(51, 51, 51, 1);
+  color: rgba(51, 51, 51, 1);
+  background-color: #FFF;
+}
+
+.project:hover .project-hover {
+  opacity: 1;
+}
+
+.project:hover .project-hover hr {
+  width: 100%;
+  height: 5px;
+} 
+/* end of tab3 */
