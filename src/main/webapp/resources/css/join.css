@@ -1,142 +1,210 @@
 @charset "UTF-8";
 
-.wizard {
-    margin: 20px auto;
-    background: #fff;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-    .wizard .nav-tabs {
-        position: relative;
-        margin: 40px auto;
-        margin-bottom: 0;
-        border-bottom-color: #e0e0e0;
-    }
 
-    .wizard > div.wizard-inner {
-        position: relative;
-    }
-
-.connecting-line {
-    height: 2px;
-    background: #e0e0e0;
-    position: absolute;
-    width: 80%;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    top: 50%;
-    z-index: 1;
+/* 가운데정렬 */
+.Center-Container {
+  position: relative;
+  height: 100%;
 }
 
-.wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
-    color: #555555;
-    cursor: default;
-    border: 0;
-    border-bottom-color: transparent;
+.Absolute-Center {
+  width: 60%;
+  height: 60%;
+  min-height:490px;
+  overflow: auto;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  /* border: solid black; */
+  padding : 10px;
 }
 
-span.round-tab {
-    width: 70px;
-    height: 70px;
-    line-height: 70px;
-    display: inline-block;
-    border-radius: 100px;
-    background: #fff;
-    border: 2px solid #e0e0e0;
-    z-index: 2;
-    position: absolute;
-    left: 0;
-    text-align: center;
-    font-size: 25px;
-}
-span.round-tab i{
-    color:#555555;
-}
-.wizard li.active span.round-tab {
-    background: #fff;
-    border: 2px solid #5bc0de;
-    
-}
-.wizard li.active span.round-tab i{
-    color: #5bc0de;
+/* Style the tab content (and add height:100% for full page content) */
+
+.tabcontent {
+  color: black;
+  display: none;
+  /* padding: 100px 20px; */
+  height: 100%;
+  padding: 0;
+  height: 95%;
 }
 
-span.round-tab:hover {
-    color: #333;
-    border: 2px solid #333;
+.mainDiv{
+  height: 98%;
+  display: block;
+  padding:0px;
+  
 }
 
-.wizard .nav-tabs > li {
-    width: 25%;
+.mainTitle{
+  margin-top: 30px;
+  text-align: center;
 }
 
-.wizard li:after {
-    content: " ";
-    position: absolute;
-    left: 46%;
-    opacity: 0;
-    margin: 0 auto;
-    bottom: 0px;
-    border: 5px solid transparent;
-    border-bottom-color: #5bc0de;
-    transition: 0.1s ease-in-out;
+.subTitle{
+  margin-top: 5px;
+  text-align: center;
 }
 
-.wizard li.active:after {
-    content: " ";
-    position: absolute;
-    left: 46%;
-    opacity: 1;
-    margin: 0 auto;
-    bottom: 0px;
-    border: 10px solid transparent;
-    border-bottom-color: #5bc0de;
+.btn-next{
+  height: 30px;
+  margin: 0;
+  margin-right: 13px;
+  float: right;
+  font-size: 14px;
+  text-align: center;
+  line-height: 29px;
+  padding: 0 10px;
+  /* text-align: start; */
 }
 
-.wizard .nav-tabs > li a {
-    width: 70px;
-    height: 70px;
-    margin: 20px auto;
-    border-radius: 100%;
-    padding: 0;
+.input-text{
+  margin: auto;
+  display: inline-block;
 }
 
-    .wizard .nav-tabs > li a:hover {
-        background: transparent;
-    }
+.form-group{
+  margin-bottom:5px;
+}
+/* textEffect */
 
-.wizard .tab-pane {
-    position: relative;
-    padding-top: 50px;
+input[type="text"],
+input[type="password"],
+input[type="email"]{
+  font: 17px "Lato", Arial, sans-serif;
+  color: #333;
+  width: 80%;
+  height:33px;
+  margin-bottom:5px;
+  letter-spacing: 1px;
+  background:transparent;
+}
+/* end of style for tab1 */
+
+/* tab2 style */
+input[type=checkbox]:before+button {
+  content: "";
+  display: none inline-block;
+  width: 12px;
+  height: 12px;
+  background: red;
 }
 
-.wizard h3 {
-    margin-top: 0;
+input[type=checkbox]:checked:before+button {
+  background: green;
+}
+/* 
+input[type="checkbox"]+label {
+  display:none;
+  background-color:white;
 }
 
- @media( max-width : 585px ) { 
+input[type="checkbox"]:checked+ label:active:after {
+  display:none;
+  background-color: black;
+} */
 
-    .wizard {
-        width: 90%;
-        height: auto !important;
-    }
+/* .checkbox-container input[type="checkbox"]:checked+button {
+  display:none;
+  background-color: #666665;
 
-    span.round-tab {
-        font-size: 16px;
-        width: 50px;
-        height: 50px;
-        line-height: 50px;
-    }
+} */
 
-    .wizard .nav-tabs > li a {
-        width: 50px;
-        height: 50px;
-        line-height: 50px;
-    }
+/* .checkbox button{
+  background-color: transparent;
+} */
 
-    .wizard li.active:after {
-        content: " ";
-        position: absolute;
-        left: 35%;
-    }
+/* end of style for tab2 */
+
+/* start tab3 */ 
+.title-arch {
+  text-align: center;
+  margin: 50px 0;
+  font-size: 22px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
+
+.project {
+  width: 100%;
+  height: 300px;
+  background-image: url("/movie/resources/images/director.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 0 !important;
+  float: left;
+}
+
+.project-2 {
+  background-image: url("/movie/resources/images/actor.jpg");
+}
+
+.project-3 {
+    background-image: url("/movie/resources/images/genre.jpg");
+}
+
+.project-4 {
+    background-image: url("/movie/resources/images/apprisal.jpg");
+}
+
+.project-hover {
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  opacity: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  background-color: rgba(81, 81, 81, 0.7);
+  padding: 40% 30px !important;
+}
+
+.project-hover hr {
+  height: 30px;
+  width: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  background-color: rgba(255, 255, 255, 1);
+  border: 0;
+}
+
+.project-hover a {
+  color: rgba(255, 255, 255, 1);
+  padding: 2px 22px;
+  line-height: 40px;
+  border: 2px solid rgba(255, 255, 255, 1);
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.project-hover a:hover {
+  border-color: rgba(51, 51, 51, 1);
+  color: rgba(51, 51, 51, 1);
+  background-color: #FFF;
+}
+
+.project:hover .project-hover {
+  opacity: 1;
+}
+
+.project:hover .project-hover hr {
+  width: 100%;
+  height: 5px;
+} 
+/* end of tab3 */
