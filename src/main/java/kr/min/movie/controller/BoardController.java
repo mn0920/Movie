@@ -27,7 +27,7 @@ public class BoardController {
 	@Autowired
 	private AccountService accountService;
 
-	@RequestMapping(value="/main1", method = RequestMethod.GET)
+	@RequestMapping(value="/main", method = RequestMethod.GET)
 	   public String main1(HttpServletRequest request, Model model, Criteria cri) {
 		  AccountVo user = accountService.getLoginUser(request);
 		  PageMaker pageMaker = boardService.getPageMaker(cri, 10);
@@ -46,9 +46,19 @@ public class BoardController {
       return "movie/main2";
    }
 	 
-	  @RequestMapping(value="/main3", method = RequestMethod.GET)
-    public String main3(HttpServletRequest request, Model model, Criteria cri) {
-       return "movie/main3";
+	  @RequestMapping(value="/AD", method = RequestMethod.GET)
+    public String actorDirectorGet(HttpServletRequest request, Model model, Criteria cri) {
+       return "movie/actorDirector";
+    }
+   
+    @RequestMapping(value="/my", method = RequestMethod.GET)
+    public String myGet(HttpServletRequest request, Model model, Criteria cri) {
+       return "movie/my";
+    }
+   
+    @RequestMapping(value="/R", method = RequestMethod.GET)
+    public String recommendGet(HttpServletRequest request, Model model, Criteria cri) {
+       return "movie/recommend";
     }
 	
 }

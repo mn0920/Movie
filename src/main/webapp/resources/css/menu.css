@@ -1,0 +1,138 @@
+@charset "UTF-8";
+
+/*  body {
+ margin: 0;
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+} */
+
+.header {
+ /*  background-color: #f1f1f1; */
+ background-color:transparent;
+  /* background-image: url("C:\Users\402-09\Desktop\영화서쳐\이미지\Untitled-2.jpg"); */
+  height: 200px;
+  /* min-width: 870px; */
+}
+
+.header h1{
+    text-align: center;
+    height: 115px;
+    margin: auto;
+    padding-top: 85px;
+    padding-bottom: 0px;
+}
+
+.background {
+  width: 100%;
+  height: 256px;
+  background-image: url("/movie/resources/images/menuHeader2.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 0 !important;
+  float: left;
+}
+
+#navbar {
+  overflow: hidden;
+  /* background-color: #333; */
+  
+  width: 100%;
+  height: 56px;
+  background-image: url("/movie/resources/images/menuHeader3.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 0 !important;
+  float: left;
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+#navbar a:hover {
+  /* background-color: #ddd; */
+  background-color: transparen;
+  color: black;
+}
+
+#navbar a.active {
+  /* background-color: #4CAF50; */
+  background-color: transparen;
+  color: white;
+}
+
+#navbar #logo:hover {
+  background-color: transparent;
+  color: #f2f2f2;
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky+.content {
+  padding-top: 60px;
+}
+
+.navbar-right {
+  float: right;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+  height:23px;
+  box-sizing: content-box;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+  height:35px;'
+}
+
+.topnav .search-container button:hover {
+  background: #ccc;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.typewrite{
+  /* margin:auto; */
+  color:#fff;
+  text-decoration: none;
+  font-size: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrap {
+  color:#fff;
+  text-decoration: none;
+  font-size: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
