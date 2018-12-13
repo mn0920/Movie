@@ -7,6 +7,7 @@ bin/
 dependency-reduced-pom.xml
 
 src/main/webapp/resources/post
+src/main/webapp/resources/images
 
 # Eclipse Project Files
 
