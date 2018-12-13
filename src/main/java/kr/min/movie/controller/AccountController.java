@@ -53,7 +53,7 @@ public class AccountController {
       return "redirect:/";
     }
     model.addAttribute("user", user);
-    return "redirect:/board/main";
+    return "redirect:/movie/main";
   }
   
   

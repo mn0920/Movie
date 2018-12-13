@@ -19,6 +19,7 @@ import kr.min.movie.vo.AccountVo;
 import kr.min.movie.vo.BoardVo;
 
 @Controller
+@RequestMapping(value="/m")
 public class BoardController {
 	@Autowired
 	private BoardService boardService;
@@ -26,8 +27,8 @@ public class BoardController {
 	@Autowired
 	private AccountService accountService;
 
-	@RequestMapping(value="/board/main", method = RequestMethod.GET)
-	   public String boardListGet(HttpServletRequest request, Model model, Criteria cri) {
+	@RequestMapping(value="/main1", method = RequestMethod.GET)
+	   public String main1(HttpServletRequest request, Model model, Criteria cri) {
 		  AccountVo user = accountService.getLoginUser(request);
 		  PageMaker pageMaker = boardService.getPageMaker(cri, 10);
 		  
@@ -37,7 +38,17 @@ public class BoardController {
 	      model.addAttribute("list", list);
 	      model.addAttribute("pageMaker", pageMaker);
 	      model.addAttribute("user", user);
-	      return "board/main";
+	      return "movie/main";
 	   }
+	
+	 @RequestMapping(value="/main2", method = RequestMethod.GET)
+   public String main2(HttpServletRequest request, Model model, Criteria cri) {
+      return "movie/main2";
+   }
+	 
+	  @RequestMapping(value="/main3", method = RequestMethod.GET)
+    public String main3(HttpServletRequest request, Model model, Criteria cri) {
+       return "movie/main3";
+    }
 	
 }
