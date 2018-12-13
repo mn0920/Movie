@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.min.movie.dao.AccountDao">
+  <select id="getEmail" resultType="String">
+    select email from account where id = #{id}
+  </select>
+  <select id="getPw" resultType="String">
+    select pw from account where id = #{id}
+  </select>
+  <insert id="setAccount">
+    insert into account(id, pw, nickname, email, age) values(#{id}, #{pw}, #{nickname}, #{email}, #{age})
+  </insert>
+  <select id="getAccount" resultType="kr.min.movie.vo.AccountVo">
+   select * from account where id = #{id}
+  </select>
+<!--   <select id="getAccounts" resultType="kr.green.spring.vo.AccountVo">
+   select * from account
+  </select> -->
+  <update id="setAuthor">
+      update account set author=#{author} where id = #{id};
+  </update>
+  <select id="getAccountLists" resultType="kr.min.movie.vo.AccountVo">
+      select * from account where id != #{id} and author != 'super admin' order by id asc limit #{cri.startPage}, #{cri.perPageNum};
+  </select>
+  <select id="getTotalCount" resultType="int">
+      select count(id) from account where not(id = #{id}) and not (author = 'super admin');
+  </select>
+  <select id="getUserCount" resultType="int">
+    select count(id) from account where id = #{id}
+  </select>
+  <update id="modifyAccount">
+    update account set pw=#{user.pw} , email=#{user.email} , gender=#{user.gender} where id = #{user.id};
+  </update>
+
+</mapper>
