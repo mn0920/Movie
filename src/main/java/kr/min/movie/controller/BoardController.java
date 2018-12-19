@@ -28,17 +28,8 @@ public class BoardController {
 	private AccountService accountService;
 
 	@RequestMapping(value="/main", method = RequestMethod.GET)
-	   public String main1(HttpServletRequest request, Model model, Criteria cri) {
-		  AccountVo user = accountService.getLoginUser(request);
-		  PageMaker pageMaker = boardService.getPageMaker(cri, 10);
-		  
-	      ArrayList list = null;
-	      list = (ArrayList)boardService.getBoardLists(cri);
-	      
-	      model.addAttribute("list", list);
-	      model.addAttribute("pageMaker", pageMaker);
-	      model.addAttribute("user", user);
-	      return "movie/main";
+	   public String main1Get(HttpServletRequest request, Model model, Criteria cri) {
+       return "movie/main";
 	   }
 	
 	 @RequestMapping(value="/main2", method = RequestMethod.GET)
@@ -64,6 +55,11 @@ public class BoardController {
     @RequestMapping(value="/R", method = RequestMethod.GET)
     public String recommendGet(HttpServletRequest request, Model model, Criteria cri) {
        return "movie/recommend";
+    }
+   
+    @RequestMapping(value="/detail", method = RequestMethod.GET)
+    public String detailGet(HttpServletRequest request, Model model, Criteria cri) {
+       return "movie/movieDetail";
     }
 	
 }
