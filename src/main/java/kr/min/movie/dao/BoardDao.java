@@ -8,20 +8,11 @@ import kr.min.movie.pagenation.Criteria;
 import kr.min.movie.vo.BoardVo;
 
 public interface BoardDao {
-//	public List<BoardVo> getBoardListsByTitle(@Param("cri")Criteria cri, @Param("search")String search);
-//	public List<BoardVo> getBoardListsByAuthor(@Param("cri")Criteria cri, @Param("search")String search);
-//	public List<BoardVo> getBoardListsByContents(@Param("cri")Criteria cri, @Param("search")String search);
-//	public List<BoardVo> getBoardListsByTitleAndContents(@Param("cri")Criteria cri, @Param("search")String search);
-	public List<BoardVo> getBoardLists(@Param("cri")Criteria cri);
+
+  public void addMovie(@Param("boardVo")BoardVo boardVo);
+  public void addActor(@Param("m_actor_list")String[] m_actor_list);
+  public void addDirector(@Param("m_director_list")String[] m_director_list);
+  public void searchActor(@Param("actor")String[] actor);
+  public void searchDirector(@Param("m_director_list")String[] m_director_list);
 	
-	public void registerBoard(@Param("boardVo")BoardVo boardVo);
-	public BoardVo getBoard(@Param("num")int num);
-	public void deleteBoard(@Param("num")int num);
-	public void updateBoard(@Param("boardVo")BoardVo boardVo);
-	
-//	public int getCountBoardListsByTitle(@Param("search")String search);
-//	public int getCountBoardListsByAuthor(@Param("search")String search);
-//	public int getCountBoardListsByContents(@Param("search")String search);
-//	public int getCountBoardListsByTitleAndContents(@Param("search")String search);
-	public int getCountBoardLists(@Param("cri")Criteria cri);
 }

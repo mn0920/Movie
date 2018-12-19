@@ -3,74 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.min.movie.dao.BoardDao">
-    <select id="getBoardListsByTitle" resultType="kr.min.movie.vo.BoardVo">
-        select * from movie where title like #{search} order by num DESC limit #{cri.startPage}, #{cri.perPageNum};
-        <!-- 전부다 가져오는 것이 아니라, limit로 제한을 걸어준 것이다. -->
-    </select>
-    <select id="getBoardListsByAuthor" resultType="kr.min.movie.vo.BoardVo">
-        select * from movie where author like #{search} order by num DESC limit #{cri.startPage}, #{cri.perPageNum};
-    </select>
-    <select id="getBoardListsByContents" resultType="kr.min.movie.vo.BoardVo">
-        select * from movie where contents like #{search} order by num DESC limit #{cri.startPage}, #{cri.perPageNum};
-    </select>
-    <select id="getBoardListsByTitleAndContents" resultType="kr.min.movie.vo.BoardVo">
-        select * from movie where contents like #{search} or title like #{search} order by num DESC limit #{cri.startPage}, #{cri.perPageNum};
-    </select>
-     <select id="getBoardLists" resultType="kr.min.movie.vo.BoardVo">
-        select * from movie 
-        <if test="cri.type == 0">
-            where title like CONCAT('%',#{cri.search},'%')  
-        </if> 
-        <if test="cri.type == 1">
-              where author like CONCAT('%',#{cri.search},'%')  
-        </if> 
-        <if test="cri.type == 2">
-              where contents like CONCAT('%',#{cri.search},'%')  
-        </if> 
-        <if test="cri.type == 3">
-              where contents like CONCAT('%',#{cri.search},'%')  or title like CONCAT('%',#{cri.search},'%')  
-        </if>
-        order by id DESC limit #{cri.startPage}, #{cri.perPageNum};
-    </select>
-    
-    <insert id="registerBoard">
-        insert into movie(title, contents, author, file) value(#{boardVo.title}, #{boardVo.contents},#{boardVo.author},#{boardVo.file});
-    </insert>
-    <select id="getBoard" resultType="kr.min.movie.vo.BoardVo">
-        select * from movie where id = #{id};
-    </select>
-    <delete id="deleteBoard">
-        delete from movie where id = #{id};
-    </delete>
-    <update id="updateBoard">
-        update movie set title=#{boardVo.title}, contents=#{boardVo.contents}, file = #{boardVo.file} where id = #{boardVo.num};
-    </update>
-    <select id="getCountBoardListsByTitle" resultType="int">
-        select count(id) from movie where title like #{search};
-        <!-- 갯수를 알기위해 resultType이 int인 것 이다. -->
-    </select>
-    <select id="getCountBoardListsByAuthor" resultType="int">
-        select count(id) from movie where author like #{search};
-    </select>
-    <select id="getCountBoardListsByContents" resultType="int">
-        select count(id) from movie where contents like #{search};
-    </select>
-    <select id="getCountBoardListsByTitleAndContents" resultType="int">
-        select count(id) from movie where contents like #{search} or title like #{search};
-    </select>
-    <select id="getCountBoardLists" resultType="int">
-        select count(id) from movie
-         <if test="cri.type == 0">
-            where title like CONCAT('%',#{cri.search},'%') 
-        </if> 
-        <if test="cri.type == 1">
-              where author like CONCAT('%',#{cri.search},'%') 
-        </if> 
-        <if test="cri.type == 2">
-              where contents like CONCAT('%',#{cri.search},'%') 
-        </if> 
-        <if test="cri.type == 3">
-              where contents like CONCAT('%',#{cri.search},'%') or title like concat('%',#{cri.search},'%') 
-        </if>
-    </select>
+
+  <insert id="addMovie">
+    insert into movie(title, m_genre_list, m_director_list, m_actor_list, open_date, rate, poster, running_time, grade, synopsis)
+    value(#{boardVo.title}, #{boardVo.m_genre_list},#{boardVo.m_director_list},#{boardVo.m_actor_list},#{boardVo.open_date},
+    #{boardVo.rate},#{boardVo.poster},#{boardVo.running_time},#{boardVo.grade},#{boardVo.synopsis});
+  </insert>
+ 
 </mapper>
