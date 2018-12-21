@@ -9,5 +9,6 @@ import kr.min.movie.vo.BoardVo;
 public interface BoardService {
 
   public void addMovie(BoardVo boardVo);
+  /*public void searchActor(String[] actor);*/
 
 }
