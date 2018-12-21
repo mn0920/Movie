@@ -58,11 +58,13 @@ button:hover {
 
 .tableScroll {
   width: 100%;
+  min-height: 200px;
   max-height: 200px;
   overflow-y: scroll;
   overflow-x:hidden;
   border: 1px solid rgba(0, 0, 0, .15);
   border-radius: .25rem;
+  background-color: #fff;
 }
 
 .none{
@@ -72,9 +74,8 @@ button:hover {
  border-top-left-radius: 0;
  border-top-right-radius: 0px;
 }
-
 </style>
-<title>searchActor</title>
+<title>choiceActor</title>
 </head>
 
 <body>
@@ -84,61 +85,68 @@ button:hover {
 
     <hr>
 
+<form name="searchA">
     <div id="tableScroll" class="tableScroll">
       <table id="myTable" class="input-large form-control none" name="normal">
         <tr class="header">
-          <th style="width: 8%;" name="checkList"><i class="fas fa-check"></i></th>
+          <th style="width: 8%;" name="checkList"><i class="far fa-check-circle"></i></th>
           <th style="width: 80%;">Name</th>
-          <th style="width: 12%;">Country</th>
+          <th style="width: 12%;">Birth</th>
         </tr>
         <tr>
-          <th><input type="checkbox" value="${bbs.num}"></th>
+          <td><input type="radio" value="${bbs.num}" name="sel"></td>
           <td>Alfreds Futterkiste</td>
           <td>Germany</td>
         </tr>
-        <tr>
-          <th><input type="checkbox" value="${bbs.num}"></th>
+         <tr>
+          <td><input type="radio" value="${bbs.num}" name="sel"></td>
           <td>Berglunds snabbkop</td>
           <td>Sweden</td>
         </tr>
         <tr>
-          <th><input type="checkbox" value="${bbs.num}"></th>
+          <td><input type="radio" value="${bbs.num}" name="sel"></td>
           <td>Island Trading</td>
           <td>UK</td>
         </tr>
         <tr>
-          <th><input type="checkbox" value="${bbs.num}"></th>
+          <td><input type="radio" value="${bbs.num}" name="sel"></td>
           <td>Koniglich Essen</td>
           <td>Germany</td>
         </tr>
         <tr>
-          <th><input type="checkbox" value="${bbs.num}"></th>
+          <td><input type="radio" value="${bbs.num}" name="sel"></td>
           <td>Laughing Bacchus Winecellars</td>
           <td>Canada</td>
         </tr>
         <tr>
-          <th><input type="checkbox" value="${bbs.num}"></th>
+          <td><input type="radio" value="${bbs.num}" name="sel"></td>
           <td>Magazzini Alimentari Riuniti</td>
           <td>Italy</td>
         </tr>
         <tr>
-          <th><input type="checkbox" value="${bbs.num}"></th>
+          <td><input type="radio" value="${bbs.num}" name="sel"></td>
           <td>North/South</td>
           <td>UK</td>
         </tr>
         <tr>
-          <th><input type="checkbox" value="${bbs.num}"></th>
+          <td><input type="radio" value="${bbs.num}" name="sel"></td>
+          <td>Paris specialites</td>
+          <td>France</td>
+        </tr>
+        <tr>
+          <td><input type="radio" value="${bbs.num}" name="sel"></td>
           <td>Paris specialites</td>
           <td>France</td>
         </tr>
       </table>
     </div>
-    <button type="button">선택</button>
+    <button type="button" onClick="choiced()">선택</button>
+    </form>
+    
     <br>
     <div style="margin-top:10px;">찾고자하는 배우가 없다면 추가 버튼을 눌러주세요</div>
     <button type="button">추가</button>
     
-  </div>
 
   <script>
       function myFunction() {
@@ -148,7 +156,7 @@ button:hover {
         table = document.getElementById("myTable");
         tr = table.getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
-          td = tr[i].getElementsByTagName("td")[0];
+          td = tr[i].getElementsByTagName("td")[1];
           if (td) {
             txtValue = td.textContent || td.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -159,6 +167,11 @@ button:hover {
           }
         }
       }
+    </script>
+    <script type="text/javascript">
+    function choiced(){
+      document.searchA.
+    }
     </script>
 
 </body>
