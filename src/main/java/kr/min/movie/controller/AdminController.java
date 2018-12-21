@@ -66,6 +66,17 @@ public class AdminController {
   }
 
   
+  @RequestMapping(value = "/MM/seaA/cho", method = RequestMethod.GET)
+  public String searchActor1Get(BoardVo boardVo, Model model) {
+    return "admin/search/searchActor1";
+  }
+  
+  @RequestMapping(value = "/MM/seaA/cho", method = RequestMethod.POST)
+  public String searchActor1Post(Model model, BoardVo boardVo, String[] actor) {
+    return "admin/search/searchActor1";
+  }
+
+  
   
   
   @RequestMapping(value = "/MM/addD", method = RequestMethod.GET)
@@ -82,12 +93,24 @@ public class AdminController {
   
   @RequestMapping(value = "/MM/seaD", method = RequestMethod.GET)
   public String searchDirectorGet(BoardVo boardVo, Model model) {
-    return "admin/search/searchDirector";
+    return "admin/search/searchDirector1";
   }
   
   @RequestMapping(value = "/MM/seaD", method = RequestMethod.POST)
   public String searchDirectorPost(Model model, BoardVo boardVo, String[] actor) {
-    return "admin/search/searchDirector";
+    return "admin/search/searchDirector1";
+  }
+
+  
+  
+  @RequestMapping(value = "/MM/seaD/cho", method = RequestMethod.GET)
+  public String searchDirector1Get(BoardVo boardVo, Model model) {
+    return "admin/search/searchDirector1";
+  }
+  
+  @RequestMapping(value = "/MM/seaD/cho", method = RequestMethod.POST)
+  public String searchDirector1Post(Model model, BoardVo boardVo, String[] actor) {
+    return "admin/search/searchDirector1";
   }
 
   
