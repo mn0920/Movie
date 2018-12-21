@@ -1,33 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-
-
-
-<title>menu</title>
-</head>
-<body>
-<body>
 
   <div class="background">
     <div class="header">
       <h1>
         <a href="" class="typewrite" data-period="2000"
-          "
-        data-type='[ "Hi, this is AboutM.", "welcome to visit :D", "search a movie.", "find a movie.", "get a movie." ]'>
+         data-type='[ "Hi, this is AboutM.", "welcome to visit :D", "search a movie.", "find a movie.", "get a movie." ]'>
           <span class="wrap"></span>
         </a>
       </h1>
     </div>
 
     <div id="navbar">
-      <!-- <a class="active" href="javascript:void(0)">Home</a> -->
 
       <a href="javascript:void(0)" id="logo">AboutM</a>
       <div class="navbar-right topnav">
@@ -45,7 +29,6 @@
       </div>
     </div>
   </div>
-  <!-- end of header -->
 
 
   <script type="text/javascript">
@@ -133,6 +116,3 @@
 				}
 			});
 		</script>
-
-</body>
-</html>
