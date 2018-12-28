@@ -17,6 +17,44 @@
   href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
   integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
   crossorigin="anonymous">
+<script type="text/javascript"
+  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    var popupX = (window.screen.width / 2) - (500 / 2);
+    var popupY= (window.screen.height / 2) - (250 / 2);
+  $('#add').click(function(){
+    window.open('<%=request.getContextPath()%>/admin/MM/addA','addActor','width=500,height=250,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  });
+});
+</script>
+
+  <script type="text/javascript">
+      function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[1];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+    </script>
+<!--     <script type="text/javascript">
+    function choiced(){
+      document.searchA.
+    }
+    </script> -->
 
 <style>
 * {
@@ -145,34 +183,8 @@ button:hover {
     
     <br>
     <div style="margin-top:10px;">찾고자하는 배우가 없다면 추가 버튼을 눌러주세요</div>
-    <button type="button">추가</button>
-    
-
-  <script>
-      function myFunction() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-          td = tr[i].getElementsByTagName("td")[1];
-          if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-              tr[i].style.display = "";
-            } else {
-              tr[i].style.display = "none";
-            }
-          }
-        }
-      }
-    </script>
-    <script type="text/javascript">
-    function choiced(){
-      document.searchA.
-    }
-    </script>
+    <button type="button" id="add" name="add">추가</button>
+   </div>
 
 </body>
 </html>

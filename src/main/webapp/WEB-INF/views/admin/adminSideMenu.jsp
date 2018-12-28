@@ -10,6 +10,12 @@
                 <li>
                     <a href="<%=request.getContextPath() %>/admin/cms/board">게시판 관리</a>
                 </li>
+                <li>
+                    <a href="<%=request.getContextPath() %>/admin/cms/board">배우 관리</a>
+                </li>
+                <li>
+                    <a href="<%=request.getContextPath() %>/admin/cms/board">감독 관리</a>
+                </li>
             </ul>       
          </div>
   </div>
