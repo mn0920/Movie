@@ -80,6 +80,12 @@ button:hover {
   margin-top: 6px;
 }
 
+.col-50 {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+}
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
@@ -94,6 +100,18 @@ button:hover {
 
 .row input[type=submit].right {
   float: right;
+}
+
+.fileDrop{
+width: 24%;
+height: 259px;
+border: 1px dotted blue;
+margin-left:10px;
+}
+small {
+margin-left: 3px;
+font-weight: bold;
+color: grey;
 }
 </style>
 
@@ -278,14 +296,14 @@ $('#aBtn').click(function(){
             <div class="col-25">
               <input type="text" id="rate" name="rate" placeholder="관람 가능 연령을 적어주세요">
             </div>
-            <!-- <div class="row"> -->
             <div class="col-25">
-              <label for="poster" style="float: right;">poster</label>
+              <label for="grade" style="float: right;">grade(관객수)</label>
             </div>
             <div class="col-25">
-              <input type="text" id="poster" name="poster" placeholder="포스터 링크를 걸어주세요">
+              <input type="text" id="grade" name="grade" placeholder="전체 관객 수를 적어주세요">
             </div>
           </div>
+            <!-- <div class="row"> -->
           <div class="row">
             <div class="col-25">
               <label for="running_time">running time</label>
@@ -294,19 +312,19 @@ $('#aBtn').click(function(){
               <input type="text" id="running_time" name="running_time" placeholder="상영 시간을 적어주세요">
             </div>
             <!-- <div class="row"> -->
-            <div class="col-25">
-              <label for="grade" style="float: right;">grade(관객수)</label>
-            </div>
-            <div class="col-25">
-              <input type="text" id="grade" name="grade" placeholder="전체 관객 수를 적어주세요">
+            <div class="col-50">
+              <label for="poster" style="float: right;">poster</label>
             </div>
           </div>
           <div class="row">
             <div class="col-25">
               <label for="synopsis">synopsis</label>
             </div>
-            <div class="col-75">
-              <textarea id="synopsis" name="synopsis" placeholder="영화 줄거리를 적어주세요" style="height: 200px"></textarea>
+            <div class="col-50">
+              <textarea id="synopsis" name="synopsis" placeholder="영화 줄거리를 적어주세요" style="height: 259px"></textarea>
+            </div>
+            <div class="fileDrop col-25">
+              <div id="poster" name="poster"  class="poster" style="height: 259px;">포스터를 여기에 올려주세요</div>
             </div>
           </div>
           <div class="row">
@@ -317,6 +335,116 @@ $('#aBtn').click(function(){
   </div>
 </div>
 </div>
+
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+$(".fileDrop").on("dragenter dragover", function(event){
+  event.preventDefault();
+});
+
+$(".fileDrop").on("drop", function(event){
+  event.preventDefault();
+  
+  var files = event.originalEvent.dataTransfer.files;
+  var file = files[0];
+  
+  /* console.log(file); */
+  var formData = new FormData();
+  
+  formData.append("file", file);
+  
+   if(!checkImageType(file.name)){
+	  alert("jpg, png, jpeg형식에 아닙니다.");
+	  return false;
+  }
+  console.log(file);
+  
+  $.ajax({
+    url: '/movie/admin/uploadAjax',
+    data: formData,
+    dataType: 'text',
+    processData: false,
+    contentType: false,
+    type: 'POST',
+    success: function(data){
+        alert(data);
+        
+        var str = "";
+        
+        console.log(data);
+        console.log(checkImageType(data));
+        
+        if(checkImageType(data)){
+        	$(".poster").empty();
+          str = "<div><a href='displayFile?fileName=" + getImageLink(data) + "'>" +
+                    "<img src='displayFile?fileName="+data+"'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
+        }
+        $(".poster").append(str);
+    }
+  });/* end of upload ajax */
+  
+});/* end of $(".fileDrop").on("drop", function */
+    
+$(".poster").on("click", "small", function(event){
+  
+  var that = $(this);
+  
+  deleteFileAjax(that);
+  console.log($(this).attr("data-src"));
+/*   $.ajax({
+    url:"/movie/admin/deleteFile",
+    type:"post",
+    data: {fileName:$(this).attr("data-src")},
+    dataType: "text",
+    success: function(result){
+      if(result == 'deleted'){
+        alert("deleted");
+        that.parent("div").remove();
+      }
+    }
+  }); */
+  
+});/* end of $(".uploadedList").on("click", "small", function */
+
+function deleteFileAjax(that){
+	$.ajax({
+	    url:"/movie/admin/deleteFile",
+	    type:"post",
+	    data: {fileName:that.attr("data-src")},
+	    dataType: "text",
+	    success: function(result){
+	      if(result == 'deleted'){
+	        alert("deleted");
+	        that.parent("div").remove();
+	      }
+	    }
+	  });
+}
+		
+function checkImageType(fileName){
+  var pattern = /jpg|png|jpeg/i;
+  return fileName.match(pattern);
+}
+
+function getOriginalName(fileName){
+  if(checkImageType(fileName)){
+    retuen;
+  }
+  var idx = fileName.indexOf("_")+1;
+  return fileName.substr(idx);
+}
+
+function getImageLink(fileName){
+  if(!checkImageType(fileName)){
+    return;
+  }
+  var front = fileName.substr(0,12);
+  var end = fileName.substr(14);
+  
+  return front + end;
+}
+</script>
 
 </body>
 </html>
