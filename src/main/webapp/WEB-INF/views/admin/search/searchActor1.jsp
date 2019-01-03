@@ -132,59 +132,76 @@ button:hover {
           <th style="width: 12%;">Birth</th>
         </tr>
         <tr>
-          <td><input type="radio" value="${bbs.num}" name="sel"></td>
+          <td><input type="radio" value="Alfreds Futterkiste" name="sel"></td>
           <td>Alfreds Futterkiste</td>
           <td>Germany</td>
         </tr>
          <tr>
-          <td><input type="radio" value="${bbs.num}" name="sel"></td>
+          <td><input type="radio" value="${actor_id}" name="sel"></td>
           <td>Berglunds snabbkop</td>
           <td>Sweden</td>
         </tr>
         <tr>
-          <td><input type="radio" value="${bbs.num}" name="sel"></td>
+          <td><input type="radio" value="${actor_id}" name="sel"></td>
           <td>Island Trading</td>
           <td>UK</td>
         </tr>
         <tr>
-          <td><input type="radio" value="${bbs.num}" name="sel"></td>
+          <td><input type="radio" value="${actor_id}" name="sel"></td>
           <td>Koniglich Essen</td>
           <td>Germany</td>
         </tr>
         <tr>
-          <td><input type="radio" value="${bbs.num}" name="sel"></td>
+          <td><input type="radio" value="${actor_id}" name="sel"></td>
           <td>Laughing Bacchus Winecellars</td>
           <td>Canada</td>
         </tr>
         <tr>
-          <td><input type="radio" value="${bbs.num}" name="sel"></td>
+          <td><input type="radio" value="${actor_id}" name="sel"></td>
           <td>Magazzini Alimentari Riuniti</td>
           <td>Italy</td>
         </tr>
         <tr>
-          <td><input type="radio" value="${bbs.num}" name="sel"></td>
+          <td><input type="radio" value="${actor_id}" name="sel"></td>
           <td>North/South</td>
           <td>UK</td>
         </tr>
         <tr>
-          <td><input type="radio" value="${bbs.num}" name="sel"></td>
+          <td><input type="radio" value="${actor_id}" name="sel"></td>
           <td>Paris specialites</td>
           <td>France</td>
         </tr>
         <tr>
-          <td><input type="radio" value="${bbs.num}" name="sel"></td>
+          <td><input type="radio" value="${actor_id}" name="sel"></td>
           <td>Paris specialites</td>
           <td>France</td>
         </tr>
       </table>
     </div>
-    <button type="button" onClick="choiced()">선택</button>
+    <button type="button" id="choice">선택</button>
     </form>
     
     <br>
     <div style="margin-top:10px;">찾고자하는 배우가 없다면 추가 버튼을 눌러주세요</div>
     <button type="button" id="add" name="add">추가</button>
    </div>
+  <input type="text" id="characterId">
+  
+  
+<script type="text/javascript">
+$("#choice").click(function(){ 
+	var data = $('input[type="radio"]:checked').val();
+	//var id=$('#characterId').val();
+	var id='character1';
+	opener.document.getElementById(id).value = data;
+	window.close();
+});
 
+    /* var name = $('input[type="radio"]')
+    var rowData = new Array(); 
+    var tdArr = new Array();
+    var radiobtn = $("input[name=sel]:checked");
+    */
+</script>
 </body>
 </html>
