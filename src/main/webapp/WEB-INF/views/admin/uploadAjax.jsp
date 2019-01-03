@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
 <style>
 .fileDrop{
@@ -62,10 +63,10 @@ $(".fileDrop").on("drop", function(event){
 			  
 			  if(checkImageType(data)){
 				  str = "<div><a href='displayFile?fileName=" + getImageLink(data) + "'>" +
-				  				  "<img src='displayFile?fileName="+data+"'/></a><small data-src="+data+">X</small></div>";
+				  				  "<img src='displayFile?fileName="+data+"'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
 			  } else {
 				  str = "<div><a href='displayFile?fileName="+data+"'>"+getOriginalName(data)+"</a>"+
-						  "<small data-src="+data+">X</small></div></div>";
+						  "<small data-src="+data+"><i class='fas fa-times'></i></small></div></div>";
 			  }
 			  $(".uploadedList").append(str);
 		}
@@ -93,8 +94,11 @@ $(".uploadedList").on("click", "small", function(event){
 });/* end of $(".uploadedList").on("click", "small", function */
 
 function checkImageType(fileName){
-	var pattern = /jpg|gif|png|jpeg/i;
-	
+	var pattern = /jpg|png|jpeg/i;
+	if(!pattern){
+		alert("jpg, png, jpeg형식에 아닙니다.");
+		return false;
+	}
 	return fileName.match(pattern);
 }
 
