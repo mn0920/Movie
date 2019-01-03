@@ -38,7 +38,7 @@ $(document).ready(function(){
   var btn = document.getElementById('btn8');
   btn.disabled = true;
 });
-</script>
+  </script>
 <script type="text/javascript">
 function ChangecatList(){
   var btn1 = document.getElementById('btn1');
@@ -141,33 +141,63 @@ function ChangecatList8(){
 $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (430 / 2);
     var popupY= (window.screen.height / 2) - (500 / 2);
-$('#btn1').click(function(){
-  window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+    $('.btn').click(function(){
+    	//character
+    	var str = $(this).prop('id');
+    	var data = 'character'+str[str.length-1];
+    	console.log(data);
+    	  openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+    	  console.log(openWin)
+    	  openWin.document.getElementById("characterId").value = data;
+
+    	});
+});
+<%-- $('#btn1').click(function(){
+	openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
 });
 $('#btn2').click(function(){
-	  window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+	openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
 	});
 $('#btn3').click(function(){
-    window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+	openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   });
 $('#btn4').click(function(){
-    window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+	openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   });
 $('#btn5').click(function(){
-    window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+	openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   });
 $('#btn6').click(function(){
-    window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+	openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   });
 $('#btn7').click(function(){
-    window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+	openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   });
 $('#btn8').click(function(){
-    window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
-  });
-});
+	openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  }); --%>
 </script>
-
+  
+ <script type="text/javascript">
+ $(document).ready(function(){
+  $('.done').click(function(){
+    var str = new String();
+    var cnt = 0;
+     $('input').each(function(){
+       var tmp = $(this).val();
+       if(tmp != ""){
+         if(cnt == 0)
+           str += tmp;
+         else
+           str += ", "+tmp;
+         cnt++;
+       }
+     });
+      opener.document.getElementById("actor_list").value = str;
+      window.close();
+  });
+ });
+</script>
 <style>
 * {
   box-sizing: inherit;
@@ -199,7 +229,7 @@ body {
 .row {
 /*   margin-left: 20px;
   margin-right: 5px;
-  /* padding: 20px; */ */
+  /* padding: 20px; */
 }
 .hei34{
 height: 34px;
@@ -243,7 +273,7 @@ button:hover {
 <body>
  <div class="container">
 <br>
-<form name="choose" method="POST">
+<form name=choose>
   <div class="row">
       <div class="col20">
         <label for="select1">주연/조연</label>
@@ -264,7 +294,7 @@ button:hover {
           <input type="text" class="form-control hei34" id="character1" name="character1" readonly required>
         </div>
       <div class="col5">
-        <button type="button" class="btn" id="btn1" name="btn1"><i class="fas fa-search"></i></button>
+        <button type="button" class="btn" id="btn1" name="btn1" ><i class="fas fa-search"></i></button>
       </div>
     </div>
       
@@ -280,7 +310,7 @@ button:hover {
         <input type="text" class="form-control hei34" id="character2" name="character2" readonly required>
       </div>
     <div class="col5">
-      <button type="button" class="btn" id="btn2" name="btn2"><i class="fas fa-search"></i></button>
+      <button type="button" class="btn" id="btn2" name="btn2" "><i class="fas fa-search"></i></button>
     </div>
   </div>
       
@@ -380,10 +410,13 @@ button:hover {
     </div>
   </div>
   <br>
-  <button type="submit" class="done">배우목록 완료</button>
-  
-</form>
+  <button type="button" class="done">배우목록 완료</button>
+ </form>
 </div>
+
+<script type="text/javascript">
+
+</script>
 
 </body>
 </html>
