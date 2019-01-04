@@ -7,103 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
   <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/nav.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminBasic.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <style>
-
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-}
-
-input[type=text].col82 {
-  width: 85%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-}
-
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-}
-
-input[type=submit],
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-}
-button {
-  width:13%;
-  height:40px;
-  padding: 12px 20px;
-  margin: 0px 5px;
-  line-height: 20px;
-}
-
-input[type=submit]:hover,
-button:hover {
-  background-color: #45a049;
-}
-
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-
-.col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
-}
-
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-}
-
-.col-65 {
-  float: left;
-  width: 65%;
-  margin-top: 6px;
-}
-
-.col-50 {
-  float: left;
-  width: 50%;
-  margin-top: 6px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.Center-Container {
-  position: relative;
-  height: 100%;
-}
-
-.row input[type=submit].right {
-  float: right;
-}
-
 .fileDrop{
-width: 24%;
+width: 23%;
 height: 259px;
 border: 1px dotted blue;
 margin-left:10px;
@@ -340,78 +250,62 @@ $('#aBtn').click(function(){
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
 $(".fileDrop").on("dragenter dragover", function(event){
-  event.preventDefault();
-});
+	  event.preventDefault();
+	});
 
-$(".fileDrop").on("drop", function(event){
-  event.preventDefault();
-  
-  var files = event.originalEvent.dataTransfer.files;
-  var file = files[0];
-  
-  /* console.log(file); */
-  var formData = new FormData();
-  
-  formData.append("file", file);
-  
-   if(!checkImageType(file.name)){
-	  alert("jpg, png, jpeg형식에 아닙니다.");
-	  return false;
-  }
-  console.log(file);
-  
-  $.ajax({
-    url: '/movie/admin/uploadAjax',
-    data: formData,
-    dataType: 'text',
-    processData: false,
-    contentType: false,
-    type: 'POST',
-    success: function(data){
-        alert(data);
-        
-        var str = "";
-        
-        console.log(data);
-        console.log(checkImageType(data));
-        
-        if(checkImageType(data)){
-        	$(".poster").empty();
-          str = "<div><a href='displayFile?fileName=" + getImageLink(data) + "'>" +
-                    "<img src='displayFile?fileName="+data+"'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
-        }
-        $(".poster").append(str);
-    }
-  });/* end of upload ajax */
-  
-});/* end of $(".fileDrop").on("drop", function */
-    
-$(".poster").on("click", "small", function(event){
-  
-  var that = $(this);
-  
-  deleteFileAjax(that);
-  console.log($(this).attr("data-src"));
-/*   $.ajax({
-    url:"/movie/admin/deleteFile",
-    type:"post",
-    data: {fileName:$(this).attr("data-src")},
-    dataType: "text",
-    success: function(result){
-      if(result == 'deleted'){
-        alert("deleted");
-        that.parent("div").remove();
-      }
-    }
-  }); */
-  
-});/* end of $(".uploadedList").on("click", "small", function */
-
-function deleteFileAjax(that){
-	$.ajax({
+	$(".fileDrop").on("drop", function(event){
+	  event.preventDefault();
+	  
+	  var files = event.originalEvent.dataTransfer.files;
+	  var file = files[0];
+	  
+	  /* console.log(file); */
+	  var formData = new FormData();
+	  
+	  formData.append("file", file);
+	  
+	   if(!checkImageType(file.name)){
+	    alert("jpg, png, jpeg형식에 아닙니다.");
+	    return false;
+	  }
+	  console.log(file);
+	  
+	  $.ajax({
+	    url: '/movie/admin/uploadAjax',
+	    data: formData,
+	    dataType: 'text',
+	    processData: false,
+	    contentType: false,
+	    type: 'POST',
+	    success: function(data){
+	        alert(data);
+	        
+	        var str = "";
+	        
+	        console.log(data);
+	        console.log(checkImageType(data));
+	        
+	        if(checkImageType(data)){
+	          $(".poster").empty();
+	          str = "<div><a href='displayFile?fileName=" + getImageLink(data) + "'>" +
+	                    "<img src='displayFile?fileName="+data+"'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
+	        }
+	        $(".poster").append(str);
+	    }
+	  });/* end of upload ajax */
+	  
+	});/* end of $(".fileDrop").on("drop", function */
+	    
+	$(".poster").on("click", "small", function(event){
+	  
+	  var that = $(this);
+	  
+	  deleteFileAjax(that);
+	  console.log($(this).attr("data-src"));
+	/*   $.ajax({
 	    url:"/movie/admin/deleteFile",
 	    type:"post",
-	    data: {fileName:that.attr("data-src")},
+	    data: {fileName:$(this).attr("data-src")},
 	    dataType: "text",
 	    success: function(result){
 	      if(result == 'deleted'){
@@ -419,31 +313,47 @@ function deleteFileAjax(that){
 	        that.parent("div").remove();
 	      }
 	    }
-	  });
-}
-		
-function checkImageType(fileName){
-  var pattern = /jpg|png|jpeg/i;
-  return fileName.match(pattern);
-}
+	  }); */
+	  
+	});/* end of $(".uploadedList").on("click", "small", function */
 
-function getOriginalName(fileName){
-  if(checkImageType(fileName)){
-    retuen;
-  }
-  var idx = fileName.indexOf("_")+1;
-  return fileName.substr(idx);
-}
+	function deleteFileAjax(that){
+	  $.ajax({
+	      url:"/movie/admin/deleteFile",
+	      type:"post",
+	      data: {fileName:that.attr("data-src")},
+	      dataType: "text",
+	      success: function(result){
+	        if(result == 'deleted'){
+	          alert("deleted");
+	          that.parent("div").remove();
+	        }
+	      }
+	    });
+	}
+	    
+	function checkImageType(fileName){
+	  var pattern = /jpg|png|jpeg/i;
+	  return fileName.match(pattern);
+	}
 
-function getImageLink(fileName){
-  if(!checkImageType(fileName)){
-    return;
-  }
-  var front = fileName.substr(0,12);
-  var end = fileName.substr(14);
-  
-  return front + end;
-}
+	function getOriginalName(fileName){
+	  if(checkImageType(fileName)){
+	    retuen;
+	  }
+	  var idx = fileName.indexOf("_")+1;
+	  return fileName.substr(idx);
+	}
+
+	function getImageLink(fileName){
+	  if(!checkImageType(fileName)){
+	    return;
+	  }
+	  var front = fileName.substr(0,12);
+	  var end = fileName.substr(14);
+	  
+	  return front + end;
+	}
 </script>
 
 </body>

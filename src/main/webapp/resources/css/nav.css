@@ -62,6 +62,35 @@ body {
   flex: 15%;
   background-color: #f1f1f1;
   padding: 20px;
+  /* min-height: 700px; */
+}
+.sub-menu ul li{
+  list-style: none;
+  list-style-position: inside;
+  text-indent: -2em;
+  padding-left: 1em;
+}
+.sub-menu ul li ul li{
+  list-style: none;
+  list-style-position: inside;
+  text-indent: -4.5em;
+  padding-left: 1em;
+}
+.sub-menu ul li a{
+  text-decoration:none;
+  color: black;
+}
+.sub-menu ul li a:hover{
+  text-decoration:underline;
+  color: blue;
+}
+.sub-menu ul li ul li a{
+  text-decoration:none;
+  color: black;
+}
+.sub-menu ul li ul li a:hover{
+  text-decoration:underline;
+  color: blue;
 }
 
 /* Main column(right) */
@@ -70,6 +99,13 @@ body {
   flex: 80%;
   background-color: white;
   padding-left: 20px;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  /* min-height: 700px; */
 }
 
 /* Fake image, just for this example */
