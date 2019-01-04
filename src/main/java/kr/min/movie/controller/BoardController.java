@@ -59,7 +59,7 @@ public class BoardController {
    
     @RequestMapping(value="/detail", method = RequestMethod.GET)
     public String detailGet(HttpServletRequest request, Model model, Criteria cri) {
-       return "movie/movieDetail";
+       return "movie/detail";
     }
 	
 }
