@@ -25,7 +25,7 @@ $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (500 / 2);
     var popupY= (window.screen.height / 2) - (250 / 2);
   $('#add').click(function(){
-    window.open('<%=request.getContextPath()%>/admin/MM/addA','addActor','width=500,height=250,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+    window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho/addA','addActor','width=500,height=250,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   });
 });
 </script>

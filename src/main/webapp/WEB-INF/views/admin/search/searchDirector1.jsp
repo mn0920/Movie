@@ -18,6 +18,18 @@
   integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
   crossorigin="anonymous">
 
+<script type="text/javascript"
+  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    var popupX = (window.screen.width / 2) - (500 / 2);
+    var popupY= (window.screen.height / 2) - (250 / 2);
+  $('#add').click(function(){
+    window.open('<%=request.getContextPath()%>/admin/MM/seaD/cho/addD','addDirector','width=500,height=250,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  });
+});
+</script>
 <style>
 * {
   box-sizing: inherit;
@@ -136,9 +148,8 @@ button:hover {
     <button type="button">선택</button>
     <br>
     <div style="margin-top:10px;">찾고자하는 감독이 없다면 추가 버튼을 눌러주세요</div>
-    <button type="button">추가</button>
-    
-  </div>
+    <button type="button" id="add" name="add">추가</button>
+   </div>
 
   <script>
 			function myFunction() {
