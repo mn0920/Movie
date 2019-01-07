@@ -204,7 +204,14 @@ $('#aBtn').click(function(){
               <label for="rate">Rate(관람가능 연령)</label>
             </div>
             <div class="col-25">
-              <input type="text" id="rate" name="rate" placeholder="관람 가능 연령을 적어주세요">
+              <select id="rate" name="rate">
+                <option value="null">age</option>
+                <option value="G">전체관람가</option>
+                <option value="12">12세 이상</option>
+                <option value="15">15세 이상</option>
+                <option value="18">청소년관람불가</option>
+                <option value="R">제한상영가</option>
+              </select>
             </div>
             <div class="col-25">
               <label for="grade" style="float: right;">grade(관객수)</label>
@@ -238,7 +245,7 @@ $('#aBtn').click(function(){
             </div>
           </div>
           <div class="row">
-            <input type="submit" value="submit" class="right">
+            <div class="right"><input type="submit" value="submit"></div>
           </div>
         </form>
       </div>
