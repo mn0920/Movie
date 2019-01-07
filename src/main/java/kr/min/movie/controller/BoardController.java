@@ -42,9 +42,14 @@ public class BoardController {
       return "movie/popupbtn";
    }
 	 
-	  @RequestMapping(value="/AD", method = RequestMethod.GET)
-    public String actorDirectorGet(HttpServletRequest request, Model model, Criteria cri) {
-       return "movie/actorDirector";
+	  @RequestMapping(value="/A", method = RequestMethod.GET)
+    public String actorGet(HttpServletRequest request, Model model, Criteria cri) {
+       return "movie/actor";
+    }
+   
+    @RequestMapping(value="/D", method = RequestMethod.GET)
+    public String directorGet(HttpServletRequest request, Model model, Criteria cri) {
+       return "movie/director";
     }
    
     @RequestMapping(value="/my", method = RequestMethod.GET)
