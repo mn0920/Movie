@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f1f1f1;
+    padding: 20px;
+    font-family: Arial;
+}
+
+/* Center website */
+.main2 {
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 5px;
+}
+
+h1 {
+    font-size: 50px;
+    word-break: break-all;
+}
+
+.row2 {
+    margin: 10px -16px;
+}
+
+/* Add padding BETWEEN each column */
+.row2,
+.row2 > .column {
+    padding: 8px;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+    /* float: left;
+    width: 20%; */
+  display: none; /* Hide all elements by default */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  /* max-width: 235px; */
+  width: 18%;
+  margin: 10px;
+  text-align: center;
+  font-family: arial;
+  /* display : inline-block; */
+}
+
+/* Clear floats after rows */ 
+.row2:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Content */
+.content {
+    background-color: white;
+    padding: 10px;
+}
+
+/* The "show" class is added to the filtered elements */
+.show {
+  /* display: block; */
+  display:inline-block;
+}
+
+/* Style the buttons */
+.btn {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: white;
+  cursor: pointer;
+  color: black;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.btn.active {
+  background-color: #666;
+  color: white;
+}

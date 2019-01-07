@@ -10,93 +10,11 @@
 
   <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/global.css">
   <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/menu.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/movieUserMain.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
-  <style>
-* {
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #f1f1f1;
-    padding: 20px;
-    font-family: Arial;
-}
-
-/* Center website */
-.main {
-    max-width: 1000px;
-    margin: auto;
-}
-
-h1 {
-    font-size: 50px;
-    word-break: break-all;
-}
-
-.row {
-    margin: 10px -16px;
-}
-
-/* Add padding BETWEEN each column */
-.row,
-.row > .column {
-    padding: 8px;
-}
-
-/* Create three equal columns that floats next to each other */
-.column {
-    /* float: left;
-    width: 20%; */
-    display: none; /* Hide all elements by default */
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 250px;
-  margin: 10px;
-  text-align: center;
-  font-family: arial;
-  /* display : inline-block; */
-}
-
-/* Clear floats after rows */ 
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-/* Content */
-.content {
-    background-color: white;
-    padding: 10px;
-}
-
-/* The "show" class is added to the filtered elements */
-.show {
-  /* display: block; */
-  display:inline-block;
-}
-
-/* Style the buttons */
-.btn {
-  border: none;
-  outline: none;
-  padding: 12px 16px;
-  background-color: white;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: #ddd;
-}
-
-.btn.active {
-  background-color: #666;
-  color: white;
-}
-</style>
 
     <title>main</title>
 </head>
@@ -108,7 +26,7 @@ h1 {
 
 <hr>
 <!-- MAIN (Center website) -->
-<div class="main">
+<div class="main2">
 
 <h2>RECOMMEND</h2>
 
@@ -120,7 +38,7 @@ h1 {
 </div>
 
 <!-- Portfolio Gallery Grid -->
-<div class="row">
+<div class="row2">
   <div class="column nature">
     <div class="content">
       <img src="/w3images/mountains.jpg" alt="Mountains" style="width:100%">

@@ -15,6 +15,7 @@
   href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
   integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
   crossorigin="anonymous">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminSearch.css">
 <!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 <script type="text/javascript"
   src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -198,75 +199,6 @@ $('#btn8').click(function(){
   });
  });
 </script>
-<style>
-* {
-  box-sizing: inherit;
-}
-
-body {
-  background-color: #fafafa;
-}
-
-.container {
-  margin: 20px auto;
-  max-width: 400px;
-  padding: 10px;
-  padding-left: 20px;
-}
-
-.col20 {
-  width: 20%;
-}
-
-.col75 {
-  width: 65%;
-}
-
-.col5 {
-  width: 10%;
-}
-
-.row {
-/*   margin-left: 20px;
-  margin-right: 5px;
-  /* padding: 20px; */
-}
-.hei34{
-height: 34px;
-}
-.hei33{
-    height: 33px;
-    padding-top: 2px;
-    padding-bottom: 5px;
-}
-.mart5{
- margin-top: 5px;
-}
-
-button{
-  background-color: #4CAF50;
-  color: white;
-}
-
-.done {
-  /* background-color: rgb(139,139,139); */
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-  width:100%;
-  height:30px;
-  padding: 12px 20px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  line-height: 0px;
-}
-
-button:hover {
-  background-color: #439946;
-}
-</style>
 
 <title>searchActor</title>
 </head>

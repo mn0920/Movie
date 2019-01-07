@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+.container{
+padding-right: 10px;
+}
+
+.fileDrop{
+width: 30%;
+height: 250px;
+border: 1px dotted blue;
+margin-left:10px;
+text-align: center;
+text-indent: -2em;
+display: inline-block;
+}
+small {
+margin-left: 3px;
+font-weight: bold;
+color: grey;
+}
+.row{
+width: 100%;
+margin: 0;
+
+}
+.row .col-25{
+padding-left: 15px;
+width: 23%;
+}
+
+input[type=text].col82{
+width: 79%;
+}
+.col-75{
+width: 73%;
+}
+
+.hr{
+margin-top: 30px;
+}
+
+.inline{
+display: inline-block;
+width: 65%;
+margin-left: 10px;
+}
+
+button {
+padding: 12px 10px;
+width: 15%;
+}
+
+.mart5{
+ margin-top: 5px;
+}
+
+.mar16{
+margin-right: 16px;
+margin-bottom: 10px;
+}
+
+form {
+  margin: 0;
+}

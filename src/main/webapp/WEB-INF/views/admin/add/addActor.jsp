@@ -29,10 +29,7 @@ color: grey;
 .row .col-25{
 padding-left: 15px;
 }
-.row div.right{
-width:100%;
-float: right;
-}
+
 .hr{
 margin-top: 30px;
 }
@@ -85,7 +82,7 @@ margin-top: 30px;
           </div>
           <div class="row">
             <div class="col-25">
-              <label for="director_list"">생년월일</label>
+              <label for="director_list">생년월일</label>
             </div>
             <div class="col-75">
               <input type="text" id="director_list" name="director_list" class="col82" placeholder="영화 감독을 적어주세요" readonly>
@@ -181,7 +178,7 @@ $(".fileDrop").on("dragenter dragover", function(event){
           if(checkImageType(data)){
             $(".poster").empty();
             str = "<div><a href='displayFile?fileName=" + getImageLink(data) + "'>" +
-                      "<img src='displayFile?fileName="+data+"'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
+            "<img src='displayFile?fileName="+data+"'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
           }
           $(".poster").append(str);
       }

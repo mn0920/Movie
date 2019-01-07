@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+
+.column{
+width: 240px;
+}
+body {
+background-color: white;
+}
+h4{
+display: inline-block;
+margin: 20px 10px 5px 10px;
+}
