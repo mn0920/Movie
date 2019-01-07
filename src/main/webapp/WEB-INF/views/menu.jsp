@@ -17,7 +17,8 @@
       <div class="navbar-right topnav">
           <a href="<%=request.getContextPath()%>/m/R">영화추천</a>
           <a href="<%=request.getContextPath()%>/m/main">영화목록</a>
-          <a href="<%=request.getContextPath()%>/m/AD">배우/감독</a>
+          <a href="<%=request.getContextPath()%>/m/A">배우</a>
+          <a href="<%=request.getContextPath()%>/m/D">감독</a>
           <a href="<%=request.getContextPath()%>/m/my">내 서재</a>
           <p style="display: inline-block; width: 10px;"></p>
         <div class="navbar-right search-container">
