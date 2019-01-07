@@ -17,15 +17,16 @@
   href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
   integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
   crossorigin="anonymous">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminSearch1.css">
 <script type="text/javascript"
   src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
-    var popupX = (window.screen.width / 2) - (500 / 2);
-    var popupY= (window.screen.height / 2) - (250 / 2);
+    var popupX = (window.screen.width / 2) - (750 / 2);
+    var popupY= (window.screen.height / 2) - (351 / 2);
   $('#add').click(function(){
-    window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho/addA','addActor','width=500,height=250,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+    window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho/addA','addActor','width=750,height=351,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   });
 });
 </script>
@@ -56,63 +57,6 @@ $(document).ready(function(){
     }
     </script> -->
 
-<style>
-* {
-  box-sizing: inherit;
-}
-
-body {
-  background-color: #fafafa;
-}
-
-.container {
-  margin: 20px auto;
-  max-width: 400px;
-}
-
-h2 {
-  margin: 30px auto;
-}
-
-button {
-  background-color: #87ceeb;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-  width:100%;
-  height:30px;
-  padding: 12px 20px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  line-height: 0px;
-}
-
-button:hover {
-  background-color: #6495ed;
-}
-
-.tableScroll {
-  width: 100%;
-  min-height: 200px;
-  max-height: 200px;
-  overflow-y: scroll;
-  overflow-x:hidden;
-  border: 1px solid rgba(0, 0, 0, .15);
-  border-radius: .25rem;
-  background-color: #fff;
-}
-
-.none{
- border-left: none;
- border-top: none;
- border-bottom: none;
- border-top-left-radius: 0;
- border-top-right-radius: 0px;
-}
-</style>
 <title>choiceActor</title>
 </head>
 
@@ -193,6 +137,9 @@ $("#choice").click(function(){
 	var data = $('input[type="radio"]:checked').val();
 	//var id=$('#characterId').val();
 	var id='character1';
+  if(!data){
+	    alert('인물을 선택해주세요.');
+	  }
 	opener.document.getElementById(id).value = data;
 	window.close();
 });
