@@ -34,7 +34,7 @@ public class AdminController {
 
   @RequestMapping(value = "/movie", method = RequestMethod.GET)
   public String movieGet(BoardVo boardVo, Model model) {
-    return "admin/Movie";
+    return "admin/movieMain";
   }
 
   @RequestMapping(value = "/actor", method = RequestMethod.GET)
