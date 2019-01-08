@@ -31,11 +31,6 @@ public class BoardController {
 	   public String main1Get(HttpServletRequest request, Model model, Criteria cri) {
        return "movie/main";
 	   }
-	
-	 @RequestMapping(value="/main2", method = RequestMethod.GET)
-   public String main2(HttpServletRequest request, Model model, Criteria cri) {
-      return "movie/main2";
-   }
 	 
    @RequestMapping(value="/btn", method = RequestMethod.GET)
    public String btn(HttpServletRequest request, Model model, Criteria cri) {
@@ -62,9 +57,24 @@ public class BoardController {
        return "movie/recommend";
     }
    
-    @RequestMapping(value="/detail", method = RequestMethod.GET)
-    public String detailGet(HttpServletRequest request, Model model, Criteria cri) {
-       return "movie/detail";
+    @RequestMapping(value="/m/mDetail", method = RequestMethod.GET)
+    public String mDetailGet(HttpServletRequest request, Model model, Criteria cri) {
+       return "movie/detail/mDetail";
+    }
+   
+    @RequestMapping(value="/m/movieDetail", method = RequestMethod.GET)
+    public String movieDetailGet(HttpServletRequest request, Model model, Criteria cri) {
+       return "movie/detail/movieDetail";
+    }
+   
+    @RequestMapping(value="/a/detail", method = RequestMethod.GET)
+    public String aDetailGet(HttpServletRequest request, Model model, Criteria cri) {
+       return "movie/detail/aDetail";
+    }
+   
+    @RequestMapping(value="/d/detail", method = RequestMethod.GET)
+    public String dDetailGet(HttpServletRequest request, Model model, Criteria cri) {
+       return "movie/detail/dDetail";
     }
 	
 }
