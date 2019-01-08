@@ -15,11 +15,11 @@
 
       <a href="javascript:void(0)" id="logo">AboutM</a>
       <div class="navbar-right topnav">
-          <a href="<%=request.getContextPath()%>/m/R">영화추천</a>
-          <a href="<%=request.getContextPath()%>/m/main">영화목록</a>
-          <a href="<%=request.getContextPath()%>/m/A">배우</a>
-          <a href="<%=request.getContextPath()%>/m/D">감독</a>
-          <a href="<%=request.getContextPath()%>/m/my">내 서재</a>
+          <a href="<%=request.getContextPath()%>/m/R" id="R">영화추천</a>
+          <a href="<%=request.getContextPath()%>/m/main" id="main">영화목록</a>
+          <a href="<%=request.getContextPath()%>/m/A" id="A">배우</a>
+          <a href="<%=request.getContextPath()%>/m/D" id="D">감독</a>
+          <a href="<%=request.getContextPath()%>/m/my" id="my">내 서재</a>
           <p style="display: inline-block; width: 10px;"></p>
         <div class="navbar-right search-container">
           <form method="GET">
