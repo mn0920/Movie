@@ -71,5 +71,17 @@ public class BoardController {
     public String dDetailGet(HttpServletRequest request, Model model, Criteria cri) {
        return "movie/detail/dDetail";
     }
+   
+    @RequestMapping(value="/dustmq1", method = RequestMethod.GET)
+    public String dustmq1(HttpServletRequest request, Model model, Criteria cri) {
+       return "movie/PRACTICE1";
+    }
+   
+    @RequestMapping(value="/dustmq2", method = RequestMethod.GET)
+    public String dustmq2(HttpServletRequest request, Model model, Criteria cri) {
+       return "movie/PRACTICE2";
+    }
 	
+    
+    
 }
