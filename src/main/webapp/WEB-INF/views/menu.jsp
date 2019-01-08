@@ -23,7 +23,7 @@
           <p style="display: inline-block; width: 10px;"></p>
         <div class="navbar-right search-container">
           <form method="GET">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search the Movie!" id="search" name="search">
+            <input class="form-control mr-sm-2" type="text" id="search" placeholder="Search the Movie!" id="search" name="search">
             <button class="btn btn-success" type="submit" id="btnSearch" name="btnSearch">Search</button>
           </form>
         </div>

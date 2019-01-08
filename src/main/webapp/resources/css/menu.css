@@ -90,7 +90,7 @@
   float: right;
 }
 
-.topnav input[type=text] {
+.topnav #search {
   padding: 6px;
   margin-top: 8px;
   font-size: 17px;
@@ -98,10 +98,11 @@
   border-bottom-left-radius: 8px;
   border-top-left-radius: 8px;
   height:23px;
+  width:68%;
   box-sizing: content-box;
 }
 
-.topnav .search-container button {
+.topnav .search-container #btnSearch {
   float: right;
   padding: 6px 10px;
   margin-top: 8px;
@@ -112,10 +113,11 @@
   cursor: pointer;
   border-bottom-right-radius: 8px;
   border-top-right-radius: 8px;
-  height:35px;'
+  height:35px;
+  width:23%;
 }
 
-.topnav .search-container button:hover {
+.topnav .search-container #btnSearch:hover {
   background: #ccc;
   border-bottom-right-radius: 8px;
   border-top-right-radius: 8px;
