@@ -41,7 +41,7 @@
   background-image: url("/movie/resources/images/menuHeader3.jpg");
   background-size: cover;
   background-position: center;
-  padding: 0 !important;
+  /* padding: 0 !important; */
   float: left;
 }
 
@@ -79,7 +79,8 @@
 .sticky {
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 94.5% !important;
+  padding-right: 20px !important;
 }
 
 .sticky+.content {
