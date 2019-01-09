@@ -1,20 +1,20 @@
 package kr.min.movie.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import kr.min.movie.service.AccountService;
+import kr.min.movie.service.AdminService;
 import kr.min.movie.service.BoardService;
 import kr.min.movie.vo.BoardVo;
+import kr.min.movie.vo.GenreVo;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -26,6 +26,8 @@ public class AdminAddController {
   private AccountService accountService;
   @Autowired
   private BoardService boardService;
+  @Autowired
+  private AdminService adminService;
 
   @RequestMapping(value = "/movie/addM", method = RequestMethod.GET)
   public String addMovieGet(BoardVo boardVo, Model model) {
@@ -124,7 +126,11 @@ public class AdminAddController {
   
   
   @RequestMapping(value = "/MM/seaG", method = RequestMethod.GET)
-  public String searchGenreGet(BoardVo boardVo, Model model) {
+  public String searchGenreGet(GenreVo genreVo,  Model model) {
+    
+    List<GenreVo> genre = adminService.getGenre();
+    
+    model.addAttribute("genre", genre);
     return "admin/search/searchGenre";
   }
   

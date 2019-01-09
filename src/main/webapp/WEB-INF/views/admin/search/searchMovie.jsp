@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminSearch1.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-<script type="text/javascript">
 $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (990 / 2);
     var popupY= (window.screen.height / 2) - (890 / 2);
