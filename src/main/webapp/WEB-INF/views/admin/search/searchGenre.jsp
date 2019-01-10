@@ -73,21 +73,9 @@
     <div style="margin-top:10px;">등록하고자 하는 영화가 없다면 진행을 눌러주세요.</div>
     <button type="button" id="done">진행</button>
    </div>
-  <input type="text" id="characterId">
-  
   
 
 <script type="text/javascript">
-/* $("#choice").click(function(){ 
-	  var data = $('input[type="checkbox"]:checked').val();
-	  //var id=$('#characterId').val();
-	  var id='genre_list';
-	  if(!data){
-	      alert('장르를 선택해주세요.');
-	    }
-	  opener.document.getElementById(id).value = data;
-	  window.close();
-	}); */
 $(document).ready(function(){
 	  $('#done').click(function(){
 		  

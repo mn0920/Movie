@@ -12,15 +12,6 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminSearch1.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-$(document).ready(function(){
-    var popupX = (window.screen.width / 2) - (990 / 2);
-    var popupY= (window.screen.height / 2) - (890 / 2);
-  $('#close').click(function(){
-    window.close();
-  });
-});
-</script>
-
   <script type="text/javascript">
       function myFunction() {
         var input, filter, table, tr, td, i, txtValue;
@@ -41,11 +32,6 @@ $(document).ready(function(){
         }
       }
     </script>
-<!--     <script type="text/javascript">
-    function choiced(){
-      document.searchA.
-    }
-    </script> -->
 
 <style>
 </style>
@@ -114,7 +100,7 @@ $(document).ready(function(){
         </tr>
       </table>
     </div>
-    <button type="button" id="choice">확인</button>
+    <button type="button" id="check">확인</button>
     </form>
     
     <br>
@@ -124,19 +110,36 @@ $(document).ready(function(){
   <input type="text" id="characterId">
   
   
+
 <script type="text/javascript">
-$("#choice").click(function(){ 
-  var data = $('input[type="radio"]:checked').val();
-  //var id=$('#characterId').val();
-  var id='character1';
-  opener.document.getElementById(id).value = data;
+var cnt = 0;
+
+$(document).ready(function(){
+    var popupX = (window.screen.width / 2) - (990 / 2);
+    var popupY= (window.screen.height / 2) - (890 / 2);
+  $('#close').click(function(){
+	  var title = $('#myInput').val();
+	  var result = $('input[name=sel').val();
+	  if(title == ""){
+  	   alert("제목을 확인해주세요.");
+  	   return false;
+	  } else if(result != ""){
+  	   if(cnt == 0){
+  		  alert("영화를 확인해주세요.");
+  		  return false;
+       } 
+	  }
+	  opener.document.getElementById("title").value = title;
+    window.close();
+  });
 });
 
-    /* var name = $('input[type="radio"]')
-    var rowData = new Array(); 
-    var tdArr = new Array();
-    var radiobtn = $("input[name=sel]:checked");
-    */
+$("#check").click(function(){ 
+	  var data = $('input[type="radio"]:checked').val();
+	  var id='character1';
+	  cnt ++;
+	  opener.document.getElementById(id).value = data;
+	});
 </script>
 </body>
 </html>
