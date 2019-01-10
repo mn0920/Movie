@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import kr.min.movie.pagenation.Criteria;
 import kr.min.movie.vo.AccountVo;
-import kr.min.movie.vo.BoardVo;
+import kr.min.movie.vo.MovieVo;
 
 public interface AccountDao {
 	public String getEmail(String id);

@@ -70,12 +70,12 @@ $('#aBtn').click(function(){
 });
 });
 </script>
-
+<%-- 
  <div class="all">
  <jsp:include page="adminTopMenu.jsp" />
 
 <div class="row">
-<jsp:include page="adminSideMenu.jsp" />
+<jsp:include page="adminSideMenu.jsp" /> --%>
  
   
   <div class="main">
@@ -95,7 +95,7 @@ $('#aBtn').click(function(){
               <label for="genre_list">genre</label>
             </div>
             <div class="col-75">
-              <input type="text" id="genre_list" name="genre_list" class="col82" placeholder="영화의 장르를 적어주세요." readonly>
+              <input type="text" id="m_genre_list" name="m_genre_list" class="col82" placeholder="영화의 장르를 적어주세요." readonly>
               <button type="button" id="gBtn"><i class="fas fa-search"></i></button>
             </div>
           </div>
@@ -104,16 +104,16 @@ $('#aBtn').click(function(){
               <label for="director_list"">director</label>
             </div>
             <div class="col-75">
-              <input type="text" id="director_list" name="director_list" class="col82" placeholder="영화 감독을 적어주세요" readonly>
+              <input type="text" id="m_director_list" name="m_director_list" class="col82" placeholder="영화 감독을 적어주세요" readonly>
               <button type="button" id="dBtn"><i class="fas fa-search"></i></button>
             </div>
           </div>
           <div class="row">
             <div class="col-25">
-              <label for="actor_list">actor</label>
+              <label for="m_actor_list">actor</label>
             </div>
             <div class="col-75">
-              <input type="text" id="actor_list" name="actor_list" class="col82" placeholder="출연한 배우들의 이름을 적어주세요" readonly>
+              <input type="text" id="m_actor_list" name="m_actor_list" class="col82" placeholder="출연한 배우들의 이름을 적어주세요" readonly>
               <button type="button" id="aBtn"><i class="fas fa-search"></i></button>
             </div>
           </div>

@@ -15,8 +15,6 @@ import kr.min.movie.pagenation.Criteria;
 import kr.min.movie.pagenation.PageMaker;
 import kr.min.movie.service.AccountService;
 import kr.min.movie.service.BoardService;
-import kr.min.movie.vo.AccountVo;
-import kr.min.movie.vo.BoardVo;
 
 @Controller
 @RequestMapping(value="/m")

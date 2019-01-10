@@ -99,7 +99,7 @@ $(document).ready(function(){
 	       }
 	     });
 	      console.log(str);
-	      opener.document.getElementById("genre_list").value = str;
+	      opener.document.getElementById("m_genre_list").value = str;
 	      window.close();
 	  });
 	 });

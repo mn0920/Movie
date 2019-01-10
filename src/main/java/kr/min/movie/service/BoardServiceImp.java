@@ -4,18 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.min.movie.dao.BoardDao;
-import kr.min.movie.vo.BoardVo;
+import kr.min.movie.vo.MovieVo;
 
 @Service
 public class BoardServiceImp implements BoardService {
 
-	@Autowired
-	private BoardDao boardDao;
-	
-	@Override
-	public void addMovie(BoardVo boardVo) {
-		boardDao.addMovie(boardVo);
-	}
 
 /*  @Override
   public void searchActor(String[] actor) {

@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.min.movie.service.AccountService;
 import kr.min.movie.service.BoardService;
-import kr.min.movie.vo.BoardVo;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -28,32 +27,32 @@ public class AdminController {
   private BoardService boardService;
 
   @RequestMapping(value = "/user", method = RequestMethod.GET)
-  public String userGet(BoardVo boardVo, Model model) {
+  public String userGet(Model model) {
     return "admin/user";
   }
 
   @RequestMapping(value = "/movie", method = RequestMethod.GET)
-  public String movieGet(BoardVo boardVo, Model model) {
+  public String movieGet(Model model) {
     return "admin/movieMain";
   }
 
   @RequestMapping(value = "/actor", method = RequestMethod.GET)
-  public String actorGet(BoardVo boardVo, Model model) {
+  public String actorGet(Model model) {
     return "admin/actor";
   }
 
   @RequestMapping(value = "/actor/addA", method = RequestMethod.GET)
-  public String actorAddGet(BoardVo boardVo, Model model) {
+  public String actorAddGet(Model model) {
     return "admin/add/addActor";
   }
 
   @RequestMapping(value = "/director", method = RequestMethod.GET)
-  public String directorGet(BoardVo boardVo, Model model) {
+  public String directorGet(Model model) {
     return "admin/director";
   }
 
   @RequestMapping(value = "/director/addD", method = RequestMethod.GET)
-  public String directorAddGet(BoardVo boardVo, Model model) {
+  public String directorAddGet(Model model) {
     return "admin/add/addDirector";
   }
 

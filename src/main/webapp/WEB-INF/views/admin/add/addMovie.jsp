@@ -64,9 +64,9 @@ $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (430 / 2);
     var popupY= (window.screen.height / 2) - (500 / 2);
 $('#aBtn').click(function(){
-	window.open('<%= request.getContextPath() %>/admin/MM/seaA','searchActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
-	console.log(popupX);
-	console.log(popupY);
+  window.open('<%= request.getContextPath() %>/admin/MM/seaA','searchActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  console.log(popupX);
+  console.log(popupY);
 });
 });
 </script>
@@ -95,7 +95,7 @@ $('#aBtn').click(function(){
               <label for="genre_list">genre</label>
             </div>
             <div class="col-75">
-              <input type="text" id="genre_list" name="genre_list" class="col82" placeholder="영화의 장르를 적어주세요." readonly>
+              <input type="text" id="m_genre_list" name="m_genre_list" class="col82" placeholder="영화의 장르를 적어주세요." readonly>
               <button type="button" id="gBtn"><i class="fas fa-search"></i></button>
             </div>
           </div>
@@ -104,16 +104,16 @@ $('#aBtn').click(function(){
               <label for="director_list"">director</label>
             </div>
             <div class="col-75">
-              <input type="text" id="director_list" name="director_list" class="col82" placeholder="영화 감독을 적어주세요" readonly>
+              <input type="text" id="m_director_list" name="m_director_list" class="col82" placeholder="영화 감독을 적어주세요" readonly>
               <button type="button" id="dBtn"><i class="fas fa-search"></i></button>
             </div>
           </div>
           <div class="row">
             <div class="col-25">
-              <label for="actor_list">actor</label>
+              <label for="m_actor_list">actor</label>
             </div>
             <div class="col-75">
-              <input type="text" id="actor_list" name="actor_list" class="col82" placeholder="출연한 배우들의 이름을 적어주세요" readonly>
+              <input type="text" id="m_actor_list" name="m_actor_list" class="col82" placeholder="출연한 배우들의 이름을 적어주세요" readonly>
               <button type="button" id="aBtn"><i class="fas fa-search"></i></button>
             </div>
           </div>
@@ -204,14 +204,7 @@ $('#aBtn').click(function(){
               <label for="rate">Rate(관람가능 연령)</label>
             </div>
             <div class="col-25">
-              <select id="rate" name="rate">
-                <option value="null">age</option>
-                <option value="G">전체관람가</option>
-                <option value="12">12세 이상</option>
-                <option value="15">15세 이상</option>
-                <option value="18">청소년관람불가</option>
-                <option value="R">제한상영가</option>
-              </select>
+              <input type="text" id="rate" name="rate" placeholder="관람 가능 연령을 적어주세요">
             </div>
             <div class="col-25">
               <label for="grade" style="float: right;">grade(관객수)</label>
@@ -245,7 +238,7 @@ $('#aBtn').click(function(){
             </div>
           </div>
           <div class="row">
-            <div class="right"><input type="submit" value="submit"></div>
+            <input type="submit" value="submit" class="right">
           </div>
         </form>
       </div>
@@ -257,110 +250,110 @@ $('#aBtn').click(function(){
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
 $(".fileDrop").on("dragenter dragover", function(event){
-	  event.preventDefault();
-	});
+    event.preventDefault();
+  });
 
-	$(".fileDrop").on("drop", function(event){
-	  event.preventDefault();
-	  
-	  var files = event.originalEvent.dataTransfer.files;
-	  var file = files[0];
-	  
-	  /* console.log(file); */
-	  var formData = new FormData();
-	  
-	  formData.append("file", file);
-	  
-	   if(!checkImageType(file.name)){
-	    alert("jpg, png, jpeg형식에 아닙니다.");
-	    return false;
-	  }
-	  console.log(file);
-	  
-	  $.ajax({
-	    url: '/movie/admin/uploadAjax',
-	    data: formData,
-	    dataType: 'text',
-	    processData: false,
-	    contentType: false,
-	    type: 'POST',
-	    success: function(data){
-	        alert(data);
-	        
-	        var str = "";
-	        
-	        console.log(data);
-	        console.log(checkImageType(data));
-	        
-	        if(checkImageType(data)){
-	          $(".poster").empty();
-	          str = "<div><a href='displayFile?fileName=" + getImageLink(data) + "'>" +
-	                    "<img src='displayFile?fileName="+data+"'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
-	        }
-	        $(".poster").append(str);
-	    }
-	  });/* end of upload ajax */
-	  
-	});/* end of $(".fileDrop").on("drop", function */
-	    
-	$(".poster").on("click", "small", function(event){
-	  
-	  var that = $(this);
-	  
-	  deleteFileAjax(that);
-	  console.log($(this).attr("data-src"));
-	/*   $.ajax({
-	    url:"/movie/admin/deleteFile",
-	    type:"post",
-	    data: {fileName:$(this).attr("data-src")},
-	    dataType: "text",
-	    success: function(result){
-	      if(result == 'deleted'){
-	        alert("deleted");
-	        that.parent("div").remove();
-	      }
-	    }
-	  }); */
-	  
-	});/* end of $(".uploadedList").on("click", "small", function */
+  $(".fileDrop").on("drop", function(event){
+    event.preventDefault();
+    
+    var files = event.originalEvent.dataTransfer.files;
+    var file = files[0];
+    
+    /* console.log(file); */
+    var formData = new FormData();
+    
+    formData.append("file", file);
+    
+     if(!checkImageType(file.name)){
+      alert("jpg, png, jpeg형식에 아닙니다.");
+      return false;
+    }
+    console.log(file);
+    
+    $.ajax({
+      url: '/movie/admin/uploadAjax',
+      data: formData,
+      dataType: 'text',
+      processData: false,
+      contentType: false,
+      type: 'POST',
+      success: function(data){
+          alert(data);
+          
+          var str = "";
+          
+          console.log(data);
+          console.log(checkImageType(data));
+          
+          if(checkImageType(data)){
+            $(".poster").empty();
+            str = "<div><a href='displayFile?fileName=" + getImageLink(data) + "'>" +
+                      "<img src='displayFile?fileName="+data+"'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
+          }
+          $(".poster").append(str);
+      }
+    });/* end of upload ajax */
+    
+  });/* end of $(".fileDrop").on("drop", function */
+      
+  $(".poster").on("click", "small", function(event){
+    
+    var that = $(this);
+    
+    deleteFileAjax(that);
+    console.log($(this).attr("data-src"));
+  /*   $.ajax({
+      url:"/movie/admin/deleteFile",
+      type:"post",
+      data: {fileName:$(this).attr("data-src")},
+      dataType: "text",
+      success: function(result){
+        if(result == 'deleted'){
+          alert("deleted");
+          that.parent("div").remove();
+        }
+      }
+    }); */
+    
+  });/* end of $(".uploadedList").on("click", "small", function */
 
-	function deleteFileAjax(that){
-	  $.ajax({
-	      url:"/movie/admin/deleteFile",
-	      type:"post",
-	      data: {fileName:that.attr("data-src")},
-	      dataType: "text",
-	      success: function(result){
-	        if(result == 'deleted'){
-	          alert("deleted");
-	          that.parent("div").remove();
-	        }
-	      }
-	    });
-	}
-	    
-	function checkImageType(fileName){
-	  var pattern = /jpg|png|jpeg/i;
-	  return fileName.match(pattern);
-	}
+  function deleteFileAjax(that){
+    $.ajax({
+        url:"/movie/admin/deleteFile",
+        type:"post",
+        data: {fileName:that.attr("data-src")},
+        dataType: "text",
+        success: function(result){
+          if(result == 'deleted'){
+            alert("deleted");
+            that.parent("div").remove();
+          }
+        }
+      });
+  }
+      
+  function checkImageType(fileName){
+    var pattern = /jpg|png|jpeg/i;
+    return fileName.match(pattern);
+  }
 
-	function getOriginalName(fileName){
-	  if(checkImageType(fileName)){
-	    retuen;
-	  }
-	  var idx = fileName.indexOf("_")+1;
-	  return fileName.substr(idx);
-	}
+  function getOriginalName(fileName){
+    if(checkImageType(fileName)){
+      retuen;
+    }
+    var idx = fileName.indexOf("_")+1;
+    return fileName.substr(idx);
+  }
 
-	function getImageLink(fileName){
-	  if(!checkImageType(fileName)){
-	    return;
-	  }
-	  var front = fileName.substr(0,12);
-	  var end = fileName.substr(14);
-	  
-	  return front + end;
-	}
+  function getImageLink(fileName){
+    if(!checkImageType(fileName)){
+      return;
+    }
+    var front = fileName.substr(0,12);
+    var end = fileName.substr(14);
+    
+    return front + end;
+  }
 </script>
 
 </body>

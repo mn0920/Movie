@@ -30,7 +30,7 @@
       <beans:constructor-arg value="D:\\movie"></beans:constructor-arg>
   </beans:bean>
 	
-	<context:component-scan base-package="kr.min.movie" />
+	<context:component-scan base-package="kr.min.movie.*" />
   
 	
 </beans:beans>

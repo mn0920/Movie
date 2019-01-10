@@ -19,55 +19,65 @@
  
   
   <div class="main">
+  <div id="loading">
+    <img id="loading-image" src="<%=request.getContextPath() %>/resources/images/loading.gif" alt="Loading..." />
+    <label id="loading-image">배우 정보를 입력하는 중입니다.</label>
+  </div>
     <div class="container">
-        <form method="POST">
+        <form action="" method="POST">
           <div class="fileDrop col-25">
-            <div id="poster" name="poster"  class="poster">배우사진</div>
+            <div id="actor_img" name="actor_img"  class="poster">배우사진</div>
           </div>
           <div class="inline">
             <div class="row">
               <div class="col-25">
-                <label for="genre_list">이름</label>
+                <label for="actor_name">이름</label>
               </div>
               <div class="col-75">
-                <input type="text" id="genre_list" name="genre_list" class="col82" placeholder="영화의 장르를 적어주세요." readonly>
-                <button type="button" id="gBtn"><i class="fas fa-search"></i></button>
+              <input type="text" id="actor_name" name="actor_name" placeholder="이름을 적어주세요">
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-25">
+                <label for="actor_birth">생년월일</label>
+              </div>
+              <div class="col-75">
+                <input type="text" id="actor_birth" name="actor_birth" placeholder="YYYYMMDD">
               </div>
             </div>
             <div class="row">
               <div class="col-25">
-                <label for="director_list">생년월일</label>
+                <label for="actor_country">국가</label>
               </div>
               <div class="col-75">
-                <input type="text" id="director_list" name="director_list" class="col82" placeholder="영화 감독을 적어주세요" readonly>
-                <button type="button" id="dBtn"><i class="fas fa-search"></i></button>
+                <input type="text" id="actor_country" name="actor_country" placeholder="국적을 적어주세요">
               </div>
             </div>
             <div class="row">
               <div class="col-25">
-                <label for="actor_list">국가</label>
+                <label for="actor_gender">성별</label>
               </div>
               <div class="col-75">
-                <input type="text" id="actor_list" name="actor_list" class="col82" placeholder="출연한 배우들의 이름을 적어주세요" readonly>
-                <button type="button" id="aBtn"><i class="fas fa-search"></i></button>
+                <div class="col-50">
+                  <label><input type="radio" id="male" name="actor_gender" value="male" checked>남성</label>
+                </div>
+                <div class="col-50">
+                  <label><input type="radio" id="female" name="actor_gender" value="female">여성</label>
+                </div>
               </div>
             </div>
             <div class="row">
               <div class="col-25">
-                <label for="open_date">수상이력</label>
+                <label for="a_trophy">수상이력</label>
               </div>
-              <div class="col-75">
-                <input type="text" id="actor_list" name="actor_list" class="col82" placeholder="출연한 배우들의 이름을 적어주세요" readonly>
-                <button type="button" id="aBtn"><i class="fas fa-search"></i></button>
+              <div class="col-25 a_trophy">
+                <input type="text" id="a_trophy_year" name="a_trophy_year" placeholder="YYYYMMDD">
               </div>
-            </div>
-            <div class="row">
-              <div class="col-25">
-                <label for="rate">성별</label>
+              <div class="col-25 a_trophy">
+                <input type="text" id="a_trophy_name" name="a_trophy_name" placeholder="ex-백상예술대상">
               </div>
-              <div class="col-75">
-                <input type="text" id="actor_list" name="actor_list" class="col82" placeholder="출연한 배우들의 이름을 적어주세요" readonly>
-                <button type="button" id="aBtn"><i class="fas fa-search"></i></button>
+              <div class="col-25 a_trophy">
+                <input type="text" id="a_trophy_grade" name="a_trophy_grade" placeholder="ex-대상">
               </div>
             </div>
           </div>
@@ -77,11 +87,65 @@
         </form>
       </div><!-- con -->
   </div><!-- main -->
+  <input type="hidden" id="aaaa" value="${state}">
 
-
-
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/jquery.validate.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/additional-methods.js"></script>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
+var state = $("#aaaa").val();
+$(window).load(function() {    
+    $('#loading').hide();  
+    if(state == 1){
+    	$('.container').hide();
+    	$('#loading').show();
+    }
+   });
+
+$("form").submit(function(){
+  opener.document.getElementById('update').value = "update";
+  opener.$('#update').trigger('change');
+});
+
+/* 
+
+var form = document.getElementsByTagName('form');
+
+   $("form").validate({
+    rules: {
+      actor_birth: {
+            required : true,
+            minlength : 8,
+            maxlength : 8,
+            regex: /\d{8,8}/
+        },
+        a_trophy_year: {
+            minlength : 8,
+            maxlength : 8,
+            regex: /\d{8,8}/
+        },
+    },
+    //규칙체크 실패시 출력될 메시지
+    messages : {
+        pw: {
+            required : "필수로입력하세요",
+            regex : "YYYYMMDD"
+        },
+        a_trophy_year: {
+            regex : "YYYYMMDD"
+        },
+    }
+});
+$.validator.addMethod(
+      "regex",
+      function(value, element, regexp) {
+          var re = new RegExp(regexp);
+          return this.optional(element) || re.test(value);
+      },
+      "Please check your input."
+  ); */
+
 $(".fileDrop").on("dragenter dragover", function(event){
     event.preventDefault();
   });
@@ -120,8 +184,8 @@ $(".fileDrop").on("dragenter dragover", function(event){
           
           if(checkImageType(data)){
             $(".poster").empty();
-            str = "<div><a href='displayFile?fileName=" + getImageLink(data) + "'>" +
-            "<img src='displayFile?fileName="+data+"'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
+            str = "<div><%-- <a href='<%= request.getContextPath() %>/admin/displayFile?fileName=" + getImageLink(data) + "'>" +
+            " --%><img src='<%= request.getContextPath() %>/admin/displayFile?fileName="+data+"'/><small data-src="+data+"><i class='fas fa-times'></small></div>";
           }
           $(".poster").append(str);
       }

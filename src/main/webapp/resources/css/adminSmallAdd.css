@@ -1,64 +1,122 @@
 @charset "UTF-8";
 
-.container{
-padding-right: 10px;
+.container {
+  padding-right: 10px;
 }
 
-.fileDrop{
-width: 30%;
-height: 250px;
-border: 1px dotted blue;
-margin-left:10px;
-text-align: center;
-text-indent: -2em;
-display: inline-block;
+.fileDrop {
+  width: 30%;
+  height: 250px;
+  border: 1px dotted blue;
+  margin-left: 10px;
+  text-align: center;
+  text-indent: -2em;
+  display: inline-block;
 }
+
 small {
-margin-left: 3px;
-font-weight: bold;
-color: grey;
-}
-.row{
-width: 100%;
-margin: 0;
-
-}
-.row .col-25{
-padding-left: 15px;
-width: 23%;
+  width: 100%;
+  height: 100%;
+  margin-left: 3px;
+  font-weight: bold;
+  color: grey;
 }
 
-input[type=text].col82{
-width: 79%;
-}
-.col-75{
-width: 73%;
-}
-
-.hr{
-margin-top: 30px;
+img {
+  width: 100%;
+  height: 100%;
+  margin-left: 10%;
+  font-weight: bold;
+  color: grey;
 }
 
-.inline{
-display: inline-block;
-width: 65%;
-margin-left: 10px;
+.row {
+  width: 100%;
+  margin: 0;
+}
+
+.row .col-25 {
+  padding-left: 15px;
+  width: 23%;
+}
+
+.col-75 {
+  width: 73%;
+}
+
+.col-75>.col-50 {
+  padding-left: 0;
+  margin-top: 0;
+  width: 50%;
+  display: inline-block;
+}
+
+.hr {
+  margin-top: 30px;
+}
+
+.inline {
+  display: inline-block;
+  width: 65%;
+  margin-left: 10px;
 }
 
 button {
-padding: 12px 10px;
-width: 15%;
+  padding: 12px 10px;
+  width: 15%;
 }
 
-.mart5{
- margin-top: 5px;
+.mart5 {
+  margin-top: 5px;
 }
 
-.mar16{
-margin-right: 16px;
-margin-bottom: 10px;
+.mar16 {
+  margin-right: 16px;
+  margin-bottom: 10px;
 }
 
 form {
   margin: 0;
+}
+
+.row .a_trophy {
+  padding: 0;
+  width: 24%;
+}
+
+.main {
+  position: relative;
+  height: 100%;
+}
+
+#loading {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  display: block;
+  opacity: 0.8;
+  background: white;
+  z-index: 99;
+  text-align: center;
+}
+
+#loading > img {
+  width: 5%;
+  height: 10%;
+  margin-left:0;
+  position: absolute;
+  top: 40%;
+  left: 47%;
+  z-index: 100;
+}
+
+#loading > label {
+  height: 10%;
+  position: absolute;
+  margin-left:0;
+  top: 50%;
+  left: 35%;
+  z-index: 100;
 }

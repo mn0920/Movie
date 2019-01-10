@@ -6,5 +6,22 @@
   <select id="getGenre" resultType="kr.min.movie.vo.GenreVo">
     select * from genre
   </select>
+  <select id="getActor" resultType="kr.min.movie.vo.ActorVo">
+    select * from actor
+  </select>
+  <insert id="addMovie">
+    insert into movie
+      (title, m_genre_list, m_director_list, m_actor_list, open_date, rate, poster, running_time, grade, synopsis)
+    value
+      (#{movieVo.title}, #{movieVo.m_genre_list},#{movieVo.m_director_list},#{movieVo.m_actor_list},#{movieVo.open_date},
+      #{movieVo.rate},#{movieVo.poster},#{movieVo.running_time},#{movieVo.grade},#{movieVo.synopsis});
+  </insert>
+  <insert id="addActor">
+      insert into actor
+        (actor_name, actor_img, actor_birth, actor_country, actor_gender, actor_story, a_trophy_list)
+      value
+        (#{actorVo.actor_name}, #{actorVo.actor_img}, #{actorVo.actor_birth},
+         #{actorVo.actor_country}, #{actorVo.actor_gender}, #{actorVo.actor_story}, #{actorVo.a_trophy_list});
+  </insert>
   
 </mapper>

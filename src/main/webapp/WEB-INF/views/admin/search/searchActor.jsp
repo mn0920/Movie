@@ -144,12 +144,13 @@ $(document).ready(function(){
     var popupY= (window.screen.height / 2) - (500 / 2);
     $('.btn').click(function(){
     	//character
-    	var str = $(this).prop('id');
+      var str = $(this).prop('id');
     	var data = 'character'+str[str.length-1];
+        $('#selectCharacter').val(data)
     	console.log(data);
     	  openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
     	  console.log(openWin)
-    	  openWin.document.getElementById("characterId").value = data;
+    	  /* openWin.document.getElementById("characterId").value = data; */
 
     	});
 });
@@ -184,7 +185,7 @@ $('#btn8').click(function(){
   $('.done').click(function(){
     var str = new String();
     var cnt = 0;
-     $('input').each(function(){
+     $('input[type=text]').each(function(){
        var tmp = $(this).val();
        if(tmp != ""){
          if(cnt == 0)
@@ -194,7 +195,7 @@ $('#btn8').click(function(){
          cnt++;
        }
      });
-      opener.document.getElementById("actor_list").value = str;
+      opener.document.getElementById("m_actor_list").value = str;
       window.close();
   });
  });
@@ -345,10 +346,8 @@ $('#btn8').click(function(){
   <button type="button" class="done">배우목록 완료</button>
  </form>
 </div>
+<input type="hidden" id="selectCharacter">
 
-<script type="text/javascript">
-
-</script>
 
 </body>
 </html>

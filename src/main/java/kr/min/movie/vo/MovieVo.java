@@ -3,7 +3,7 @@ package kr.min.movie.vo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class BoardVo {
+public class MovieVo {
 	private String title;
 	private String rate;
   private int running_time;
@@ -12,9 +12,6 @@ public class BoardVo {
   private int m_genre_list;
   private int m_director_list;
   private int m_actor_list;
-  private String genre_list;
-  private String director_list;
-  private String actor_list;
 	private String synopsis;
 	private String poster;
   private int like;
@@ -77,27 +74,6 @@ public class BoardVo {
     this.m_actor_list = m_actor_list;
   }
   
-  public String getGenre_list() {
-    return genre_list;
-  }
-  public void setGenre_list(String genre_list) {
-    this.genre_list = genre_list;
-  }
-  
-  public String getDirector_list() {
-    return director_list;
-  }
-  public void setDirector_list(String director_list) {
-    this.director_list = director_list;
-  }
-  
-  public String getActor_list() {
-    return actor_list;
-  }
-  public void setActor_list(String actor_list) {
-    this.actor_list = actor_list;
-  }
-  
   public String getSynopsis() {
     return synopsis;
   }
@@ -121,9 +97,9 @@ public class BoardVo {
 
   @Override
   public String toString() {
-    return "BoardVo [title=" + title + ", rate=" + rate + ", running_time=" + running_time + ", open_date=" + open_date + ", grade=" + grade + ", m_genre_list=" + m_genre_list + ", m_director_list="
-        + m_director_list + ", m_actor_list=" + m_actor_list + ", genre_list=" + genre_list + ", director_list=" + director_list + ", actor_list=" + actor_list + ", synopsis=" + synopsis + ", poster="
-        + poster + ", like=" + like + "]";
+    return "BoardVo [title=" + title + ", rate=" + rate + ", running_time=" + running_time + ", open_date=" + open_date
+        + ", grade=" + grade + ", m_genre_list=" + m_genre_list + ", m_director_list=" + m_director_list + ", m_actor_list="
+        + m_actor_list + ", synopsis=" + synopsis + ", poster=" + poster + ", like=" + like + "]";
   }
 
 }

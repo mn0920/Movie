@@ -4,10 +4,5 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.min.movie.dao.BoardDao">
 
-  <insert id="addMovie">
-    insert into movie(title, m_genre_list, m_director_list, m_actor_list, open_date, rate, poster, running_time, grade, synopsis)
-    value(#{boardVo.title}, #{boardVo.m_genre_list},#{boardVo.m_director_list},#{boardVo.m_actor_list},#{boardVo.open_date},
-    #{boardVo.rate},#{boardVo.poster},#{boardVo.running_time},#{boardVo.grade},#{boardVo.synopsis});
-  </insert>
  
 </mapper>
