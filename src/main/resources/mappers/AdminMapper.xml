@@ -3,14 +3,26 @@
   
  <mapper namespace="kr.min.movie.dao.AdminDao">
 
+  <select id="getMovie" resultType="kr.min.movie.vo.MovieVo">
+    select * from movie
+  </select>
   <select id="getGenre" resultType="kr.min.movie.vo.GenreVo">
     select * from genre
   </select>
   <select id="getActor" resultType="kr.min.movie.vo.ActorVo">
     select * from actor
   </select>
-  <select id="getDirector" resultType="kr.min.movie.vo.DirectorMovieVo">
+  <select id="getDirector1" resultType="kr.min.movie.vo.DirectorVo">
+    select * from director  
+  </select>
+  <!-- <select id="getDirector" resultType="kr.min.movie.vo.DirectorMovieVo">
     select * from director where director_name like CONCAT('%',#{name},'%')  
+  </select> -->
+  <select id="getMovieId" resultType="Integer">
+    select max(id) from movie
+  </select>
+  <select id="getDirector" resultType="kr.min.movie.vo.DirectorMovieVo">
+    select * from director  
   </select>
   <select id="getDirectorList" resultType="kr.min.movie.vo.DirectorMovieVo">
     select * from m_director_list where #{DirectorMovieVo.director_id}

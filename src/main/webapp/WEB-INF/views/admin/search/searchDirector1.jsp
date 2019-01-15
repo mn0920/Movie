@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <html>
 <head>
 <meta charset="utf-8">
@@ -9,24 +9,30 @@
 
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
   rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+  integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+  crossorigin="anonymous">
+<link rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+  integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+  crossorigin="anonymous">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminSearch1.css">
-
 <script type="text/javascript"
   src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
+
     var popupX = (window.screen.width / 2) - (750 / 2);
     var popupY= (window.screen.height / 2) - (351 / 2);
   $('#add').click(function(){
-    window.open('<%=request.getContextPath()%>/admin/MM/seaD/cho/addD','addDirector','width=750,height=351,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+    win = window.open('<%=request.getContextPath()%>/admin/MM/seaD/cho/addD','addActor','width=750,height=351,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   });
 });
 </script>
 
-  <script>
+  <script type="text/javascript">
       function myFunction() {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("myInput");
@@ -34,7 +40,7 @@ $(document).ready(function(){
         table = document.getElementById("myTable");
         tr = table.getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
-          td = tr[i].getElementsByTagName("td")[0];
+          td = tr[i].getElementsByTagName("td")[1];
           if (td) {
             txtValue = td.textContent || td.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -47,7 +53,7 @@ $(document).ready(function(){
       }
     </script>
 
-<title>searchDirector</title>
+<title>choiceActor</title>
 </head>
 
 <body>
@@ -57,7 +63,7 @@ $(document).ready(function(){
 
     <hr>
 
-    <form name="searchA">
+<form name="searchA">
     <div id="tableScroll" class="tableScroll">
       <table id="myTable" class="input-large form-control none" name="normal">
         <thead>
@@ -71,11 +77,11 @@ $(document).ready(function(){
           <c:forEach var="director"  items="${director}">
             <tr>
               <td>
-                <input type="radio" value="${director.director_id}" name="sel">
-                <input type="hidden" value="${director.director_name}">
+                <input type="radio" value="${director.director_name}" name="sel">
+                <input type="hidden" value="${director.director_id}">
               </td>
-              <td>${director.director_id}</td>
               <td>${director.director_name}</td>
+              <td>${director.director_id}</td>
             </tr>
           </c:forEach>
         </tbody>
@@ -85,10 +91,10 @@ $(document).ready(function(){
     </form>
     
     <br>
-    <div style="margin-top:10px;">찾고자하는 감독이 없다면 추가 버튼을 눌러주세요</div>
+    <div style="margin-top:10px;">찾고자하는 배우가 없다면 추가 버튼을 눌러주세요</div>
     <button type="button" id="add" name="add">추가</button>
    </div>
-  <input type="hidden" id="directorId">
+  <input type="hidden" id="characterId">
   <input type="text" id="update" onchange="test()">
   
   
@@ -119,7 +125,14 @@ $("#choice").click(function(){
   /* opener.document.getElementById(id).trigger('change'); */
   window.close();
 });
-</script>
 
+
+
+    /* var name = $('input[type="radio"]')
+    var rowData = new Array(); 
+    var tdArr = new Array();
+    var radiobtn = $("input[name=sel]:checked");
+    */
+</script>
 </body>
 </html>

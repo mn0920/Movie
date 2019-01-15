@@ -12,7 +12,9 @@ public interface AdminService {
 
   public List<GenreVo> getGenre();
   public List<ActorVo> getActor();
-  public List<DirectorMovieVo> getDirector(String name);
+  public List<DirectorVo> getDirector1();
+  /*public List<DirectorMovieVo> getDirector(String name);*/
+  public List<DirectorMovieVo> getDirector();
   
   public void addMovie(MovieVo movieVo);
   public void addActor(ActorVo actorVo);

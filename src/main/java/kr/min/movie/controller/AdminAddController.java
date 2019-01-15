@@ -27,10 +27,6 @@ public class AdminAddController {
   private static final Logger logger = LoggerFactory.getLogger(AdminAddController.class);
 
   @Autowired
-  private AccountService accountService;
-  @Autowired
-  private BoardService boardService;
-  @Autowired
   private AdminService adminService;
   @Resource
   private String uploadPath;
@@ -103,6 +99,39 @@ public class AdminAddController {
   }
 
   
+
+
+  
+  
+  @RequestMapping(value = "/MM/seaD", method = RequestMethod.GET)
+  public String searchDirectorGet(Model model) {
+    return "admin/search/searchDirector";
+  }
+  
+  @RequestMapping(value = "/MM/seaD", method = RequestMethod.POST)
+  public String searchDirectorPost(Model model, String[] actor) {
+    return "admin/search/searchDirector";
+  }
+
+  
+  
+  @RequestMapping(value = "/MM/seaD/cho", method = RequestMethod.GET)
+  public String searchDirector1Get(Model model) {
+    
+    /*List<DirectorMovieVo> director = adminService.getDirector(name);*/
+    /*List<DirectorVo> director = adminService.getDirector1();*/
+    List<DirectorMovieVo> director = adminService.getDirector();
+    
+    model.addAttribute("director", director);
+    
+    return "admin/search/searchDirector1";
+  }
+  
+  @RequestMapping(value = "/MM/seaD/cho", method = RequestMethod.POST)
+  public String searchDirector1Post(Model model, String[] actor) {
+    return "admin/search/searchDirector1";
+  }  
+  
   
   
   @RequestMapping(value = "/MM/seaD/cho/addD", method = RequestMethod.GET)
@@ -123,33 +152,6 @@ public class AdminAddController {
   }
 
   
-  
-  @RequestMapping(value = "/MM/seaD", method = RequestMethod.GET)
-  public String searchDirectorGet(Model model) {
-    return "admin/search/searchDirector";
-  }
-  
-  @RequestMapping(value = "/MM/seaD", method = RequestMethod.POST)
-  public String searchDirectorPost(Model model, String[] actor) {
-    return "admin/search/searchDirector";
-  }
-
-  
-  
-  @RequestMapping(value = "/MM/seaD/cho", method = RequestMethod.GET)
-  public String searchDirector1Get(Model model, String name) {
-    List<DirectorMovieVo> director = adminService.getDirector(name);
-    
-    model.addAttribute("director", director);
-    
-    return "admin/search/searchDirector1";
-  }
-  
-  @RequestMapping(value = "/MM/seaD/cho", method = RequestMethod.POST)
-  public String searchDirector1Post(Model model, String[] actor) {
-    return "admin/search/searchDirector1";
-  }
-
   
   
   
