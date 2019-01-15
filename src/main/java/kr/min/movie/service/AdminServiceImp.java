@@ -14,6 +14,8 @@ import kr.min.movie.pagenation.Criteria;
 import kr.min.movie.pagenation.PageMaker;
 import kr.min.movie.vo.AccountVo;
 import kr.min.movie.vo.ActorVo;
+import kr.min.movie.vo.DirectorMovieVo;
+import kr.min.movie.vo.DirectorVo;
 import kr.min.movie.vo.GenreVo;
 import kr.min.movie.vo.MovieVo;
 
@@ -41,6 +43,34 @@ public class AdminServiceImp implements AdminService {
   @Override
   public void addActor(ActorVo actorVo) {
     adminDao.addActor(actorVo);    
+  }
+
+  @Override
+  public void addDirector(DirectorVo directorVo) {
+    adminDao.addDirector(directorVo);  
+  }
+
+  @Override
+  public List<DirectorMovieVo> getDirector(String name) {
+
+    DirectorMovieVo director_id = null ;
+    DirectorMovieVo director_list = null ;
+    
+    List<DirectorMovieVo> DMV = null;
+    
+    DMV = adminDao.getDirector(name);
+    
+    for(int i=0; i<DMV.size(); i++){
+       director_id = DMV.get(0);
+       DMV = adminDao.getDirectorList(director_id);
+     }
+    for(int i=0; i<DMV.size(); i++){
+      director_list = DMV.get(3);
+      DMV = adminDao.getDirectorOneMovie(director_list);
+    }
+   
+    
+    return DMV;
   }
 
 

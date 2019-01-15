@@ -7,14 +7,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-  integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-  crossorigin="anonymous">
-<link rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-  integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
-  crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminSearch.css">
 <!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 <script type="text/javascript"
@@ -154,30 +148,7 @@ $(document).ready(function(){
 
     	});
 });
-<%-- $('#btn1').click(function(){
-	openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
-});
-$('#btn2').click(function(){
-	openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
-	});
-$('#btn3').click(function(){
-	openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
-  });
-$('#btn4').click(function(){
-	openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
-  });
-$('#btn5').click(function(){
-	openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
-  });
-$('#btn6').click(function(){
-	openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
-  });
-$('#btn7').click(function(){
-	openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
-  });
-$('#btn8').click(function(){
-	openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
-  }); --%>
+
 </script>
   
  <script type="text/javascript">
@@ -185,19 +156,46 @@ $('#btn8').click(function(){
   $('.done').click(function(){
     var str = new String();
     var cnt = 0;
-     $('input[type=text]').each(function(){
+    var a = new Array();
+    var c = new Array();
+     /* $('input[type=text]').each(function(){ */
+  	 $('.actor').each(function(){
        var tmp = $(this).val();
+       /* a.push(tmp); */
        if(tmp != ""){
-         if(cnt == 0)
-           str += tmp;
-         else
-           str += ", "+tmp;
-         cnt++;
-       }
+           a.push(tmp);
+         }
      });
+     $('.character').each(function(){
+         var tmp = $(this).val();
+         /* c.push(tmp); */
+          if(tmp != ""){
+            c.push(tmp);
+          }
+       });
+     
+     var arr = new Array(); 
+     for(i=0; i<a.length; i++){
+    	 var tmp = a[i] + "(" + c[i] + ")";
+    	 arr.push(tmp);
+     }
+     str = arr.join(", ");
+     
+     
       opener.document.getElementById("m_actor_list").value = str;
+      opener.document.getElementById("c_name").value = c.join(", ");
+      window.opener.$('#m_actor_list').trigger('change');
       window.close();
   });
+ });
+
+
+ $(document).ready(function(){
+	 console.log('test');
+   $('.actor').change(function(){
+     console.log('c');
+     $(this).parent().next().find('.character').prop('readonly', false);
+   });
  });
 </script>
 
@@ -211,8 +209,11 @@ $('#btn8').click(function(){
       <div class="col20">
         <label for="select1">주연/조연</label>
       </div>
-        <div class="col75">
+        <div class="col37">
           <label for="character1">배우이름:</label>
+        </div>
+        <div class="col37">
+          <label for="character1">배역이름:</label>
         </div>
       </div>
       <div class="row">
@@ -223,8 +224,11 @@ $('#btn8').click(function(){
             <option value="support">조연</option>
           </select>
         </div>
-        <div class="col75">
-          <input type="text" class="form-control hei34" id="character1" name="character1" readonly required>
+        <div class="col37">
+          <input type="text" class="form-control hei34 actor" id="character1" name="character1" readonly required>
+        </div>
+        <div class="col37">
+          <input type="text" class="form-control hei34 character" id="c_name1" name="c_name1" readonly required>
         </div>
       <div class="col5">
         <button type="button" class="btn" id="btn1" name="btn1" ><i class="fas fa-search"></i></button>
@@ -239,11 +243,14 @@ $('#btn8').click(function(){
           <option value="support">조연</option>
         </select>
       </div>
-      <div class="col75">
-        <input type="text" class="form-control hei34" id="character2" name="character2" readonly required>
+      <div class="col37">
+        <input type="text" class="form-control hei34 actor" id="character2" name="character2" readonly required>
+      </div>
+      <div class="col37">
+        <input type="text" class="form-control hei34 character" id="c_name2" name="c_name2"readonly required>
       </div>
     <div class="col5">
-      <button type="button" class="btn" id="btn2" name="btn2" "><i class="fas fa-search"></i></button>
+      <button type="button" class="btn" id="btn2" name="btn2" ><i class="fas fa-search"></i></button>
     </div>
   </div>
       
@@ -255,8 +262,11 @@ $('#btn8').click(function(){
           <option value="support">조연</option>
         </select>
       </div>
-      <div class="col75">
-        <input type="text" class="form-control hei34" id="character3" name="character3" readonly required>
+      <div class="col37">
+        <input type="text" class="form-control hei34 actor" id="character3" name="actor3" readonly required>
+      </div>
+      <div class="col37">
+        <input type="text" class="form-control hei34 character" id="c_name3" name="c_name3"readonly required>
       </div>
     <div class="col5">
       <button type="button" class="btn" id="btn3" name="btn3"><i class="fas fa-search"></i></button>
@@ -271,8 +281,11 @@ $('#btn8').click(function(){
           <option value="support">조연</option>
         </select>
       </div>
-      <div class="col75">
-        <input type="text" class="form-control hei34" id="character4" name="character4" readonly required>
+      <div class="col37">
+        <input type="text" class="form-control hei34 actor" id="character4" name="character4" readonly required>
+      </div>
+      <div class="col37">
+        <input type="text" class="form-control hei34 character" id="c_name4" name="c_name4"readonly required>
       </div>
     <div class="col5">
       <button type="button" class="btn" id="btn4" name="btn4"><i class="fas fa-search"></i></button>
@@ -287,8 +300,11 @@ $('#btn8').click(function(){
           <option value="support">조연</option>
         </select>
       </div>
-      <div class="col75">
-        <input type="text" class="form-control hei34" id="character5" name="character5" readonly required>
+      <div class="col37">
+        <input type="text" class="form-control hei34 actor" id="character5" name="character5" readonly required>
+      </div>
+      <div class="col37">
+        <input type="text" class="form-control hei34 character" id="c_name5" name="c_name5"readonly required>
       </div>
     <div class="col5">
       <button type="button" class="btn" id="btn5" name="btn5"><i class="fas fa-search"></i></button>
@@ -303,8 +319,11 @@ $('#btn8').click(function(){
           <option value="support">조연</option>
         </select>
       </div>
-      <div class="col75">
-        <input type="text" class="form-control hei34" id="character6" name="character6" readonly required>
+      <div class="col37">
+        <input type="text" class="form-control hei34 actor" id="character6" name="character6" readonly required>
+      </div>
+      <div class="col37">
+        <input type="text" class="form-control hei34 character" id="c_name6" name="c_name6"readonly required>
       </div>
     <div class="col5">
       <button type="button" class="btn" id="btn6" name="btn6"><i class="fas fa-search"></i></button>
@@ -319,8 +338,11 @@ $('#btn8').click(function(){
           <option value="support">조연</option>
         </select>
       </div>
-      <div class="col75">
-        <input type="text" class="form-control hei34" id="character7" name="character7" readonly required>
+      <div class="col37">
+        <input type="text" class="form-control hei34 actor" id="character7" name="character7" readonly required>
+      </div>
+      <div class="col37">
+        <input type="text" class="form-control hei34 character" id="c_name7" name="c_name7"readonly required>
       </div>
     <div class="col5">
       <button type="button" class="btn" id="btn7" name="btn7"><i class="fas fa-search"></i></button>
@@ -335,8 +357,11 @@ $('#btn8').click(function(){
           <option value="support">조연</option>
         </select>
       </div>
-      <div class="col75">
-        <input type="text" class="form-control hei34" id="character8" name="character8" readonly required>
+      <div class="col37">
+        <input type="text" class="form-control hei34 actor" id="character8" name="character8" readonly required>
+      </div>
+      <div class="col37">
+        <input type="text" class="form-control hei34 character" id="c_name8" name="c_name8"readonly required>
       </div>
     <div class="col5">
       <button type="button" class="btn" id="btn8" name="btn8"><i class="fas fa-search"></i></button>

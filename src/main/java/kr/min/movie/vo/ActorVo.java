@@ -10,6 +10,7 @@ public class ActorVo {
   private Gender actor_gender;
   private String actor_story;
   private Integer a_trophy_list;
+  
   public Integer getActor_id() {
     return actor_id;
   }

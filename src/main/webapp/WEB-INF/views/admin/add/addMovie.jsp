@@ -240,6 +240,7 @@ $('#aBtn').click(function(){
           <div class="row">
             <input type="submit" value="submit" class="right">
           </div>
+          <input type="hidden" id="c_name">
         </form>
       </div>
   </div>
@@ -249,6 +250,15 @@ $('#aBtn').click(function(){
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
+$(document).ready(function(){
+	   console.log('test');
+    $('#m_actor_list').change(function(){
+    	var check = document.getElementById('c_name').value;
+    	console.log(check);
+    });
+});
+
+
 $(".fileDrop").on("dragenter dragover", function(event){
     event.preventDefault();
   });

@@ -52,11 +52,6 @@ $(document).ready(function(){
         }
       }
     </script>
-<!--     <script type="text/javascript">
-    function choiced(){
-      document.searchA.
-    }
-    </script> -->
 
 <title>choiceActor</title>
 </head>
@@ -125,6 +120,9 @@ $("#choice").click(function(){
 	    alert('인물을 선택해주세요.');
 	  }
 	opener.document.getElementById(id).value = data;
+	/* $(opener.document).find('.actor').trigger('change'); */
+	window.opener.$('#'+id).trigger('change');
+	/* opener.document.getElementById(id).trigger('change'); */
 	window.close();
 });
 

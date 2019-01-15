@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MovieVo {
+  private int id;
 	private String title;
 	private String rate;
   private int running_time;
@@ -15,7 +16,14 @@ public class MovieVo {
 	private String synopsis;
 	private String poster;
   private int like;
+
   
+  public int getId() {
+    return id;
+  }
+  public void setId(int id) {
+    this.id = id;
+  }
   
   public String getTitle() {
     return title;
@@ -97,9 +105,10 @@ public class MovieVo {
 
   @Override
   public String toString() {
-    return "BoardVo [title=" + title + ", rate=" + rate + ", running_time=" + running_time + ", open_date=" + open_date
-        + ", grade=" + grade + ", m_genre_list=" + m_genre_list + ", m_director_list=" + m_director_list + ", m_actor_list="
-        + m_actor_list + ", synopsis=" + synopsis + ", poster=" + poster + ", like=" + like + "]";
+    return "BoardVo [id" + id +", title=" + title + ", rate=" + rate + ", running_time=" + running_time
+        + ", open_date=" + open_date + ", grade=" + grade + ", m_genre_list=" + m_genre_list + ", m_director_list="
+        + m_director_list + ", m_actor_list=" + m_actor_list + ", synopsis=" + synopsis + ", poster=" + poster
+        + ", like=" + like + "]";
   }
 
 }

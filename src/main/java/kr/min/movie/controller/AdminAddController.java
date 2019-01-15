@@ -16,7 +16,8 @@ import kr.min.movie.service.AccountService;
 import kr.min.movie.service.AdminService;
 import kr.min.movie.service.BoardService;
 import kr.min.movie.vo.ActorVo;
-import kr.min.movie.vo.Gender;
+import kr.min.movie.vo.DirectorMovieVo;
+import kr.min.movie.vo.DirectorVo;
 import kr.min.movie.vo.GenreVo;
 
 @Controller
@@ -105,13 +106,20 @@ public class AdminAddController {
   
   
   @RequestMapping(value = "/MM/seaD/cho/addD", method = RequestMethod.GET)
-  public String addDirectorGet(Model model) {
+  public String addDirectorGet(Model model, Integer state) {
+    if(state == null) {
+      state = 0;
+    }
+    model.addAttribute("state", state);
     return "admin/add/sAddDirector";
   }
   
   @RequestMapping(value = "/MM/seaD/cho/addD", method = RequestMethod.POST)
-  public String addDirectorPost(Model model, String[] actor) {
-    return "admin/add/sAddDirector";
+  public String addDirectorPost(DirectorVo directorVo, Model model){
+    directorVo.setDirector_story("");
+    adminService.addDirector(directorVo);
+    model.addAttribute("state", 1);
+    return "redirect:/admin/MM/seaD/cho/addD";
   }
 
   
@@ -129,7 +137,11 @@ public class AdminAddController {
   
   
   @RequestMapping(value = "/MM/seaD/cho", method = RequestMethod.GET)
-  public String searchDirector1Get(Model model) {
+  public String searchDirector1Get(Model model, String name) {
+    List<DirectorMovieVo> director = adminService.getDirector(name);
+    
+    model.addAttribute("director", director);
+    
     return "admin/search/searchDirector1";
   }
   

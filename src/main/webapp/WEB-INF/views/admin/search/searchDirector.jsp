@@ -7,14 +7,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-  integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-  crossorigin="anonymous">
-<link rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-  integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
-  crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminSearch.css">
 <!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 <script type="text/javascript"
@@ -28,10 +22,11 @@ $(document).ready(function(){
       //character
       var str = $(this).prop('id');
       var data = 'director'+str[str.length-1];
+      $('#selectDirector').val(data)
       console.log(data);
       openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaD/cho','choiceDirector','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
       console.log(openWin)
-      openWin.document.getElementById("directorId").value = data;
+      /* openWin.document.getElementById("directorId").value = data; */
 
       });
 });
@@ -104,11 +99,8 @@ $('#btn2').click(function(){
   <br>
   <button type="button" class="done">감독 선택 완료</button>
  </form>
+<input type="hidden" id="selectDirector">
 </div>
-
-<script type="text/javascript">
-
-</script>
 
 </body>
 </html>
