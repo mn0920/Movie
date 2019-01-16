@@ -1,5 +1,6 @@
 package kr.min.movie.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,13 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.min.movie.service.AccountService;
 import kr.min.movie.service.AdminService;
-import kr.min.movie.service.BoardService;
 import kr.min.movie.vo.ActorVo;
 import kr.min.movie.vo.DirectorMovieVo;
 import kr.min.movie.vo.DirectorVo;
 import kr.min.movie.vo.GenreVo;
+import kr.min.movie.vo.MovieVo;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -43,13 +43,25 @@ public class AdminAddController {
   
 
   @RequestMapping(value = "/MM/seaM", method = RequestMethod.GET)
-  public String searchMovieGet(Model model) {
+  public String searchMovieGet(Model model, Integer state) {
+    if(state == null) {
+      state = 0;
+    }
+    
+    List<MovieVo> movie = adminService.getMovie();
+    
+    model.addAttribute("movie", movie);
+    model.addAttribute("state", state);
+    
     return "admin/search/searchMovie";
   }
   
   @RequestMapping(value = "/MM/seaM", method = RequestMethod.POST)
-  public String searchMoviePost(Model model, String[] actor) {
-/*      boardService.searchActor(actor);*/
+  public String searchMoviePost(Model model, MovieVo movieVo) {
+    
+    movieVo.setRate("");
+    movieVo.setSynopsis("");
+    adminService.addMovie(movieVo);
     return "admin/search/searchMovie";
   }
 
@@ -119,8 +131,8 @@ public class AdminAddController {
   public String searchDirector1Get(Model model) {
     
     /*List<DirectorMovieVo> director = adminService.getDirector(name);*/
-    /*List<DirectorVo> director = adminService.getDirector1();*/
-    List<DirectorMovieVo> director = adminService.getDirector();
+    /*List<DirectorVo> director = adminService.getDirector();*/
+    List<DirectorMovieVo> director = adminService.getDirectorOneMovie();
     
     model.addAttribute("director", director);
     

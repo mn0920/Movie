@@ -10,11 +10,11 @@ import kr.min.movie.vo.MovieVo;
 
 public interface AdminService {
 
+  public List<MovieVo> getMovie();
   public List<GenreVo> getGenre();
   public List<ActorVo> getActor();
-  public List<DirectorVo> getDirector1();
-  /*public List<DirectorMovieVo> getDirector(String name);*/
-  public List<DirectorMovieVo> getDirector();
+  public List<DirectorVo> getDirector();
+  public List<DirectorMovieVo> getDirectorOneMovie();
   
   public void addMovie(MovieVo movieVo);
   public void addActor(ActorVo actorVo);

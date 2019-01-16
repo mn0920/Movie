@@ -70,7 +70,7 @@ $(document).ready(function(){
           <tr class="header">
             <th style="width: 8%;" name="checkList"><i class="far fa-check-circle"></i></th>
             <th style="width: 80%;">Name</th>
-            <th style="width: 12%;">Birth</th>
+            <th style="width: 12%;">movie</th>
           </tr>
         </thead>
         <tbody>
@@ -81,7 +81,9 @@ $(document).ready(function(){
                 <input type="hidden" value="${director.director_id}">
               </td>
               <td>${director.director_name}</td>
-              <td>${director.director_id}</td>
+              <td>
+                ${director.title} <input type="hidden" value="${director.id}">
+              </td>
             </tr>
           </c:forEach>
         </tbody>

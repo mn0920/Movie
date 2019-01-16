@@ -30,11 +30,12 @@ color: grey;
 </head>
 <body>
 <script type="text/javascript">
+
 $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (430 / 2);
     var popupY= (window.screen.height / 2) - (500 / 2);
 $('#mBtn').click(function(){
-  window.open('<%= request.getContextPath() %>/admin/MM/seaM','searchMovie','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  win = window.open('<%= request.getContextPath() %>/admin/MM/seaM','searchMovie','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   console.log(popupX);
   console.log(popupY);
 });
@@ -101,7 +102,7 @@ $('#aBtn').click(function(){
           </div>
           <div class="row">
             <div class="col-25">
-              <label for="director_list"">director</label>
+              <label for="director_list">director</label>
             </div>
             <div class="col-75">
               <input type="text" id="m_director_list" name="m_director_list" class="col82" placeholder="영화 감독을 적어주세요" readonly>
@@ -242,6 +243,8 @@ $('#aBtn').click(function(){
           </div>
           <input type="hidden" id="c_name">
         </form>
+        <input type="hidden" id="movieId">
+        <input type="text" id="update" onchange="test()">
       </div>
   </div>
 </div>
@@ -250,6 +253,14 @@ $('#aBtn').click(function(){
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
+var win;
+function test(){
+  setTimeout(() => {
+    win.close();
+  }, 500);
+  console.log(win);
+};
+
 $(document).ready(function(){
 	   console.log('test');
     $('#m_actor_list').change(function(){

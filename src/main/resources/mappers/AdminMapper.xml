@@ -12,8 +12,11 @@
   <select id="getActor" resultType="kr.min.movie.vo.ActorVo">
     select * from actor
   </select>
-  <select id="getDirector1" resultType="kr.min.movie.vo.DirectorVo">
+  <select id="getDirector" resultType="kr.min.movie.vo.DirectorVo">
     select * from director  
+  </select>
+  <select id="getDirectorList" resultType="kr.min.movie.vo.DirectorMovieVo">
+    select * from m_director_list where #{DirectorMovieVo.director_id}
   </select>
   <!-- <select id="getDirector" resultType="kr.min.movie.vo.DirectorMovieVo">
     select * from director where director_name like CONCAT('%',#{name},'%')  
@@ -21,21 +24,16 @@
   <select id="getMovieId" resultType="Integer">
     select max(id) from movie
   </select>
-  <select id="getDirector" resultType="kr.min.movie.vo.DirectorMovieVo">
-    select * from director  
-  </select>
-  <select id="getDirectorList" resultType="kr.min.movie.vo.DirectorMovieVo">
-    select * from m_director_list where #{DirectorMovieVo.director_id}
-  </select>
   <select id="getDirectorOneMovie" resultType="kr.min.movie.vo.DirectorMovieVo">
-    select title from movie where director_list where #{DirectorMovieVo.director_list}
+  select movie.id, movie.title, director.director_id, director.director_name from director
+    left join m_director_list on m_director_list.director_id = director.director_id
+    left join movie on m_director_list.director_list = movie.id;
   </select>
   <insert id="addMovie">
     insert into movie
-      (title, m_genre_list, m_director_list, m_actor_list, open_date, rate, poster, running_time, grade, synopsis)
+      (title, rate, synopsis)
     value
-      (#{movieVo.title}, #{movieVo.m_genre_list},#{movieVo.m_director_list},#{movieVo.m_actor_list},#{movieVo.open_date},
-      #{movieVo.rate},#{movieVo.poster},#{movieVo.running_time},#{movieVo.grade},#{movieVo.synopsis});
+      (#{movieVo.title}, #{movieVo.rate}, #{movieVo.synopsis});
   </insert>
   <insert id="addActor">
       insert into actor

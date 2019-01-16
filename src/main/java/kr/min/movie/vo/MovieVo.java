@@ -10,9 +10,6 @@ public class MovieVo {
   private int running_time;
   private Date open_date;
   private String grade;
-  private int m_genre_list;
-  private int m_director_list;
-  private int m_actor_list;
 	private String synopsis;
 	private String poster;
   private int like;
@@ -61,27 +58,6 @@ public class MovieVo {
     this.grade = grade;
   }
   
-  public int getM_genre_list() {
-    return m_genre_list;
-  }
-  public void setM_genre_list(int m_genre_list) {
-    this.m_genre_list = m_genre_list;
-  }
-  
-  public int getM_director_list() {
-    return m_director_list;
-  }
-  public void setM_director_list(int m_director_list) {
-    this.m_director_list = m_director_list;
-  }
-  
-  public int getM_actor_list() {
-    return m_actor_list;
-  }
-  public void setM_actor_list(int m_actor_list) {
-    this.m_actor_list = m_actor_list;
-  }
-  
   public String getSynopsis() {
     return synopsis;
   }
@@ -106,8 +82,7 @@ public class MovieVo {
   @Override
   public String toString() {
     return "BoardVo [id" + id +", title=" + title + ", rate=" + rate + ", running_time=" + running_time
-        + ", open_date=" + open_date + ", grade=" + grade + ", m_genre_list=" + m_genre_list + ", m_director_list="
-        + m_director_list + ", m_actor_list=" + m_actor_list + ", synopsis=" + synopsis + ", poster=" + poster
+        + ", open_date=" + open_date + ", grade=" + grade + ", synopsis=" + synopsis + ", poster=" + poster
         + ", like=" + like + "]";
   }
 
