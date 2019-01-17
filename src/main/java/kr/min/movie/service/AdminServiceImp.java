@@ -22,13 +22,21 @@ public class AdminServiceImp implements AdminService {
 	AdminDao adminDao;
 
 
-/*  @Override
+ @Override
   public List<MovieVo> getMovie() {
     return adminDao.getMovie();
-  }*/
+  }
+
+ @Override
+ public MovieVo getMovieId() {
+   int movie_id = adminDao.getMovieId();
+   MovieVo movieVo = new MovieVo();
+   movieVo.setId(movie_id);
+   return movieVo;
+ }
 
   @Override
-  public List<ShowMovieVo> getMovie() {
+  public List<ShowMovieVo> getMovieForUser() {
     return adminDao.getShowMovie();
   }
 

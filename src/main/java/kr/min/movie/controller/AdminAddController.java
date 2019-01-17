@@ -33,6 +33,10 @@ public class AdminAddController {
 
   @RequestMapping(value = "/movie/addM", method = RequestMethod.GET)
   public String addMovieGet(Model model) {
+    
+    MovieVo movie = adminService.getMovieId();
+    
+    model.addAttribute("movie", movie);
     return "admin/add/addMovie";
   }
   

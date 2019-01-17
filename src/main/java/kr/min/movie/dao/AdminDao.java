@@ -14,7 +14,8 @@ import kr.min.movie.vo.ShowMovieVo;
 
 public interface AdminDao {
 
-  /*public List<MovieVo> getMovie();*/
+  public List<MovieVo> getMovie();
+  public int getMovieId();
   public List<ShowMovieVo> getShowMovie();
 	public List<GenreVo> getGenre();
   public List<ActorVo> getActor();

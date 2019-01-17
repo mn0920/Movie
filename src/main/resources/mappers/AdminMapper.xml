@@ -19,10 +19,9 @@
     select * from
     m_director_list where #{DirectorMovieVo.director_id}
   </select>
-  <!-- <select id="getDirector" resultType="kr.min.movie.vo.DirectorMovieVo"> 
-    select * from director where director_name like CONCAT('%',#{name},'%') </select> -->
-  <select id="getMovieId" resultType="Integer">
-    select max(id) from movie
+  <select id="getMovieId" resultType="int">
+    select max(id) from movie <!-- max id 값을 가져오는 것 -->
+    <!-- select id, title from movie order by id desc limit 1 -->
   </select>
   <select id="getDirectorOneMovie" resultType="kr.min.movie.vo.DirectorMovieVo">
     select movie.id, movie.title, director.director_id, director.director_name

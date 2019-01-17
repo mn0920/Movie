@@ -11,8 +11,9 @@ import kr.min.movie.vo.ShowMovieVo;
 
 public interface AdminService {
 
-  /*public List<MovieVo> getMovie();*/
-  public List<ShowMovieVo> getMovie();
+  public List<MovieVo> getMovie();
+  public MovieVo getMovieId();
+  public List<ShowMovieVo> getMovieForUser();
   public List<GenreVo> getGenre();
   public List<ActorVo> getActor();
   public List<DirectorVo> getDirector();
