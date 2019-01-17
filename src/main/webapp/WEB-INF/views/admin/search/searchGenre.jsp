@@ -58,9 +58,9 @@
         <tbody>
           <c:forEach var="genre"  items="${genre}">
             <tr>
-              <td><input type="checkbox" value="${genre.genre}" name="sel"></td>
+              <td><input type="checkbox" value="${genre.genre_name}" name="sel"></td>
               <td>${genre.genre_id}</td>
-              <td>${genre.genre}</td>
+              <td>${genre.genre_name}</td>
             </tr>
           </c:forEach>
         </tbody>

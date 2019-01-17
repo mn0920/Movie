@@ -2,7 +2,7 @@ package kr.min.movie.vo;
 
 public class GenreVo {
   private int genre_id;
-  private String genre;
+  private String genre_name;
 
   
   public int getGenre_id() {
@@ -12,16 +12,16 @@ public class GenreVo {
     this.genre_id = genre_id;
   }
   
-  public String getGenre() {
-    return genre;
+  public String getGenre_name() {
+    return genre_name;
   }
-  public void setGenre(String genre) {
-    this.genre = genre;
+  public void setGenre_name(String genre_name) {
+    this.genre_name = genre_name;
   }
   
   @Override
   public String toString() {
-    return "GenreVo [genre_id=" + genre_id + ", genre=" + genre + "]";
+    return "GenreVo [genre_id=" + genre_id + ", genre_name=" + genre_name + "]";
   }
   
   
