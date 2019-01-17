@@ -13,6 +13,7 @@ import kr.min.movie.vo.DirectorMovieVo;
 import kr.min.movie.vo.DirectorVo;
 import kr.min.movie.vo.GenreVo;
 import kr.min.movie.vo.MovieVo;
+import kr.min.movie.vo.ShowMovieVo;
 
 @Service
 public class AdminServiceImp implements AdminService {
@@ -21,9 +22,14 @@ public class AdminServiceImp implements AdminService {
 	AdminDao adminDao;
 
 
-  @Override
+/*  @Override
   public List<MovieVo> getMovie() {
     return adminDao.getMovie();
+  }*/
+
+  @Override
+  public List<ShowMovieVo> getMovie() {
+    return adminDao.getShowMovie();
   }
 
   @Override

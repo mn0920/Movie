@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
- <mapper namespace="kr.min.movie.dao.AdminDao">
+
+<mapper namespace="kr.min.movie.dao.AdminDao">
 
   <select id="getMovie" resultType="kr.min.movie.vo.MovieVo">
     select * from movie
@@ -13,41 +13,60 @@
     select * from actor
   </select>
   <select id="getDirector" resultType="kr.min.movie.vo.DirectorVo">
-    select * from director  
+    select * from director
   </select>
   <select id="getDirectorList" resultType="kr.min.movie.vo.DirectorMovieVo">
-    select * from m_director_list where #{DirectorMovieVo.director_id}
+    select * from
+    m_director_list where #{DirectorMovieVo.director_id}
   </select>
-  <!-- <select id="getDirector" resultType="kr.min.movie.vo.DirectorMovieVo">
-    select * from director where director_name like CONCAT('%',#{name},'%')  
-  </select> -->
+  <!-- <select id="getDirector" resultType="kr.min.movie.vo.DirectorMovieVo"> 
+    select * from director where director_name like CONCAT('%',#{name},'%') </select> -->
   <select id="getMovieId" resultType="Integer">
     select max(id) from movie
   </select>
   <select id="getDirectorOneMovie" resultType="kr.min.movie.vo.DirectorMovieVo">
-  select movie.id, movie.title, director.director_id, director.director_name from director
-    left join m_director_list on m_director_list.director_id = director.director_id
-    left join movie on m_director_list.director_list = movie.id;
+    select movie.id, movie.title, director.director_id, director.director_name
+    from director
+    left join m_director_list on
+    m_director_list.director_id = director.director_id
+    left join movie on
+    m_director_list.director_list = movie.id;
   </select>
   <insert id="addMovie">
     insert into movie
-      (title, rate, synopsis)
+    (title, rate, synopsis)
     value
-      (#{movieVo.title}, #{movieVo.rate}, #{movieVo.synopsis});
+    (#{movieVo.title}, #{movieVo.rate}, #{movieVo.synopsis});
   </insert>
   <insert id="addActor">
-      insert into actor
-        (actor_name, actor_img, actor_birth, actor_country, actor_gender, actor_story, a_trophy_list)
-      value
-        (#{actorVo.actor_name}, #{actorVo.actor_img}, #{actorVo.actor_birth},
-         #{actorVo.actor_country}, #{actorVo.actor_gender}, #{actorVo.actor_story}, #{actorVo.a_trophy_list});
+    insert into actor
+    (actor_name, actor_img, actor_birth, actor_country, actor_gender, actor_story,
+    a_trophy_list)
+    value
+    (#{actorVo.actor_name}, #{actorVo.actor_img}, #{actorVo.actor_birth},
+    #{actorVo.actor_country}, #{actorVo.actor_gender},
+    #{actorVo.actor_story}, #{actorVo.a_trophy_list});
   </insert>
   <insert id="addDirector">
-      insert into director
-        (director_name, director_img, director_birth, director_gender, director_story, d_trophy_list)
-      value
-        (#{directorVo.director_name}, #{directorVo.director_img}, #{directorVo.director_birth},
-         #{directorVo.director_gender}, #{directorVo.director_story}, #{directorVo.d_trophy_list});
+    insert into director
+    (director_name, director_img, director_birth, director_gender, director_story,
+    d_trophy_list)
+    value
+    (#{directorVo.director_name}, #{directorVo.director_img}, #{directorVo.director_birth},
+    #{directorVo.director_gender}, #{directorVo.director_story},
+    #{directorVo.d_trophy_list});
   </insert>
-  
+  <select id="getShowMovie" resultType="kr.min.movie.vo.ShowMovieVo">
+    select
+      actor.actor_id, actor.actor_name, m_actor_list.cast, m_actor_list.c_name, director.director_id, director.director_name,
+      genre.genre_name, movie.id, movie.title, movie.rate, movie.running_time, movie.open_date, movie.grade, movie.synopsis, 
+      movie.poster, movie.like
+    from movie
+    left join m_director_list on movie.id = m_director_list.director_list
+    left join director on director.director_id = m_director_list.director_id
+    left join m_actor_list on movie.id = m_actor_list.actor_list
+    left join actor on actor.actor_id = m_actor_list.actor_id
+    left join m_genre_list on movie.id = m_genre_list.genre_list
+    left join genre on genre.genre_id = m_genre_list.genre_id;
+  </select>
 </mapper>

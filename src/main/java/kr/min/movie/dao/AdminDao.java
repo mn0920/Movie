@@ -10,10 +10,12 @@ import kr.min.movie.vo.DirectorMovieVo;
 import kr.min.movie.vo.DirectorVo;
 import kr.min.movie.vo.GenreVo;
 import kr.min.movie.vo.MovieVo;
+import kr.min.movie.vo.ShowMovieVo;
 
 public interface AdminDao {
 
-  public List<MovieVo> getMovie();
+  /*public List<MovieVo> getMovie();*/
+  public List<ShowMovieVo> getShowMovie();
 	public List<GenreVo> getGenre();
   public List<ActorVo> getActor();
   public List<DirectorVo> getDirector();
