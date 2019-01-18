@@ -35,6 +35,10 @@ body {
   width: 10%;
 }
 
+.col1 {
+  width: 5%;
+}
+
 .row {
   /*   margin-left: 20px;
   margin-right: 5px;

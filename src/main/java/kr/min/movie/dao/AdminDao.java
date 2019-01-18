@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import kr.min.movie.vo.ActorListVo;
 import kr.min.movie.vo.ActorVo;
-import kr.min.movie.vo.DirectorListVo;
 import kr.min.movie.vo.DirectorMovieVo;
 import kr.min.movie.vo.DirectorVo;
 import kr.min.movie.vo.GenreVo;
@@ -23,6 +23,8 @@ public interface AdminDao {
   public List<DirectorMovieVo> getDirectorOneMovie();
   public void addMovie(@Param("movieVo")MovieVo movieVo);
   public void addActor(@Param("actorVo")ActorVo actorVo);
+  public void addActorList(@Param("actorListVo")List<ActorListVo> actorListVo);
+  public int getActorListId();
   public void addDirector(@Param("directorVo")DirectorVo directorVo);
   
 }

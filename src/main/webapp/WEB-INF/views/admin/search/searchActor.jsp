@@ -63,8 +63,8 @@ function ChangecatList2(){
 <script type="text/javascript">
 function ChangecatList3(){
   var btn3 = document.getElementById('btn3');
-  //var select3 = document.getElementById('select3');
-  var select3 = document.choose.select3.value;
+  var select3 = document.getElementById('select3').value;
+  //var select3 = document.choose.select3.value;
   if(select3 == ""){
       btn3.disabled = true;
   } else {
@@ -153,6 +153,9 @@ $(document).ready(function(){
   
  <script type="text/javascript">
  $(document).ready(function(){
+   $('#loading').hide();
+	 document.getElementById("actor_list").value = opener.document.getElementById("actor_list").value;
+   var state = $("#aaaa").val();
   $('.done').click(function(){
     var str = new String();
     var cnt = 0;
@@ -180,12 +183,21 @@ $(document).ready(function(){
     	 arr.push(tmp);
      }
      str = arr.join(", ");
+
+       $("form").submit(function(){
+         $('.container').hide();
+         $('#loading').show();
+       opener.document.getElementById("m_actor_list").value = str;
+       opener.document.getElementById("c_name").value = c.join(", ");
+       opener.document.getElementById('update1').value = "update";
+       opener.$('#update1').trigger('change');
+       window.opener.$('#m_actor_list').trigger('change');
+     });
      
-     
-      opener.document.getElementById("m_actor_list").value = str;
-      opener.document.getElementById("c_name").value = c.join(", ");
-      window.opener.$('#m_actor_list').trigger('change');
-      window.close();
+/*      opener.document.getElementById("m_actor_list").value = str;
+     opener.document.getElementById("c_name").value = c.join(", ");
+     window.opener.$('#m_actor_list').trigger('change'); 
+      window.close();  */
   });
  });
 
@@ -202,9 +214,14 @@ $(document).ready(function(){
 <title>searchActor</title>
 </head>
 <body>
+ <div id="loading">
+   <img id="loading-image" src="<%=request.getContextPath() %>/resources/images/loading.gif" alt="Loading..." />
+   <label id="loading-image">배우 리스트를 입력하는 중입니다.</label>
+ </div>
  <div class="container">
 <br>
-<form name=choose>
+<form name="choose" method="POST">
+  <input type="text" id="actor_list" name="actor_list">
   <div class="row">
       <div class="col20">
         <label for="select1">주연/조연</label>
@@ -218,17 +235,21 @@ $(document).ready(function(){
       </div>
       <div class="row">
         <div class="col20">
-          <select class="form-control hei33" id="select1" name="select1" style="height: 33px;" onChange="ChangecatList()" required>
+          <select class="form-control hei33" id="select1" name="actor_list" style="height: 33px;" onChange="ChangecatList()">
             <option value="">배역</option>
             <option value="main">주연</option>
             <option value="support">조연</option>
           </select>
         </div>
         <div class="col37">
-          <input type="text" class="form-control hei34 actor" id="character1" name="character1" readonly required>
-        </div>
+          <input type="text" class="form-control hei34 actor" id="character1" name="character" readonly required>
+        </div><!-- 
+      <div class="col1">
+        <button type="button" class="btn" id="btn1" name="btn1" ><i class="fas fa-search"></i></button>
+      </div> -->
+      <input type="text" class="form-control hei34 actor" id="character1" name="actor_id" readonly>
         <div class="col37">
-          <input type="text" class="form-control hei34 character" id="c_name1" name="c_name1" readonly required>
+          <input type="text" class="form-control hei34 character" id="c_name1" name="c_name" readonly required>
         </div>
       <div class="col5">
         <button type="button" class="btn" id="btn1" name="btn1" ><i class="fas fa-search"></i></button>
@@ -237,7 +258,7 @@ $(document).ready(function(){
       
     <div class="row mart5">
       <div class="col20">
-        <select class="form-control hei33" id="select2" name="select2" style="height: 33px;" onchange="ChangecatList2()" required>
+        <select class="form-control hei33" id="select2" name="actor_list" style="height: 33px;" onchange="ChangecatList2()" required>
           <option value="">배역</option>
           <option value="main">주연</option>
           <option value="support">조연</option>
@@ -256,17 +277,17 @@ $(document).ready(function(){
       
     <div class="row mart5">
       <div class="col20">
-        <select class="form-control hei33" id="select3" name="select3" style="height: 33px;" onchange="ChangecatList3()" required>
+        <select class="form-control hei33" id="select3" name="actor_list" style="height: 33px;" onchange="ChangecatList3()">
           <option value="">배역</option>
           <option value="main">주연</option>
           <option value="support">조연</option>
         </select>
       </div>
       <div class="col37">
-        <input type="text" class="form-control hei34 actor" id="character3" name="actor3" readonly required>
+        <input type="text" class="form-control hei34 actor" id="character3" name="actor3" readonly>
       </div>
       <div class="col37">
-        <input type="text" class="form-control hei34 character" id="c_name3" name="c_name3"readonly required>
+        <input type="text" class="form-control hei34 character" id="c_name3" name="c_name3" readonly>
       </div>
     <div class="col5">
       <button type="button" class="btn" id="btn3" name="btn3"><i class="fas fa-search"></i></button>
@@ -275,17 +296,17 @@ $(document).ready(function(){
       
     <div class="row mart5">
       <div class="col20">
-        <select class="form-control hei33" id="select4" name="select4" style="height: 33px;" onchange="ChangecatList4()" required>
+        <select class="form-control hei33" id="select4" name="actor_list" style="height: 33px;" onchange="ChangecatList4()">
           <option value="">배역</option>
           <option value="main">주연</option>
           <option value="support">조연</option>
         </select>
       </div>
       <div class="col37">
-        <input type="text" class="form-control hei34 actor" id="character4" name="character4" readonly required>
+        <input type="text" class="form-control hei34 actor" id="character4" name="character4" readonly>
       </div>
       <div class="col37">
-        <input type="text" class="form-control hei34 character" id="c_name4" name="c_name4"readonly required>
+        <input type="text" class="form-control hei34 character" id="c_name4" name="c_name4"readonly>
       </div>
     <div class="col5">
       <button type="button" class="btn" id="btn4" name="btn4"><i class="fas fa-search"></i></button>
@@ -294,17 +315,17 @@ $(document).ready(function(){
       
     <div class="row mart5">
       <div class="col20">
-        <select class="form-control hei33" id="select5" name="select5" style="height: 33px;" onchange="ChangecatList5()" required>
+        <select class="form-control hei33" id="select5" name="actor_list" style="height: 33px;" onchange="ChangecatList5()">
           <option value="">배역</option>
           <option value="main">주연</option>
           <option value="support">조연</option>
         </select>
       </div>
       <div class="col37">
-        <input type="text" class="form-control hei34 actor" id="character5" name="character5" readonly required>
+        <input type="text" class="form-control hei34 actor" id="character5" name="character5" readonly>
       </div>
       <div class="col37">
-        <input type="text" class="form-control hei34 character" id="c_name5" name="c_name5"readonly required>
+        <input type="text" class="form-control hei34 character" id="c_name5" name="c_name5"readonly>
       </div>
     <div class="col5">
       <button type="button" class="btn" id="btn5" name="btn5"><i class="fas fa-search"></i></button>
@@ -313,17 +334,17 @@ $(document).ready(function(){
       
     <div class="row mart5">
       <div class="col20">
-        <select class="form-control hei33" id="select6" name="select6" style="height: 33px;" onchange="ChangecatList6()" required>
+        <select class="form-control hei33" id="select6" name="actor_list" style="height: 33px;" onchange="ChangecatList6()">
           <option value="">배역</option>
           <option value="main">주연</option>
           <option value="support">조연</option>
         </select>
       </div>
       <div class="col37">
-        <input type="text" class="form-control hei34 actor" id="character6" name="character6" readonly required>
+        <input type="text" class="form-control hei34 actor" id="character6" name="character6" readonly>
       </div>
       <div class="col37">
-        <input type="text" class="form-control hei34 character" id="c_name6" name="c_name6"readonly required>
+        <input type="text" class="form-control hei34 character" id="c_name6" name="c_name6"readonly>
       </div>
     <div class="col5">
       <button type="button" class="btn" id="btn6" name="btn6"><i class="fas fa-search"></i></button>
@@ -332,17 +353,17 @@ $(document).ready(function(){
       
     <div class="row mart5">
       <div class="col20">
-        <select class="form-control hei33" id="select7" name="select7" style="height: 33px;" onchange="ChangecatList7()" required>
+        <select class="form-control hei33" id="select7" name="actor_list" style="height: 33px;" onchange="ChangecatList7()">
           <option value="">배역</option>
           <option value="main">주연</option>
           <option value="support">조연</option>
         </select>
       </div>
       <div class="col37">
-        <input type="text" class="form-control hei34 actor" id="character7" name="character7" readonly required>
+        <input type="text" class="form-control hei34 actor" id="character7" name="character7" readonly>
       </div>
       <div class="col37">
-        <input type="text" class="form-control hei34 character" id="c_name7" name="c_name7"readonly required>
+        <input type="text" class="form-control hei34 character" id="c_name7" name="c_name7"readonly>
       </div>
     <div class="col5">
       <button type="button" class="btn" id="btn7" name="btn7"><i class="fas fa-search"></i></button>
@@ -351,24 +372,24 @@ $(document).ready(function(){
       
     <div class="row mart5">
       <div class="col20">
-        <select class="form-control hei33" id="select8" name="select8" style="height: 33px;" onchange="ChangecatList8()" required>
+        <select class="form-control hei33" id="select8" name="actor_list" style="height: 33px;" onchange="ChangecatList8()">
           <option value="">배역</option>
           <option value="main">주연</option>
           <option value="support">조연</option>
         </select>
       </div>
       <div class="col37">
-        <input type="text" class="form-control hei34 actor" id="character8" name="character8" readonly required>
+        <input type="text" class="form-control hei34 actor" id="character8" name="character8" readonly>
       </div>
       <div class="col37">
-        <input type="text" class="form-control hei34 character" id="c_name8" name="c_name8"readonly required>
+        <input type="text" class="form-control hei34 character" id="c_name8" name="c_name8"readonly>
       </div>
     <div class="col5">
       <button type="button" class="btn" id="btn8" name="btn8"><i class="fas fa-search"></i></button>
     </div>
   </div>
   <br>
-  <button type="button" class="done">배우목록 완료</button>
+  <button type="submit" class="done">배우목록 완료</button>
  </form>
 </div>
 <input type="hidden" id="selectCharacter">

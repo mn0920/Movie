@@ -8,6 +8,7 @@ import kr.min.movie.vo.DirectorVo;
 import kr.min.movie.vo.GenreVo;
 import kr.min.movie.vo.MovieVo;
 import kr.min.movie.vo.ShowMovieVo;
+import kr.min.movie.vo.actorList.ActorListVo1;
 
 public interface AdminService {
 
@@ -21,6 +22,8 @@ public interface AdminService {
   
   public void addMovie(MovieVo movieVo);
   public void addActor(ActorVo actorVo);
+  public void addActorList(ActorListVo1 actorListVo);
+  /*public void addActorList(List<ActorListVo> actorListVo);*/
   public void addDirector(DirectorVo directorVo);
   
 }
