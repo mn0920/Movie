@@ -21,6 +21,10 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
   
+  <!-- 태그들은 스프링 MVC가 스프링 mvc 주석이 컨트롤러를 매핑하는 데 사용되고 또한 컨트롤러 파일이로드되어야하는 곳에서 경로가 사용된다는 것 -->
+  <context:annotation-config />
+  <context:component-scan base-package="kr.min.movie.controller;" /> 
+  
   <!-- 파일 업로드 -->
   <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
       <!-- 업로드 최대 크기 10Mb -->

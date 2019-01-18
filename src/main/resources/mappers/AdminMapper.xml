@@ -68,4 +68,14 @@
     left join m_genre_list on movie.id = m_genre_list.genre_list
     left join genre on genre.genre_id = m_genre_list.genre_id;
   </select>
+  
+  <select id="addActorList" resultType="kr.min.movie.vo.ActorListVo">
+    insert into m_actor_list
+    (actor_list, actor_id, cast, c_name)
+    value
+    (#{actorListVo.actor_list}, #{actorListVo.actor_id}, #{actorListVo.cast}, #{actorListVo.c_name});
+  </select>
+<!--   <select id="getActorListId" resultType="kr.min.movie.vo.ActorListVo">
+    select actor_list from m_actor_list
+  </select> -->
 </mapper>

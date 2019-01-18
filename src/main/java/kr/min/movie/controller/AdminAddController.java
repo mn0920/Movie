@@ -1,6 +1,5 @@
 package kr.min.movie.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -19,6 +18,7 @@ import kr.min.movie.vo.DirectorMovieVo;
 import kr.min.movie.vo.DirectorVo;
 import kr.min.movie.vo.GenreVo;
 import kr.min.movie.vo.MovieVo;
+import kr.min.movie.vo.actorList.ActorListVo1;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -72,13 +72,23 @@ public class AdminAddController {
 
 
   
+  @RequestMapping(value = "/lol", method = RequestMethod.GET)
+  public String lolGet(Model model) {
+    return "admin/lol";
+  }
+
+
+
+  
   @RequestMapping(value = "/MM/seaA", method = RequestMethod.GET)
   public String searchActorGet(Model model) {
     return "admin/search/searchActor";
   }
   
   @RequestMapping(value = "/MM/seaA", method = RequestMethod.POST)
-  public String searchActorPost(Model model, String[] actor) {
+  public String searchActorPost(Model model, ActorListVo1 List1) {
+    adminService.addActorList(List1);
+    System.out.println("0 : "+List1);
     return "admin/search/searchActor";
   }
 
@@ -93,7 +103,7 @@ public class AdminAddController {
   }
   
   @RequestMapping(value = "/MM/seaA/cho", method = RequestMethod.POST)
-  public String searchActor1Post( Model model, String[] actor) {
+  public String searchActor1Post(Model model) {
     return "admin/search/searchActor1";
   }  
   

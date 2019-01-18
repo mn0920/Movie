@@ -5,9 +5,20 @@ public class ActorListVo {
   private Integer m_actor_list_id;
   private Integer actor_list;
   private Integer actor_id;
-  private Cast cast;
+  private String cast;
   private String c_name;
   
+  
+  public ActorListVo() {
+  }
+
+  public ActorListVo(Integer m_actor_list_id, Integer actor_list, Integer actor_id, String cast, String c_name) {
+    this.m_actor_list_id = m_actor_list_id;
+    this.actor_list = actor_list;
+    this.actor_id = actor_id;
+    this.cast = cast;
+    this.c_name = c_name;
+  }
   
   public Integer getM_actor_list_id() {
     return m_actor_list_id;
@@ -30,10 +41,10 @@ public class ActorListVo {
     this.actor_id = actor_id;
   }
   
-  public Cast getCast() {
+  public String getCast() {
     return cast;
   }
-  public void setCast(Cast cast) {
+  public void setCast(String cast) {
     this.cast = cast;
   }
   
