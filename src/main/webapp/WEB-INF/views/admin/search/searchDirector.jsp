@@ -41,6 +41,7 @@ $('#btn2').click(function(){
   
  <script type="text/javascript">
  $(document).ready(function(){
+   document.getElementById("director_list").value = opener.document.getElementById("director_list").value;
   $('.done').click(function(){
     var str = new String();
     var cnt = 0;
@@ -66,6 +67,7 @@ $('#btn2').click(function(){
  <div class="container">
 <br>
 <form name=choose>
+  <input type="text" id="director_list" name="director_list">
   <div class="row">
       <div class="col20">
         <label for="select1">감독</label>

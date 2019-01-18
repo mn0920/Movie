@@ -65,7 +65,7 @@ $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (430 / 2);
     var popupY= (window.screen.height / 2) - (500 / 2);
 $('#aBtn').click(function(){
-  window.open('<%= request.getContextPath() %>/admin/MM/seaA','searchActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+	aWin = window.open('<%= request.getContextPath() %>/admin/MM/seaA','searchActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   console.log(popupX);
   console.log(popupY);
 });
@@ -82,12 +82,12 @@ $('#aBtn').click(function(){
   <div class="main">
     <div class="container">
         <form method="POST">
-          <div class="row">
+          <div class="row show">
             <div class="col-25">
               <label for="title">Title</label>
             </div>
             <div class="col-75">
-              <input type="text" id="title" name="title" class="col82" placeholder="영화의 제목을 적어주세요" readonly>
+              <input type="text" id="title" name="title" class="col82" placeholder="영화의 제목을 적어주세요." readonly>
               <button type="button" id="mBtn"><i class="fas fa-search"></i></button>
             </div>
           </div>
@@ -98,6 +98,7 @@ $('#aBtn').click(function(){
             <div class="col-75">
               <input type="text" id="m_genre_list" name="m_genre_list" class="col82" placeholder="영화의 장르를 적어주세요." readonly>
               <button type="button" id="gBtn"><i class="fas fa-search"></i></button>
+              <input type="hidden" id="genre_list" name="genre_list" class="col82" value="${movie.id}" readonly>
             </div>
           </div>
           <div class="row">
@@ -107,6 +108,7 @@ $('#aBtn').click(function(){
             <div class="col-75">
               <input type="text" id="m_director_list" name="m_director_list" class="col82" placeholder="영화 감독을 적어주세요" readonly>
               <button type="button" id="dBtn"><i class="fas fa-search"></i></button>
+              <input type="hidden" id="director_list" name="director_list" class="col82" value="${movie.id}" readonly>
             </div>
           </div>
           <div class="row">
@@ -116,6 +118,7 @@ $('#aBtn').click(function(){
             <div class="col-75">
               <input type="text" id="m_actor_list" name="m_actor_list" class="col82" placeholder="출연한 배우들의 이름을 적어주세요" readonly>
               <button type="button" id="aBtn"><i class="fas fa-search"></i></button>
+              <input type="hidden" id="actor_list" name="actor_list" class="col82" value="${movie.id}" readonly>
             </div>
           </div>
           <div class="row">
@@ -205,7 +208,14 @@ $('#aBtn').click(function(){
               <label for="rate">Rate(관람가능 연령)</label>
             </div>
             <div class="col-25">
-              <input type="text" id="rate" name="rate" placeholder="관람 가능 연령을 적어주세요">
+              <select id="rate" name="rate">
+                <option value="">연령선택</option>
+                <option value="G">전체관람</option>
+                <option value="PG12">12세 이상</option>
+                <option value="PG15">15세이상</option>
+                <option value="R">청소년관람불가</option>
+                <option value="NCR">제한상영관람</option>
+              </select>
             </div>
             <div class="col-25">
               <label for="grade" style="float: right;">grade(관객수)</label>
@@ -245,6 +255,7 @@ $('#aBtn').click(function(){
         </form>
         <input type="hidden" id="movieId">
         <input type="text" id="update" onchange="test()">
+        <input type="text" id="update1" onchange="test1()">
       </div>
   </div>
 </div>
@@ -252,14 +263,33 @@ $('#aBtn').click(function(){
 
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- <script>
+String title = document.title.value; 
+
+session.setAttribute("title", title );
+
+String title = request.getSession().getAttribute("title").toString());
+
+response.sendRedirect(title);
+</script> -->
 <script>
 var win;
+var title;
 function test(){
-  setTimeout(() => {
+  setTimeout(function () {
     win.close();
   }, 500);
   console.log(win);
 };
+
+var aWin;
+function test1(){
+	  setTimeout(function () {
+		  aWin.close();
+	  }, 10000);
+	  console.log(win);
+	};
+
 
 $(document).ready(function(){
 	   console.log('test');
