@@ -9,16 +9,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.min.movie.service.AdminService;
+import kr.min.movie.vo.ActorListVo;
+import kr.min.movie.vo.ActorMutiListVo;
 import kr.min.movie.vo.ActorVo;
+import kr.min.movie.vo.DirectorListVo;
 import kr.min.movie.vo.DirectorMovieVo;
+import kr.min.movie.vo.DirectorMutiListVo;
 import kr.min.movie.vo.DirectorVo;
+import kr.min.movie.vo.GenreListVo;
+import kr.min.movie.vo.GenreMutiListVo;
 import kr.min.movie.vo.GenreVo;
 import kr.min.movie.vo.MovieVo;
-import kr.min.movie.vo.actorList.ActorListVo1;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -41,7 +47,11 @@ public class AdminAddController {
   }
   
   @RequestMapping(value = "/movie/addM", method = RequestMethod.POST)
-  public String addMoviePost(Model model, String[] actor) {
+  public String addMoviePost(MovieVo movieVo) {
+
+    adminService.updateMovie(movieVo);
+    System.out.println(movieVo);
+    
     return "admin/add/addMovie";
   }
   
@@ -70,25 +80,22 @@ public class AdminAddController {
   }
 
 
-
-  
-  @RequestMapping(value = "/lol", method = RequestMethod.GET)
-  public String lolGet(Model model) {
-    return "admin/lol";
-  }
-
-
-
   
   @RequestMapping(value = "/MM/seaA", method = RequestMethod.GET)
   public String searchActorGet(Model model) {
+    ActorMutiListVo actorMutiListVo = new ActorMutiListVo();
+    model.addAttribute("actorMutiListVo", actorMutiListVo);
     return "admin/search/searchActor";
   }
   
   @RequestMapping(value = "/MM/seaA", method = RequestMethod.POST)
-  public String searchActorPost(Model model, ActorListVo1 List1) {
-    adminService.addActorList(List1);
-    System.out.println("0 : "+List1);
+  public String searchActorPost(@ModelAttribute ActorMutiListVo actorMutiListVo) {
+
+    List <ActorListVo> actorListsVo = actorMutiListVo.getActorMutiListVo();
+    
+    for (ActorListVo actorListVo : actorListsVo) {
+      adminService.addActorList(actorListVo);
+    }
     return "admin/search/searchActor";
   }
 
@@ -131,11 +138,19 @@ public class AdminAddController {
   
   @RequestMapping(value = "/MM/seaD", method = RequestMethod.GET)
   public String searchDirectorGet(Model model) {
+    DirectorMutiListVo directorMutiListVo = new DirectorMutiListVo();
+    model.addAttribute("directorMutiListVo", directorMutiListVo);
     return "admin/search/searchDirector";
   }
   
   @RequestMapping(value = "/MM/seaD", method = RequestMethod.POST)
-  public String searchDirectorPost(Model model, String[] actor) {
+  public String searchDirectorPost(@ModelAttribute DirectorMutiListVo directorMutiListVo) {
+
+    List <DirectorListVo> directorListsVo = directorMutiListVo.getDirectorMutiListVo();
+    
+    for (DirectorListVo directorListVo : directorListsVo) {
+      adminService.addDirectorList(directorListVo);
+    }
     return "admin/search/searchDirector";
   }
 
@@ -144,8 +159,6 @@ public class AdminAddController {
   @RequestMapping(value = "/MM/seaD/cho", method = RequestMethod.GET)
   public String searchDirector1Get(Model model) {
     
-    /*List<DirectorMovieVo> director = adminService.getDirector(name);*/
-    /*List<DirectorVo> director = adminService.getDirector();*/
     List<DirectorMovieVo> director = adminService.getDirectorOneMovie();
     
     model.addAttribute("director", director);
@@ -183,7 +196,6 @@ public class AdminAddController {
   
   @RequestMapping(value = "/MM/seaG", method = RequestMethod.GET)
   public String searchGenreGet(GenreVo genreVo,  Model model) {
-    
     List<GenreVo> genre = adminService.getGenre();
     
     model.addAttribute("genre", genre);
@@ -191,7 +203,16 @@ public class AdminAddController {
   }
   
   @RequestMapping(value = "/MM/seaG", method = RequestMethod.POST)
-  public String searchGenrePost(Model model, String[] actor) {
+  public String searchGenrePost(Integer[] checkList, Integer genre_list) {
+    Integer gl = genre_list;
+    if(checkList != null){
+      for(Integer tmp : checkList) {
+        GenreListVo genreListVo = new GenreListVo();
+        genreListVo.setGenre_id(tmp);
+        genreListVo.setGenre_list(gl);
+        adminService.addGenreList(genreListVo);
+      }
+    }
     return "admin/search/searchGenre";
   }
 

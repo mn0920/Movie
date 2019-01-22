@@ -55,8 +55,10 @@
 
 					var str = new String();
 					var cnt = 0;
-
-					$('input[type=checkbox]:checked').each(function() {
+          var data2 = $('input[type="checkbox"]:checked').parent().find('input[type="hidden"]');
+          console.log(data2);
+          
+					$(data2).each(function() {
 						var tmp = $(this).val();
 						if (tmp != "") {
 							if (cnt == 0)
@@ -68,7 +70,9 @@
 					});
 					console.log(str);
 					opener.document.getElementById("m_genre_list").value = str;
-					window.close();
+			    opener.document.getElementById('update3').value = "update";
+			    opener.$('#update3').trigger('change');
+					/* window.close(); */
 				});
 			});
 </script>
@@ -86,8 +90,7 @@
 
     <hr>
 
-    <form name="searchA">
-    <input type="text" id="genre_list" name="genre_list">
+    <form name="searchG" method="post">
       <div id="tableScroll" class="tableScroll">
         <table id="myTable" class="input-large form-control none" name="normal">
           <thead>
@@ -99,10 +102,13 @@
             </tr>
           </thead>
           <tbody>
-            <c:forEach var="genre" items="${genre}">
+            <c:forEach var="genre" items="${genre}" varStatus="status">
               <tr>
-                <td><input type="checkbox"
-                  value="${genre.genre_name}" name="sel"></td>
+                <td>
+                  <input type="checkbox" value="${genre.genre_id}" name="checkList">
+                  <input type="hidden" value="${genre.genre_name}">
+                  <!-- genreMutiListVo[${status.index}]. -->
+                </td>
                 <td>${genre.genre_id}</td>
                 <td>${genre.genre_name}</td>
               </tr>
@@ -110,12 +116,13 @@
           </tbody>
         </table>
       </div>
-      <button type="button" id="check">확인</button>
+    <input type="text" id="genre_list" name="genre_list">
+      <button type="submit" id="done">확인</button>
     </form>
 
     <br>
-    <div style="margin-top: 10px;">등록하고자 하는 영화가 없다면 진행을 눌러주세요.</div>
-    <button type="button" id="done">진행</button>
+    <div style="margin-top: 10px;">등록하고자 하는 장르가 없다면 진행을 눌러주세요.</div>
+    <button type="button" id="check">진행</button>
   </div>
 
 

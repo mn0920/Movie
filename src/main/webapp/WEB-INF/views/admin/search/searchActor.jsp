@@ -46,6 +46,10 @@ function ChangecatList(){
       btn1.disabled = false;
       console.log("sa:",select1);
   }
+  var cast1 = document.getElementById('cast1');
+  console.log(cast1);
+  cast1 = select1;
+  console.log(cast1);
 }
 </script>
 <script type="text/javascript">
@@ -137,16 +141,19 @@ $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (430 / 2);
     var popupY= (window.screen.height / 2) - (500 / 2);
     $('.btn').click(function(){
-    	//character
+      //character
       var str = $(this).prop('id');
-    	var data = 'character'+str[str.length-1];
+      console.log(str);
+      var data = 'character'+str[str.length-1];
+      var data2 = 'actor_id'+str[str.length-1];
         $('#selectCharacter').val(data)
-    	console.log(data);
-    	  openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
-    	  console.log(openWin)
-    	  /* openWin.document.getElementById("characterId").value = data; */
+        $('#selectCharacterId').val(data2)
+      console.log(data);
+        openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+        console.log(openWin)
+        /* openWin.document.getElementById("characterId").value = data; */
 
-    	});
+      });
 });
 
 </script>
@@ -154,7 +161,15 @@ $(document).ready(function(){
  <script type="text/javascript">
  $(document).ready(function(){
    $('#loading').hide();
-	 document.getElementById("actor_list").value = opener.document.getElementById("actor_list").value;
+   document.getElementById("actor_list").value = opener.document.getElementById("actor_list").value;
+   document.getElementById("actor_list1").value = opener.document.getElementById("actor_list").value;
+   document.getElementById("actor_list2").value = opener.document.getElementById("actor_list").value;
+   document.getElementById("actor_list3").value = opener.document.getElementById("actor_list").value;
+   document.getElementById("actor_list4").value = opener.document.getElementById("actor_list").value;
+   document.getElementById("actor_list5").value = opener.document.getElementById("actor_list").value;
+   document.getElementById("actor_list6").value = opener.document.getElementById("actor_list").value;
+   document.getElementById("actor_list7").value = opener.document.getElementById("actor_list").value;
+   document.getElementById("actor_list8").value = opener.document.getElementById("actor_list").value;
    var state = $("#aaaa").val();
   $('.done').click(function(){
     var str = new String();
@@ -162,7 +177,7 @@ $(document).ready(function(){
     var a = new Array();
     var c = new Array();
      /* $('input[type=text]').each(function(){ */
-  	 $('.actor').each(function(){
+     $('.actor').each(function(){
        var tmp = $(this).val();
        /* a.push(tmp); */
        if(tmp != ""){
@@ -179,8 +194,8 @@ $(document).ready(function(){
      
      var arr = new Array(); 
      for(i=0; i<a.length; i++){
-    	 var tmp = a[i] + "(" + c[i] + ")";
-    	 arr.push(tmp);
+       var tmp = a[i] + "(" + c[i] + ")";
+       arr.push(tmp);
      }
      str = arr.join(", ");
 
@@ -189,7 +204,7 @@ $(document).ready(function(){
          $('#loading').show();
        opener.document.getElementById("m_actor_list").value = str;
        opener.document.getElementById("c_name").value = c.join(", ");
-       opener.document.getElementById('update1').value = "update";
+       opener.document.getElementById("update1").value = "update";
        opener.$('#update1').trigger('change');
        window.opener.$('#m_actor_list').trigger('change');
      });
@@ -203,7 +218,7 @@ $(document).ready(function(){
 
 
  $(document).ready(function(){
-	 console.log('test');
+   console.log('test');
    $('.actor').change(function(){
      console.log('c');
      $(this).parent().next().find('.character').prop('readonly', false);
@@ -223,176 +238,189 @@ $(document).ready(function(){
 <form name="choose" method="POST">
   <input type="text" id="actor_list" name="actor_list">
   <div class="row">
-      <div class="col20">
-        <label for="select1">주연/조연</label>
+    <div class="col20">
+      <label for="select1">주연/조연</label>
+    </div>
+      <div class="col37">
+        <label for="character1">배우이름:</label>
       </div>
-        <div class="col37">
-          <label for="character1">배우이름:</label>
-        </div>
-        <div class="col37">
-          <label for="character1">배역이름:</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col20">
-          <select class="form-control hei33" id="select1" name="actor_list" style="height: 33px;" onChange="ChangecatList()">
-            <option value="">배역</option>
-            <option value="main">주연</option>
-            <option value="support">조연</option>
-          </select>
-        </div>
-        <div class="col37">
-          <input type="text" class="form-control hei34 actor" id="character1" name="character" readonly required>
-        </div><!-- 
-      <div class="col1">
-        <button type="button" class="btn" id="btn1" name="btn1" ><i class="fas fa-search"></i></button>
-      </div> -->
-      <input type="text" class="form-control hei34 actor" id="character1" name="actor_id" readonly>
-        <div class="col37">
-          <input type="text" class="form-control hei34 character" id="c_name1" name="c_name" readonly required>
-        </div>
-      <div class="col5">
-        <button type="button" class="btn" id="btn1" name="btn1" ><i class="fas fa-search"></i></button>
+      <div class="col37">
+        <label for="character1">배역이름:</label>
       </div>
     </div>
-      
-    <div class="row mart5">
+    <div class="row">
       <div class="col20">
-        <select class="form-control hei33" id="select2" name="actor_list" style="height: 33px;" onchange="ChangecatList2()" required>
+        <select class="form-control hei33" id="select1" name="actorMutiListVo[0].cast" style="height: 33px;" onChange="ChangecatList()">
           <option value="">배역</option>
           <option value="main">주연</option>
           <option value="support">조연</option>
         </select>
       </div>
       <div class="col37">
-        <input type="text" class="form-control hei34 actor" id="character2" name="character2" readonly required>
+        <input type="text" class="form-control hei34 actor" id="character1" readonly required>
       </div>
       <div class="col37">
-        <input type="text" class="form-control hei34 character" id="c_name2" name="c_name2"readonly required>
+        <input type="text" class="form-control hei34 character" id="c_name1" name="actorMutiListVo[0].c_name" readonly required>
       </div>
     <div class="col5">
-      <button type="button" class="btn" id="btn2" name="btn2" ><i class="fas fa-search"></i></button>
+      <button type="button" class="btn" id="btn1" name="btn1" ><i class="fas fa-search"></i></button>
     </div>
+  <input type="text" id="actor_id1" name="actorMutiListVo[0].actor_id" readonly>
+  <input type="text" id="actor_list1" name="actorMutiListVo[0].actor_list">
   </div>
-      
-    <div class="row mart5">
-      <div class="col20">
-        <select class="form-control hei33" id="select3" name="actor_list" style="height: 33px;" onchange="ChangecatList3()">
-          <option value="">배역</option>
-          <option value="main">주연</option>
-          <option value="support">조연</option>
-        </select>
-      </div>
-      <div class="col37">
-        <input type="text" class="form-control hei34 actor" id="character3" name="actor3" readonly>
-      </div>
-      <div class="col37">
-        <input type="text" class="form-control hei34 character" id="c_name3" name="c_name3" readonly>
-      </div>
-    <div class="col5">
-      <button type="button" class="btn" id="btn3" name="btn3"><i class="fas fa-search"></i></button>
+    
+  <div class="row mart5">
+    <div class="col20">
+      <select class="form-control hei33" id="select2" name="actorMutiListVo[1].cast" style="height: 33px;" onchange="ChangecatList2()">
+        <option value="">배역</option>
+        <option value="main">주연</option>
+        <option value="support">조연</option>
+      </select>
     </div>
+    <div class="col37">
+      <input type="text" class="form-control hei34 actor" id="character2" readonly >
+    </div>
+    <div class="col37">
+      <input type="text" class="form-control hei34 character" id="c_name2" name="actorMutiListVo[1].c_name"readonly >
+    </div>
+  <div class="col5">
+    <button type="button" class="btn" id="btn2" name="btn2" ><i class="fas fa-search"></i></button>
   </div>
-      
-    <div class="row mart5">
-      <div class="col20">
-        <select class="form-control hei33" id="select4" name="actor_list" style="height: 33px;" onchange="ChangecatList4()">
-          <option value="">배역</option>
-          <option value="main">주연</option>
-          <option value="support">조연</option>
-        </select>
-      </div>
-      <div class="col37">
-        <input type="text" class="form-control hei34 actor" id="character4" name="character4" readonly>
-      </div>
-      <div class="col37">
-        <input type="text" class="form-control hei34 character" id="c_name4" name="c_name4"readonly>
-      </div>
-    <div class="col5">
-      <button type="button" class="btn" id="btn4" name="btn4"><i class="fas fa-search"></i></button>
+<input type="text" id="actor_id2" name="actorMutiListVo[1].actor_id" readonly>
+<input type="text" id="actor_list2" name="actorMutiListVo[1].actor_list">
+</div>
+    
+  <div class="row mart5">
+    <div class="col20">
+      <select class="form-control hei33" id="select3" name="actorMutiListVo[2].cast" style="height: 33px;" onchange="ChangecatList3()">
+        <option value="">배역</option>
+        <option value="main">주연</option>
+        <option value="support">조연</option>
+      </select>
     </div>
+    <div class="col37">
+      <input type="text" class="form-control hei34 actor" id="character3" readonly>
+    </div>
+    <div class="col37">
+      <input type="text" class="form-control hei34 character" id="c_name3" name="actorMutiListVo[2].c_name" readonly>
+    </div>
+  <div class="col5">
+    <button type="button" class="btn" id="btn3" name="btn3"><i class="fas fa-search"></i></button>
   </div>
-      
-    <div class="row mart5">
-      <div class="col20">
-        <select class="form-control hei33" id="select5" name="actor_list" style="height: 33px;" onchange="ChangecatList5()">
-          <option value="">배역</option>
-          <option value="main">주연</option>
-          <option value="support">조연</option>
-        </select>
-      </div>
-      <div class="col37">
-        <input type="text" class="form-control hei34 actor" id="character5" name="character5" readonly>
-      </div>
-      <div class="col37">
-        <input type="text" class="form-control hei34 character" id="c_name5" name="c_name5"readonly>
-      </div>
-    <div class="col5">
-      <button type="button" class="btn" id="btn5" name="btn5"><i class="fas fa-search"></i></button>
+<input type="text" id="actor_id3" name="actorMutiListVo[2].actor_id" readonly>
+<input type="text" id="actor_list3" name="actorMutiListVo[2].actor_list">
+</div>
+    
+  <div class="row mart5">
+    <div class="col20">
+      <select class="form-control hei33" id="select4" name="actorMutiListVo[3].cast" style="height: 33px;" onchange="ChangecatList4()">
+        <option value="">배역</option>
+        <option value="main">주연</option>
+        <option value="support">조연</option>
+      </select>
     </div>
+    <div class="col37">
+      <input type="text" class="form-control hei34 actor" id="character4" readonly>
+    </div>
+    <div class="col37">
+      <input type="text" class="form-control hei34 character" id="c_name4" name="actorMutiListVo[3].c_name"readonly>
+    </div>
+  <div class="col5">
+    <button type="button" class="btn" id="btn4" name="btn4"><i class="fas fa-search"></i></button>
   </div>
-      
-    <div class="row mart5">
-      <div class="col20">
-        <select class="form-control hei33" id="select6" name="actor_list" style="height: 33px;" onchange="ChangecatList6()">
-          <option value="">배역</option>
-          <option value="main">주연</option>
-          <option value="support">조연</option>
-        </select>
-      </div>
-      <div class="col37">
-        <input type="text" class="form-control hei34 actor" id="character6" name="character6" readonly>
-      </div>
-      <div class="col37">
-        <input type="text" class="form-control hei34 character" id="c_name6" name="c_name6"readonly>
-      </div>
-    <div class="col5">
-      <button type="button" class="btn" id="btn6" name="btn6"><i class="fas fa-search"></i></button>
+<input type="text" id="actor_id4" name="actorMutiListVo[3].actor_id" readonly>
+<input type="text" id="actor_list4" name="actorMutiListVo[3].actor_list">
+</div>
+    
+  <div class="row mart5">
+    <div class="col20">
+      <select class="form-control hei33" id="select5" name="actorMutiListVo[4].cast" style="height: 33px;" onchange="ChangecatList5()">
+        <option value="">배역</option>
+        <option value="main">주연</option>
+        <option value="support">조연</option>
+      </select>
     </div>
+    <div class="col37">
+      <input type="text" class="form-control hei34 actor" id="character5" readonly>
+    </div>
+    <div class="col37">
+      <input type="text" class="form-control hei34 character" id="c_name5" name="actorMutiListVo[4].c_name"readonly>
+    </div>
+  <div class="col5">
+    <button type="button" class="btn" id="btn5" name="btn5"><i class="fas fa-search"></i></button>
   </div>
-      
-    <div class="row mart5">
-      <div class="col20">
-        <select class="form-control hei33" id="select7" name="actor_list" style="height: 33px;" onchange="ChangecatList7()">
-          <option value="">배역</option>
-          <option value="main">주연</option>
-          <option value="support">조연</option>
-        </select>
-      </div>
-      <div class="col37">
-        <input type="text" class="form-control hei34 actor" id="character7" name="character7" readonly>
-      </div>
-      <div class="col37">
-        <input type="text" class="form-control hei34 character" id="c_name7" name="c_name7"readonly>
-      </div>
-    <div class="col5">
-      <button type="button" class="btn" id="btn7" name="btn7"><i class="fas fa-search"></i></button>
+<input type="text" id="actor_id5" name="actorMutiListVo[4].actor_id" readonly>
+<input type="text" id="actor_list5" name="actorMutiListVo[4].actor_list">
+</div>
+    
+  <div class="row mart5">
+    <div class="col20">
+      <select class="form-control hei33" id="select6" name="actorMutiListVo[5].cast" style="height: 33px;" onchange="ChangecatList6()">
+        <option value="">배역</option>
+        <option value="main">주연</option>
+        <option value="support">조연</option>
+      </select>
     </div>
+    <div class="col37">
+      <input type="text" class="form-control hei34 actor" id="character6" readonly>
+    </div>
+    <div class="col37">
+      <input type="text" class="form-control hei34 character" id="c_name6" name="actorMutiListVo[5].c_name"readonly>
+    </div>
+  <div class="col5">
+    <button type="button" class="btn" id="btn6" name="btn6"><i class="fas fa-search"></i></button>
   </div>
-      
-    <div class="row mart5">
-      <div class="col20">
-        <select class="form-control hei33" id="select8" name="actor_list" style="height: 33px;" onchange="ChangecatList8()">
-          <option value="">배역</option>
-          <option value="main">주연</option>
-          <option value="support">조연</option>
-        </select>
-      </div>
-      <div class="col37">
-        <input type="text" class="form-control hei34 actor" id="character8" name="character8" readonly>
-      </div>
-      <div class="col37">
-        <input type="text" class="form-control hei34 character" id="c_name8" name="c_name8"readonly>
-      </div>
-    <div class="col5">
-      <button type="button" class="btn" id="btn8" name="btn8"><i class="fas fa-search"></i></button>
+<input type="text" id="actor_id6" name="actorMutiListVo[5].actor_id" readonly>
+<input type="text" id="actor_list6" name="actorMutiListVo[5].actor_list">
+</div>
+    
+  <div class="row mart5">
+    <div class="col20">
+      <select class="form-control hei33" id="select7" name="actorMutiListVo[6].cast" style="height: 33px;" onchange="ChangecatList7()">
+        <option value="">배역</option>
+        <option value="main">주연</option>
+        <option value="support">조연</option>
+      </select>
     </div>
+    <div class="col37">
+      <input type="text" class="form-control hei34 actor" id="character7" readonly>
+    </div>
+    <div class="col37">
+      <input type="text" class="form-control hei34 character" id="c_name7" name="actorMutiListVo[6].c_name"readonly>
+    </div>
+  <div class="col5">
+    <button type="button" class="btn" id="btn7" name="btn7"><i class="fas fa-search"></i></button>
+  </div>
+<input type="text" id="actor_id7" name="actorMutiListVo[6].actor_id" readonly>
+<input type="text" id="actor_list7" name="actorMutiListVo[6].actor_list">
+</div>
+    
+  <div class="row mart5">
+    <div class="col20">
+      <select class="form-control hei33" id="select8" name="actorMutiListVo[7].cast" style="height: 33px;" onchange="ChangecatList8()">
+        <option value="">배역</option>
+        <option value="main">주연</option>
+        <option value="support">조연</option>
+      </select>
+    </div>
+    <div class="col37">
+      <input type="text" class="form-control hei34 actor" id="character8" readonly>
+    </div>
+    <div class="col37">
+      <input type="text" class="form-control hei34 character" id="c_name8" name="actorMutiListVo[7].c_name" readonly>
+    </div>
+  <div class="col5">
+    <button type="button" class="btn" id="btn8" name="btn8"><i class="fas fa-search"></i></button>
+  </div>
+  <input type="text" id="actor_id8" name="actorMutiListVo[7].actor_id" readonly>
+  <input type="text" id="actor_list8" name="actorMutiListVo[7].actor_list">
   </div>
   <br>
   <button type="submit" class="done">배우목록 완료</button>
  </form>
 </div>
 <input type="hidden" id="selectCharacter">
+<input type="hidden" id="selectCharacterId">
 
 
 </body>

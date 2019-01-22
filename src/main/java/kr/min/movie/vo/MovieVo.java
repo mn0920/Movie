@@ -12,8 +12,8 @@ public class MovieVo {
   private String grade;
 	private String synopsis;
 	private String poster;
-  private int like;
-
+  private int status;
+ 
   
   public int getId() {
     return id;
@@ -72,18 +72,18 @@ public class MovieVo {
     this.poster = poster;
   }
   
-  public int getLike() {
-    return like;
+  public int getStatus() {
+    return status;
   }
-  public void setLike(int like) {
-    this.like = like;
+  public void setStatus(int status) {
+    this.status = status;
   }
 
   @Override
   public String toString() {
     return "BoardVo [id" + id +", title=" + title + ", rate=" + rate + ", running_time=" + running_time
         + ", open_date=" + open_date + ", grade=" + grade + ", synopsis=" + synopsis + ", poster=" + poster
-        + ", like=" + like + "]";
+        + ", status=" + status + "]";
   }
 
 }

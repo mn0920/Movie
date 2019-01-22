@@ -30,6 +30,10 @@ color: grey;
 </head>
 <body>
 <script type="text/javascript">
+var dWin;
+var aWin;
+var gWin;
+var win;
 
 $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (430 / 2);
@@ -45,7 +49,7 @@ $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (430 / 2);
     var popupY= (window.screen.height / 2) - (500 / 2);
 $('#gBtn').click(function(){
-  window.open('<%= request.getContextPath() %>/admin/MM/seaG','searchGenre','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+	gWin = window.open('<%= request.getContextPath() %>/admin/MM/seaG','searchGenre','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   console.log(popupX);
   console.log(popupY);
 });
@@ -55,7 +59,7 @@ $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (430 / 2);
     var popupY= (window.screen.height / 2) - (500 / 2);
 $('#dBtn').click(function(){
-  window.open('<%= request.getContextPath() %>/admin/MM/seaD','searchDirector','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+	dWin = window.open('<%= request.getContextPath() %>/admin/MM/seaD','searchDirector','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   console.log(popupX);
   console.log(popupY);
 });
@@ -70,6 +74,16 @@ $('#aBtn').click(function(){
   console.log(popupY);
 });
 });
+
+<%-- $(document).ready(function(){
+    var popupX = (window.screen.width / 2) - (430 / 2);
+    var popupY= (window.screen.height / 2) - (500 / 2);
+$('#aBtn').click(function(){
+  aWin = window.open('<%= request.getContextPath() %>/admin/lol','searchActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  console.log(popupX);
+  console.log(popupY);
+});
+}); --%>
 </script>
 
  <div class="all">
@@ -89,6 +103,7 @@ $('#aBtn').click(function(){
             <div class="col-75">
               <input type="text" id="title" name="title" class="col82" placeholder="영화의 제목을 적어주세요." readonly>
               <button type="button" id="mBtn"><i class="fas fa-search"></i></button>
+              <input type="text" id="actor_list" name="id" class="col82" value="${movie.id}" readonly>
             </div>
           </div>
           <div class="row">
@@ -98,7 +113,7 @@ $('#aBtn').click(function(){
             <div class="col-75">
               <input type="text" id="m_genre_list" name="m_genre_list" class="col82" placeholder="영화의 장르를 적어주세요." readonly>
               <button type="button" id="gBtn"><i class="fas fa-search"></i></button>
-              <input type="hidden" id="genre_list" name="genre_list" class="col82" value="${movie.id}" readonly>
+              <input type="text" id="genre_list" name="genre_list" class="col82" value="${movie.id}" readonly>
             </div>
           </div>
           <div class="row">
@@ -108,7 +123,7 @@ $('#aBtn').click(function(){
             <div class="col-75">
               <input type="text" id="m_director_list" name="m_director_list" class="col82" placeholder="영화 감독을 적어주세요" readonly>
               <button type="button" id="dBtn"><i class="fas fa-search"></i></button>
-              <input type="hidden" id="director_list" name="director_list" class="col82" value="${movie.id}" readonly>
+              <input type="text" id="director_list" name="director_list" class="col82" value="${movie.id}" readonly>
             </div>
           </div>
           <div class="row">
@@ -118,7 +133,7 @@ $('#aBtn').click(function(){
             <div class="col-75">
               <input type="text" id="m_actor_list" name="m_actor_list" class="col82" placeholder="출연한 배우들의 이름을 적어주세요" readonly>
               <button type="button" id="aBtn"><i class="fas fa-search"></i></button>
-              <input type="hidden" id="actor_list" name="actor_list" class="col82" value="${movie.id}" readonly>
+              <input type="text" id="actor_list" name="actor_list" class="col82" value="${movie.id}" readonly>
             </div>
           </div>
           <div class="row">
@@ -126,81 +141,7 @@ $('#aBtn').click(function(){
               <label for="open_date">open date</label>
             </div>
             <div class="col-25">
-              <select id="open_date" name="yyyy">
-                <option value="null">YYYY</option>
-                <option value="2000">2000</option>
-                <option value="2001">2001</option>
-                <option value="2002">2002</option>
-                <option value="2003">2003</option>
-                <option value="2004">2004</option>
-                <option value="2005">2005</option>
-                <option value="2006">2006</option>
-                <option value="2007">2007</option>
-                <option value="2008">2008</option>
-                <option value="2009">2009</option>
-                <option value="2010">2010</option>
-                <option value="2011">2011</option>
-                <option value="2012">2012</option>
-                <option value="2013">2013</option>
-                <option value="2014">2014</option>
-                <option value="2015">2015</option>
-                <option value="2016">2016</option>
-                <option value="2017">2017</option>
-                <option value="2018">2018</option>
-              </select>
-            </div>
-            <div class="col-25">
-              <select id="open_date" name="mm">
-                <option value="null">MM</option>
-                <option value="01">01</option>
-                <option value="02">02</option>
-                <option value="03">03</option>
-                <option value="04">04</option>
-                <option value="05">05</option>
-                <option value="06">06</option>
-                <option value="07">07</option>
-                <option value="08">08</option>
-                <option value="09">09</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-              </select>
-            </div>
-            <div class="col-25">
-              <select id="open_date" name="dd">
-                <option value="null">dd</option>
-                <option value="01">01</option>
-                <option value="02">02</option>
-                <option value="03">03</option>
-                <option value="04">04</option>
-                <option value="05">05</option>
-                <option value="06">06</option>
-                <option value="07">07</option>
-                <option value="08">08</option>
-                <option value="09">09</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-                <option value="24">24</option>
-                <option value="25">25</option>
-                <option value="26">26</option>
-                <option value="27">27</option>
-                <option value="28">28</option>
-                <option value="29">29</option>
-                <option value="30">30</option>
-                <option value="31">31</option>
-              </select>
+              <input type="text" id="open_date" name="open_date" class="col82" >
             </div>
           </div>
           <div class="row">
@@ -251,11 +192,12 @@ $('#aBtn').click(function(){
           <div class="row">
             <input type="submit" value="submit" class="right">
           </div>
-          <input type="hidden" id="c_name">
         </form>
         <input type="hidden" id="movieId">
         <input type="text" id="update" onchange="test()">
         <input type="text" id="update1" onchange="test1()">
+        <input type="text" id="update2" onchange="test2()">
+        <input type="text" id="update3" onchange="test3()">
       </div>
   </div>
 </div>
@@ -263,17 +205,7 @@ $('#aBtn').click(function(){
 
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<!-- <script>
-String title = document.title.value; 
-
-session.setAttribute("title", title );
-
-String title = request.getSession().getAttribute("title").toString());
-
-response.sendRedirect(title);
-</script> -->
 <script>
-var win;
 var title;
 function test(){
   setTimeout(function () {
@@ -282,13 +214,26 @@ function test(){
   console.log(win);
 };
 
-var aWin;
 function test1(){
 	  setTimeout(function () {
 		  aWin.close();
-	  }, 10000);
-	  console.log(win);
+	  }, 1000);
+	  console.log(aWin);
 	};
+
+function test2(){
+  setTimeout(function () {
+	  dWin.close();
+  }, 500);
+  console.log(dWin);
+};
+
+ function test3(){
+  setTimeout(function () {
+    gWin.close();
+  }, 1100);
+  console.log(gWin);
+};
 
 
 $(document).ready(function(){

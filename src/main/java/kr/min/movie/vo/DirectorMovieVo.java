@@ -1,5 +1,8 @@
 package kr.min.movie.vo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DirectorMovieVo {
 
   /* director */
@@ -9,6 +12,7 @@ public class DirectorMovieVo {
   /* movie */
   private String title;
   private int id;
+  private Date open_date;
   
   
   public String getDirector_name() {
@@ -38,12 +42,20 @@ public class DirectorMovieVo {
   public void setId(int id) {
     this.id = id;
   }
+  
+  public String getOpen_date() { //월 : 대문자 MM , 시간-분 : 소문자 mm
+    SimpleDateFormat format = new SimpleDateFormat("yyyy년MM월dd일");
+    return format.format(open_date);
+  }
+  public void setOpen_date(Date open_date) {
+    this.open_date = open_date;
+  }
 
 
   @Override
   public String toString() {
     return "DirectorMovieVo [director_name=" + director_name + ", director_id=" + director_id
-              + ", title=" + title + ", id=" + id + "]";
+              + ", title=" + title + ", id=" + id + ", open_date=" + open_date + "]";
   }
 
 }

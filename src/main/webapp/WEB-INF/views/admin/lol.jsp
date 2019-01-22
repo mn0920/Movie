@@ -13,6 +13,53 @@
 <script type="text/javascript"
   src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
+
+<title>searchActor</title>
+</head>
+<body>
+ <div id="loading">
+  <img id="loading-image" src="<%=request.getContextPath() %>/resources/images/loading.gif" alt="Loading..." />
+  <label id="loading-image">배우 리스트를 입력하는 중입니다.</label>
+ </div>
+ <div class="container">
+<br>
+<form name="choose" method="POST">
+  <input type="text" id="actor_list" name="actor_list">
+  <table id="myTable" class="input-large form-control none" name="normal">
+    <!-- actor_list(movie.id) -->
+    <thead>
+      <tr class="header">
+        <th style="width: 20%;">주연/조연</th>
+        <th style="width: 20%;">배우이름</th>
+        <th style="width: 20%;">배역이름</th>
+        <th style="width: 20%;">배우이름검색</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <select class="form-control hei33" id="select1" name="actor_list" style="height: 33px;" onChange="ChangecatList()">
+            <option value="">배역</option>
+            <option value="main">주연</option>
+            <option value="support">조연</option>
+          </select>  
+        </td>
+        <td><input type="text" class="form-control hei34 actor" id="character1" name="character" readonly></td>
+        <td><input type="text" class="form-control hei34 character" id="c_name1" name="c_name" readonly></td>
+        <td><button type="button" class="btn" id="btn1" name="btn1" ><i class="fas fa-search"></i></button></td>
+      </tr>
+  </table>
+  <br>
+  <button type="button" id='btn-add-row'>행 추가하기</button>
+  <button type="button" id='btn-delete-row'>행 삭제하기</button>
+  <hr>
+  <button type="submit" class="done">배우목록 완료</button>
+ </form>
+ <input type="text" id="selectCharacter">
+</div>
+
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script>
 <script type="text/javascript">
 $(document).ready(function(){
   var btn = document.getElementById('btn1');
@@ -21,7 +68,7 @@ $(document).ready(function(){
   </script>
 <script type="text/javascript">
 function ChangecatList(){
-  var btn1 = document.getElementById('btn1');
+  var btn1 = document.getElementById('btn'+);
   //var select1 = document.getElementById('select1');
   var select1 = document.choose.select1.value;
   if(select1 == ""){
@@ -104,70 +151,38 @@ $('.done').click(function(){
     $(this).parent().next().find('.character').prop('readonly', false);
    });
  });
-</script>
 
-<title>searchActor</title>
-</head>
-<body>
- <div id="loading">
-  <img id="loading-image" src="<%=request.getContextPath() %>/resources/images/loading.gif" alt="Loading..." />
-  <label id="loading-image">배우 리스트를 입력하는 중입니다.</label>
- </div>
- <div class="container">
-<br>
-<form name="choose" method="POST">
-  <input type="text" id="actor_list" name="actor_list">
-  <table id="myTable" class="input-large form-control none" name="normal">
-    <!-- actor_list(movie.id) -->
-    <thead>
-      <tr class="header">
-        <th style="width: 20%;">주연/조연</th>
-        <th style="width: 20%;">배우이름</th>
-        <th style="width: 20%;">배역이름</th>
-        <th style="width: 20%;">배우이름검색</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <select class="form-control hei33" id="select1" name="actor_list" style="height: 33px;" onChange="ChangecatList()">
-            <option value="">배역</option>
-            <option value="main">주연</option>
-            <option value="support">조연</option>
-          </select>  
-        </td>
-        <td><input type="text" class="form-control hei34 actor" id="character1" name="character" readonly></td>
-        <td><input type="text" class="form-control hei34 character" id="c_name1" name="c_name" readonly></td>
-        <td><button type="button" class="btn" id="btn1" name="btn1" ><i class="fas fa-search"></i></button></td>
-      </tr>
-  </table>
-  <br>
-  <button id='btn-add-row'>행 추가하기</button>
-  <button id='btn-delete-row'>행 삭제하기</button>
-  <hr>
-  <button type="submit" class="done">배우목록 완료</button>
- </form>
- <input type="text" id="selectCharacter">
-</div>
+ 
+ var i = ('#myTable tr').length -10;
+  var lol1 = $('#myTable');
+  var lol2 = $('#myTable tr');
+  var last = $('#myTable > tbody:last');
+  
 
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script>
-  var i = ('#myTable tr').length;
   $('#btn-add-row').click(function() {
-    $('#myTable > tbody:last').append('<tr>'+
-      '<td><select name="actor_list" onChange="ChangecatList()">'
-      +'<option value="">배역</option><option value="main">주연</option><option value="support">조연</option></select></td>'
-      +'<td><input type="text" class="form-control hei34 actor" id="character'+ i +'" name="character" readonly></td>'
-      +'<td><input type="text" class="form-control hei34 character" id="c_name'+ i +'" name="c_name" readonly></td>'
-      +'<td><button type="button" class="btn" id="btn'+ i +'" name="btn1" ><i class="fas fa-search"></i></button></td>'
-      +'</tr>');
-    var num = i++;
-  });
+	    var num = i++;
+	    if(i < 9){
+	      $(last).append('<tr>'+
+	        '<td><select class="form-control hei33" id="select' + i +'" name="actor_list" onChange="ChangecatList()">'
+	        +'<option value="">배역</option><option value="main">주연</option><option value="support">조연</option></select></td>'
+	        +'<td><input type="text" class="form-control hei34 actor" id="character'+ i +'" name="character" readonly></td>'
+	        +'<td><input type="text" class="form-control hei34 character" id="c_name'+ i +'" name="c_name" readonly></td>'
+	        +'<td><button type="button" class="btn" id="' + i + '"' + ' name="' + i + '"><i class="fas fa-search"></i></button></td>'
+	        +'</tr>');
+	      num = i;
+	      console.log(i);
+	    } else {
+	      alert('배우는 최대 8명까지만 등록할 수 있습니다.');
+	    }
+	  });
+  console.log('myTable'+lol1);
+  console.log('tr'+lol2);
   $('#btn-delete-row').click(function() {
     $('#myTable > tbody:last > tr:last').remove();
     var num = i--;
+    num = i;
+    console.log(i);
   });
 </script>
-
 </body>
 </html>

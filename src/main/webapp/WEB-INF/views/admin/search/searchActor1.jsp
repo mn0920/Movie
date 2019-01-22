@@ -116,10 +116,12 @@ $("#choice").click(function(){
 	console.log(data2);
 	
 	var id=opener.document.getElementById('selectCharacter').value;
+  var aid=opener.document.getElementById('selectCharacterId').value;
   if(!data){
 	    alert('인물을 선택해주세요.');
 	  }
 	opener.document.getElementById(id).value = data;
+  opener.document.getElementById(aid).value = data2;
 	/* $(opener.document).find('.actor').trigger('change'); */
 	window.opener.$('#'+id).trigger('change');
 	/* opener.document.getElementById(id).trigger('change'); */

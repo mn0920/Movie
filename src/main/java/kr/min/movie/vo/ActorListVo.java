@@ -1,5 +1,7 @@
 package kr.min.movie.vo;
 
+import java.util.List;
+
 public class ActorListVo {
 
   private Integer m_actor_list_id;
@@ -7,18 +9,9 @@ public class ActorListVo {
   private Integer actor_id;
   private String cast;
   private String c_name;
+  private List<ActorListVo> a_list;
   
-  
-  public ActorListVo() {
-  }
 
-  public ActorListVo(Integer m_actor_list_id, Integer actor_list, Integer actor_id, String cast, String c_name) {
-    this.m_actor_list_id = m_actor_list_id;
-    this.actor_list = actor_list;
-    this.actor_id = actor_id;
-    this.cast = cast;
-    this.c_name = c_name;
-  }
   
   public Integer getM_actor_list_id() {
     return m_actor_list_id;
@@ -53,6 +46,13 @@ public class ActorListVo {
   }
   public void setC_name(String c_name) {
     this.c_name = c_name;
+  }
+  
+  public List<ActorListVo> getA_list() {
+    return a_list;
+  }
+  public void setA_list(List<ActorListVo> a_list) {
+    this.a_list = a_list;
   }
   
   @Override

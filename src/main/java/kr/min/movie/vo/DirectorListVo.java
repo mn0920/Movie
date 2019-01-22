@@ -1,10 +1,13 @@
 package kr.min.movie.vo;
 
+import java.util.List;
+
 public class DirectorListVo {
 
   private Integer m_director_list_id;
   private Integer director_list;
   private Integer director_id;
+  private List<DirectorListVo> d_list;
   
   
   public Integer getM_director_list_id() {
@@ -26,6 +29,13 @@ public class DirectorListVo {
   }
   public void setDirector_id(Integer director_id) {
     this.director_id = director_id;
+  }
+  
+  public List<DirectorListVo> getD_list() {
+    return d_list;
+  }
+  public void setD_list(List<DirectorListVo> d_list) {
+    this.d_list = d_list;
   }
   
   

@@ -1,6 +1,5 @@
 package kr.min.movie.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import kr.min.movie.vo.ActorVo;
 import kr.min.movie.vo.DirectorListVo;
 import kr.min.movie.vo.DirectorMovieVo;
 import kr.min.movie.vo.DirectorVo;
+import kr.min.movie.vo.GenreListVo;
 import kr.min.movie.vo.GenreVo;
 import kr.min.movie.vo.MovieVo;
 import kr.min.movie.vo.ShowMovieVo;
@@ -58,8 +58,19 @@ public class AdminServiceImp implements AdminService {
   }
 
   @Override
+  public void updateMovie(MovieVo movieVo) {
+    adminDao.updateMovie(movieVo);
+  }
+
+  @Override
   public void addActor(ActorVo actorVo) {
     adminDao.addActor(actorVo);    
+  }
+
+  @Override
+  public void addActorList(ActorListVo actorListVo) {
+    if(actorListVo.getActor_id() != null)
+      adminDao.addActorList(actorListVo);
   }
 
   @Override
@@ -77,27 +88,17 @@ public class AdminServiceImp implements AdminService {
     return adminDao.getDirectorOneMovie();
   }
 
+  @Override
+  public void addDirectorList(DirectorListVo directorListVo) {
+    if(directorListVo.getDirector_id() != null)
+      adminDao.addDirectorList(directorListVo);
+  }
 
-}/*
+  @Override
+  public void addGenreList(GenreListVo genreListVo) {
+    if(genreListVo.getGenre_id() != null)
+      adminDao.addGenreList(genreListVo);
+  }
 
-@Override
-public void addActorList(List<ActorListVo> actorListVo) {
-  System.out.println("1 : " + actorListVo);
-  adminDao.addActorList(actorListVo);
-  System.out.println("2 : " + actorListVo);
-}*/
 
-    /*ActorListVo actorListVoo = new ActorListVo();
-    actorListVoo.setActor_list(((ActorListVo) actorListVo).getActor_list());
-    actor_list = movie_id
-    Integer actor_list = actorListVoo.getActor_list();
-    actor_list 변수에, getActor_list이것을 담는다.
-    getActor_list 설정값은 Integer
-    setActor_list 설정값은  void
-    Integer actor_id = actorListVoo.getActor_id();
-    
-    for(int i=0; i<=actorListVo.size(); i++) {
-      actorListVo.set(1, actorListVoo.getActor_list());
-      actorListVo.set(1, (ActorListVo)actorListVoo.setActor_list(actor_list));
-      adminDao.addActorList(actorListVo);
-    }*/
+}

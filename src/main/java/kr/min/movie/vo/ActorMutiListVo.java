@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ActorMutiListVo {
 
-  private List<ActorListVo> actorMutiListVo;
+  private List<ActorListVo> actorMutiListVo = null;
 
   public List<ActorListVo> getActorMutiListVo() {
     return actorMutiListVo;

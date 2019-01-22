@@ -7,19 +7,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
-  rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-  integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-  crossorigin="anonymous">
-<link rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-  integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-  crossorigin="anonymous">
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminSearch1.css">
-<script type="text/javascript"
-  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -27,7 +19,7 @@ $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (750 / 2);
     var popupY= (window.screen.height / 2) - (351 / 2);
   $('#add').click(function(){
-    win = window.open('<%=request.getContextPath()%>/admin/MM/seaD/cho/addD','addActor','width=750,height=351,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+    win = window.open('<%=request.getContextPath()%>/admin/MM/seaD/cho/addD','Director','width=750,height=351,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   });
 });
 </script>
@@ -53,7 +45,7 @@ $(document).ready(function(){
       }
     </script>
 
-<title>choiceActor</title>
+<title>choiceDirector</title>
 </head>
 
 <body>
@@ -63,29 +55,27 @@ $(document).ready(function(){
 
     <hr>
 
-<form name="searchA">
+<form name="searchD" method="POST">
     <div id="tableScroll" class="tableScroll">
       <table id="myTable" class="input-large form-control none" name="normal">
         <thead>
           <tr class="header">
             <th style="width: 8%;" name="checkList"><i class="far fa-check-circle"></i></th>
-            <th style="width: 80%;">Name</th>
-            <th style="width: 12%;">movie</th>
+            <th style="width: 80%;">이름</th>
+            <th style="width: 12%;">최근 영화</th>
           </tr>
         </thead>
         <tbody>
           <c:forEach var="director"  items="${director}">
-            <tr>
-              <td>
-                <input type="radio" value="${director.director_name}" name="sel">
-                <input type="hidden" value="${director.director_id}">
-              </td>
-              <td>${director.director_name}</td>
-              <td>
-                ${director.title} <input type="hidden" value="${director.id}">
-              </td>
-            </tr>
-          </c:forEach>
+              <tr>
+                <td>
+                  <input type="radio" value="${director.director_name}">
+                  <input type="hidden" value="${director.director_id}">
+                </td>
+                <td>${director.director_name}</td>
+                <td>${director.title}</td>
+              </tr>
+            </c:forEach>
         </tbody>
       </table>
     </div>
@@ -93,10 +83,10 @@ $(document).ready(function(){
     </form>
     
     <br>
-    <div style="margin-top:10px;">찾고자하는 배우가 없다면 추가 버튼을 눌러주세요</div>
+    <div style="margin-top:10px;">찾고자하는 감독이 없다면 추가 버튼을 눌러주세요</div>
     <button type="button" id="add" name="add">추가</button>
    </div>
-  <input type="hidden" id="characterId">
+  <input type="hidden" id="directorId">
   <input type="text" id="update" onchange="test()">
   
   
@@ -118,23 +108,15 @@ $("#choice").click(function(){
   console.log(data2);
   
   var id=opener.document.getElementById('selectDirector').value;
+  var did=opener.document.getElementById('selectDirectorId').value;
   if(!data){
       alert('인물을 선택해주세요.');
     }
   opener.document.getElementById(id).value = data;
-  /* $(opener.document).find('.actor').trigger('change'); */
+  opener.document.getElementById(did).value = data2;
   window.opener.$('#'+id).trigger('change');
-  /* opener.document.getElementById(id).trigger('change'); */
   window.close();
 });
-
-
-
-    /* var name = $('input[type="radio"]')
-    var rowData = new Array(); 
-    var tdArr = new Array();
-    var radiobtn = $("input[name=sel]:checked");
-    */
 </script>
 </body>
 </html>
