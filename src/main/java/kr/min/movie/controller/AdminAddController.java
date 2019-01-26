@@ -3,6 +3,8 @@ package kr.min.movie.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +24,6 @@ import kr.min.movie.vo.DirectorMovieVo;
 import kr.min.movie.vo.DirectorMutiListVo;
 import kr.min.movie.vo.DirectorVo;
 import kr.min.movie.vo.GenreListVo;
-import kr.min.movie.vo.GenreMutiListVo;
 import kr.min.movie.vo.GenreVo;
 import kr.min.movie.vo.MovieVo;
 
@@ -38,7 +39,8 @@ public class AdminAddController {
   private String uploadPath;
 
   @RequestMapping(value = "/movie/addM", method = RequestMethod.GET)
-  public String addMovieGet(Model model) {
+  public String addMovieGet(HttpServletRequest request, Model model) {
+    HttpSession session = request.getSession();
     
     MovieVo movie = adminService.getMovieId();
     
@@ -48,11 +50,12 @@ public class AdminAddController {
   
   @RequestMapping(value = "/movie/addM", method = RequestMethod.POST)
   public String addMoviePost(MovieVo movieVo) {
-
-    adminService.updateMovie(movieVo);
-    System.out.println(movieVo);
     
-    return "admin/add/addMovie";
+    System.out.println("1 : "+movieVo);
+    adminService.updateMovie(movieVo);
+    System.out.println("2 : "+movieVo);
+    
+    return "redirect:/admin/movie/addM";
   }
   
 
@@ -93,9 +96,7 @@ public class AdminAddController {
 
     List <ActorListVo> actorListsVo = actorMutiListVo.getActorMutiListVo();
     
-    for (ActorListVo actorListVo : actorListsVo) {
-      adminService.addActorList(actorListVo);
-    }
+    
     return "admin/search/searchActor";
   }
 

@@ -102,7 +102,7 @@ $('#aBtn').click(function(){
           <div class="col-75">
             <input type="text" id="title" name="title" class="col82" placeholder="영화의 제목을 적어주세요." readonly>
             <button type="button" id="mBtn"><i class="fas fa-search"></i></button>
-            <input type="text" id="actor_list" name="id" class="col82" value="${movie.id}" >
+            <input type="text" id="actor_list" name="id" class="col82" value="${movie.id}" readonly>
           </div>
         </div>
         <div class="row">
@@ -112,7 +112,7 @@ $('#aBtn').click(function(){
           <div class="col-75">
             <input type="text" id="m_genre_list" class="col82" placeholder="영화의 장르를 적어주세요." readonly>
             <button type="button" id="gBtn"><i class="fas fa-search"></i></button>
-            <input type="text" id="genre_list" class="col82" value="${movie.id}" >
+            <input type="text" id="genre_list" class="col82" value="${movie.id}" readonly>
           </div>
         </div>
         <div class="row">
@@ -122,7 +122,7 @@ $('#aBtn').click(function(){
           <div class="col-75">
             <input type="text" id="m_director_list" class="col82" placeholder="영화 감독을 적어주세요" readonly>
             <button type="button" id="dBtn"><i class="fas fa-search"></i></button>
-            <input type="text" id="director_list" class="col82" value="${movie.id}" >
+            <input type="text" id="director_list" class="col82" value="${movie.id}" readonly>
           </div>
         </div>
         <div class="row">
@@ -132,7 +132,7 @@ $('#aBtn').click(function(){
           <div class="col-75">
             <input type="text" id="m_actor_list" class="col82" placeholder="출연한 배우들의 이름을 적어주세요" readonly>
             <button type="button" id="aBtn"><i class="fas fa-search"></i></button>
-            <input type="text" id="actor_list" class="col82" value="${movie.id}" >
+            <input type="text" id="actor_list" class="col82" value="${movie.id}" readonly>
           </div>
         </div>
         <form action="<%= request.getContextPath() %>/admin/movie/addM" method="POST">
@@ -288,8 +288,8 @@ $(".fileDrop").on("dragenter dragover", function(event){
           
           if(checkImageType(data)){
             $(".poster").empty();
-            str = "<div>" + "<img src='<%= request.getContextPath() %>/admin/displayFile?fileName="
-            		+data+"'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
+            str = "<div><a href='displayFile?fileName=" + getImageLink(data) + "'>" +
+                      "<img src='displayFile?fileName="+data+"'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
           }
           $(".poster").append(str);
       }

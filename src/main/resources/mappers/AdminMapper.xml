@@ -40,6 +40,7 @@
     (#{movieVo.title}, #{movieVo.rate}, #{movieVo.synopsis});
   </insert>
   <insert id="updateMovie">
+  <!-- update board set title=#{boardVo.title}, contents=#{boardVo.contents}, file = #{boardVo.file} where num = #{boardVo.num}; -->
   update movie set
    rate=#{movieVo.rate}, running_time=#{movieVo.running_time}, open_date = #{movieVo.open_date},
    grade=#{movieVo.grade}, synopsis=#{movieVo.synopsis}, poster = #{movieVo.poster}
@@ -80,20 +81,6 @@
     (genre_list, genre_id)
     value
     (#{genreListVo.genre_list}, #{genreListVo.genre_id});
-  </select>
-  <select id="getShowMovie" resultType="kr.min.movie.vo.ShowMovieVo">
-    select
-      actor.actor_id, actor.actor_name, m_actor_list.cast, m_actor_list.c_name, director.director_id, director.director_name,
-      genre.genre_name, movie.id, movie.title, movie.rate, movie.running_time, movie.open_date, movie.grade, movie.synopsis, 
-      movie.poster, movie.status
-    from movie
-    left join m_director_list on movie.id = m_director_list.director_list
-    left join director on director.director_id = m_director_list.director_id
-    left join m_actor_list on movie.id = m_actor_list.actor_list
-    left join actor on actor.actor_id = m_actor_list.actor_id
-    left join m_genre_list on movie.id = m_genre_list.genre_list
-    left join genre on genre.genre_id = m_genre_list.genre_id
-    where movie.status = 1;
   </select>
 
 

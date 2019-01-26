@@ -139,9 +139,8 @@ $(".fileDrop").on("dragenter dragover", function(event){
           
           if(checkImageType(data)){
         	  $(".poster").empty();
-        	  str = "<div><img src='<%= request.getContextPath() %>/admin/displayFile?fileName=" + data + "'/><small data-src=+data+><i class='fas fa-times'></small></div>";
-            <%--   str = "<div><a href='<%= request.getContextPath() %>/admin/displayFile?fileName=" + getImageLink(data) + "'>" +
-              "<img src='<%= request.getContextPath() %>/admin/displayFile?fileName=" + data + "'/><small data-src="+data+"><i class='fas fa-times'></small></div>"; --%>
+            str =  "<div>" +
+            "<img src='<%= request.getContextPath() %>/admin/displayFile?fileName=" + data + "'/><small data-src="+data+"><i class='fas fa-times'></small></div>";
             }
             $(".poster").append(str);
       }
