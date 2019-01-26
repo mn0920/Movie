@@ -51,6 +51,14 @@ public class AdminController {
     return "admin/actor";
   }
 
+  @RequestMapping(value = "/actor/modify", method = RequestMethod.GET)
+  public String actorModifyGet(Model model) {
+    List<ActorVo> actor = boardService.getActors();
+
+    model.addAttribute("actor", actor);
+    return "admin/modify/Modifyactor";
+  }
+
   @RequestMapping(value = "/actor/addA", method = RequestMethod.GET)
   public String actorAddGet(Model model) {
     return "admin/add/addActor";
