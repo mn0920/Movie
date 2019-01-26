@@ -1,5 +1,7 @@
 package kr.min.movie.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.min.movie.service.AccountService;
 import kr.min.movie.service.BoardService;
+import kr.min.movie.vo.ActorVo;
+import kr.min.movie.vo.ShowMovieVo;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -33,11 +37,17 @@ public class AdminController {
 
   @RequestMapping(value = "/movie", method = RequestMethod.GET)
   public String movieGet(Model model) {
+    List<ShowMovieVo> movie = boardService.getShowMovie();
+
+    model.addAttribute("movie", movie);
     return "admin/movieMain";
   }
 
   @RequestMapping(value = "/actor", method = RequestMethod.GET)
   public String actorGet(Model model) {
+    List<ActorVo> actor = boardService.getActors();
+
+    model.addAttribute("actor", actor);
     return "admin/actor";
   }
 

@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+background-color: white;
+}
+
+h4{
+display: inline-block;
+margin: 20px 10px 5px 10px;
+}
+
+/* Center website */
+.main2 {
+  max-width: 1300px;
+  margin: auto;
+  padding-left: 5px;
+}
+
+.row2 {
+  margin: 10px -16px;
+}
+
+.row2, .row2>.none>.card {
+  padding: 8px;
+}
+
+.container{
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  padding-bottom: 5px;
+}
+
+#navbar .topnav #A {
+  color: black;
+  font-weight: bold;
+}
+
+/* Style the buttons */
+.btn {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: white;
+  cursor: pointer;
+  color: black;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  /* max-width: 250px; */
+  text-align: center;
+  font-family: arial;
+  display: inline-block;
+  float: left;
+  /* max-width: 235px; */
+  width: 15%;
+  height: 300px;
+  margin : 10px;
+  text-align: center;
+  font-family: arial;
+  margin: 10px;
+}
+
+.content {
+  background-color: white;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.name {
+  margin-top: 10px;
+  font-size: 1em;
+  text-align: center;
+  height: 37px;
+  /* line-height: 0px; */
+}
+
+.birth {
+  color: grey;
+  font-size: 1em;
+}
+
+.pro {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-size: 1em;
+}
+
+.detail {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.look {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+.detail:hover, .look:hover {
+  opacity: 0.7;
+}
+
+.none {
+  background-color: #f1f1f1;
+  text-decoration: none;
+  color: black;
+}
+
+.poster {
+  width: 100%;
+  height: 55%;
+  border: solid 1px gray;
+}
