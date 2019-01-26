@@ -1,19 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet"
-  href="<%=request.getContextPath()%>/resources/css/global.css">
-<link rel="stylesheet"
-  href="<%=request.getContextPath()%>/resources/css/menu.css">
-<link rel="stylesheet"
-  href="<%=request.getContextPath()%>/resources/css/movieUserMain.css">
-<link rel="stylesheet"
-  href="<%=request.getContextPath()%>/resources/css/uADDetail.css">
+
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/global.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/menu.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/movieUserMain.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/uADDetail.css">
 <link rel="stylesheet"
   href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
   integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
@@ -37,12 +35,16 @@
           <div class="top-container">
 
             <div class="col-100">
-              <h3>배우 정보</h3>
+              <h3>
+                배우 정보
+                <button type="button" class="float-right">수정</button>
+              </h3>
               <label for="subject">포스터</label>
             </div>
             <div class="col-50">
-              <div id="subject" name="subject"
-                style="height: 300px; border: solid 1px; margin-right: 10px;"></div>
+              <div id="subject" name="subject" style="height: 300px; border: solid 1px; margin-right: 10px;">
+                <img src="${actor.actor_img}">
+              </div>
             </div>
 
             <div class="col-50">
@@ -52,7 +54,7 @@
                   <label for="genre_list">이름</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" id="genre_list" name="genre_list" placeholder="영화의 장르를 적어주세요." readonly>
+                  <input type="text"value="${actor.actor_name}" readonly>
                 </div>
               </div>
               <div class="row">
@@ -60,8 +62,7 @@
                   <label for="rate">성별</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" id="actor_list" name="actor_list" placeholder="출연한 배우들의 이름을 적어주세요"
-                    readonly>
+                  <input type="text" value="${actor.actor_gender}" readonly>
                 </div>
               </div>
               <div class="row">
@@ -69,7 +70,7 @@
                   <label for="director_list">생년월일</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" id="director_list" name="director_list" placeholder="영화 감독을 적어주세요" readonly>
+                  <input type="text" value="${actor.actor_birth}" readonly>
                 </div>
               </div>
               <div class="row">
@@ -77,8 +78,7 @@
                   <label for="actor_list">국가</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" id="actor_list" name="actor_list" placeholder="출연한 배우들의 이름을 적어주세요"
-                    readonly>
+                  <input type="text" value="${actor.actor_country}" readonly>
                 </div>
               </div>
               <div class="row trophy">
@@ -86,8 +86,7 @@
                   <label for="open_date">수상이력</label>
                 </div>
                 <div class="col-75">
-                  <input type="text" id="actor_list" name="actor_list" placeholder="출연한 배우들의 이름을 적어주세요"
-                    readonly>
+                  <input type="text" value="${actor.a_trophy_list}" readonly>
                 </div>
               </div>
               <!-- </div> -->
@@ -99,6 +98,7 @@
             box-office recode(recent 5 movie)
             <hr>
             about
+            <button type="button" class="float-right">배우 정보등록</button>
             
           </div><!-- top -->
         </div>

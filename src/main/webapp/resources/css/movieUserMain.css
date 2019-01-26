@@ -34,12 +34,13 @@ h1 {
 
 /* Create three equal columns that floats next to each other */
 .column {
-    /* float: left;
-    width: 20%; */
+  float: left;
+   /* width: 20%; */
   display: none; /* Hide all elements by default */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   /* max-width: 235px; */
-  width: 18%;
+  width: 23%;
+  height: 500px;
   margin: 10px;
   text-align: center;
   font-family: arial;
@@ -57,6 +58,8 @@ h1 {
 .content {
     background-color: white;
     padding: 10px;
+    width: 100%;
+    height: 100%;
 }
 
 /* The "show" class is added to the filtered elements */

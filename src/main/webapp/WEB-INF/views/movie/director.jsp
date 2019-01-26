@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+    
 <html>
 <head>
     <meta charset="UTF-8">
@@ -90,101 +92,22 @@ color: black;
 
 <h2>Profile Card</h2>
 
-<a href="#" class="none">
-  <div class="card">
-    <img src="/movie/resources/images/sample.jpg" alt="John"
-      style="width: 100%">
-    <div class="name">이주영</div>
-    <p class="birth">1992년 2월 14일</p>
-    <p class="pro">오늘의 탐정</p>
-    <div style="margin: 24px 0;"></div>
-    <button id="detail" name="detail" class="detail">See More</button>
-  </div>
-</a>
-
-<a href="#" class="none">
-  <div class="card">
-    <img src="/movie/resources/images/sample.jpg" alt="John"
-      style="width: 100%">
-    <div class="name">이주영</div>
-    <p class="birth">1992년 2월 14일</p>
-    <p class="pro">오늘의 탐정</p>
-    <div style="margin: 24px 0;"></div>
-    <button id="detail" name="detail" class="detail">See More</button>
-  </div>
-</a>
-
-<a href="#" class="none">
-  <div class="card">
-    <img src="/movie/resources/images/sample.jpg" alt="John"
-      style="width: 100%">
-    <div class="name">이주영</div>
-    <p class="birth">1992년 2월 14일</p>
-    <p class="pro">오늘의 탐정</p>
-    <div style="margin: 24px 0;"></div>
-    <button id="detail" name="detail" class="detail">See More</button>
-  </div>
-</a>
-
-<a href="#" class="none">
-  <div class="card">
-    <img src="/movie/resources/images/sample.jpg" alt="John"
-      style="width: 100%">
-    <div class="name">이주영</div>
-    <p class="birth">1992년 2월 14일</p>
-    <p class="pro">오늘의 탐정</p>
-    <div style="margin: 24px 0;"></div>
-    <button id="detail" name="detail" class="detail">See More</button>
-  </div>
-</a>
-
-<a href="#" class="none">
-  <div class="card">
-    <img src="/movie/resources/images/sample.jpg" alt="John"
-      style="width: 100%">
-    <div class="name">이주영</div>
-    <p class="birth">1992년 2월 14일</p>
-    <p class="pro">오늘의 탐정</p>
-    <div style="margin: 24px 0;"></div>
-    <button id="detail" name="detail" class="detail">See More</button>
-  </div>
-</a>
-
-<a href="#" class="none">
-  <div class="card">
-    <img src="/movie/resources/images/sample.jpg" alt="John"
-      style="width: 100%">
-    <div class="name">이주영</div>
-    <p class="birth">1992년 2월 14일</p>
-    <p class="pro">오늘의 탐정</p>
-    <div style="margin: 24px 0;"></div>
-    <button id="detail" name="detail" class="detail">See More</button>
-  </div>
-</a>
-
-<a href="#" class="none">
-  <div class="card">
-    <img src="/movie/resources/images/sample.jpg" alt="John"
-      style="width: 100%">
-    <div class="name">이주영</div>
-    <p class="birth">1992년 2월 14일</p>
-    <p class="pro">오늘의 탐정</p>
-    <div style="margin: 24px 0;"></div>
-    <button id="detail" name="detail" class="detail">See More</button>
-  </div>
-</a>
-
-<a href="#" class="none">
-  <div class="card">
-    <img src="/movie/resources/images/sample.jpg" alt="John"
-      style="width: 100%">
-    <div class="name">이주영</div>
-    <p class="birth">1992년 2월 14일</p>
-    <p class="pro">오늘의 탐정</p>
-    <div style="margin: 24px 0;"></div>
-    <button id="detail" name="detail" class="detail">See More</button>
-  </div>
-</a>
+<div class="row2">
+  <c:forEach var="director" items="${director}">
+    <a href="#" class="none">
+      <div class="card">
+        <div class="poster">
+          ${director.director_img}
+        </div>
+        <div class="name">${director.director_name}</div>
+        <p class="birth">${director.director_birth}</p>
+        <p class="pro">${director.director_gender}</p>
+        <div style="margin: 24px 0;"></div>
+        <button id="detail" name="detail" class="detail">See More</button>
+      </div>
+    </a>
+  </c:forEach>
+</div>
 
 </body>
 </html>

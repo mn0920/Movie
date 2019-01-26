@@ -3,9 +3,6 @@ package kr.min.movie.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.min.movie.service.AccountService;
+import kr.min.movie.service.AdminService;
 import kr.min.movie.vo.AccountVo;
+import kr.min.movie.vo.MovieVo;
 
 /**
  * Handles requests for the application home page.
@@ -100,11 +99,4 @@ public class AccountController {
     return "redirect:/login";
   }
   
-/*  @RequestMapping(value="/signout")
-    public String signout(HttpServletRequest request) {
-      HttpSession session = request.getSession();
-      session.removeAttribute("user");
-      return "redirect:/";
-  }*/
-	
 }

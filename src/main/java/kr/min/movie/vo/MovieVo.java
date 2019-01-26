@@ -1,24 +1,25 @@
 package kr.min.movie.vo;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 public class MovieVo {
-  private int id;
+  private Integer id;
 	private String title;
 	private String rate;
-  private int running_time;
+  private Integer running_time;
   private Date open_date;
   private String grade;
 	private String synopsis;
 	private String poster;
-  private int status;
+  private Integer status;
  
   
-  public int getId() {
+  public Integer getId() {
     return id;
   }
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
   
@@ -36,19 +37,33 @@ public class MovieVo {
     this.rate = rate;
   }
   
-  public int getRunning_time() {
+  public Integer getRunning_time() {
     return running_time;
   }
-  public void setRunning_time(int running_time) {
+  public void setRunning_time(Integer running_time) {
     this.running_time = running_time;
   }
   
   public String getOpen_date() { //월 : 대문자 MM , 시간-분 : 소문자 mm
-    SimpleDateFormat format = new SimpleDateFormat("yyyy년MM월dd일");
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     return format.format(open_date);
   }
-  public void setOpen_date(Date open_date) {
-    this.open_date = open_date;
+  public void setOpen_date(String open_date) {
+    SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyyMMdd");
+    // Date로 변경하기 위해서는 날짜 형식을 yyyy-mm-dd로 변경해야 한다.
+    SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-MM-dd");
+    java.util.Date tempDate = null;
+    try {
+        // 현재 yyyymmdd로된 날짜 형식으로 java.util.Date객체를 만든다.
+        tempDate = beforeFormat.parse(open_date);
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+    // java.util.Date를 yyyy-mm-dd 형식으로 변경하여 String로 반환한다.
+    String transDate = afterFormat.format(tempDate);
+    // 반환된 String 값을 Date로 변경한다.
+    Date d = Date.valueOf(transDate);
+    this.open_date = d;
   }
   
   public String getGrade() {
@@ -72,10 +87,10 @@ public class MovieVo {
     this.poster = poster;
   }
   
-  public int getStatus() {
+  public Integer getStatus() {
     return status;
   }
-  public void setStatus(int status) {
+  public void setStatus(Integer status) {
     this.status = status;
   }
 
