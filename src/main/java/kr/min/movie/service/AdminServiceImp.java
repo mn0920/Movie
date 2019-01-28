@@ -100,5 +100,20 @@ public class AdminServiceImp implements AdminService {
       adminDao.addGenreList(genreListVo);
   }
 
+  @Override
+  public void modifyMovie(MovieVo movieVo) {
+    adminDao.modifyMovie(movieVo);
+  }
+
+  @Override
+  public void modifyActor(ActorVo actorVo) {
+    adminDao.modifyActor(actorVo);
+  }
+
+  @Override
+  public void modifyDirector(DirectorVo directorVo) {
+    adminDao.modifyDirector(directorVo);
+  }
+
 
 }

@@ -70,6 +70,7 @@ margin-top: 30px;
         <form method="POST">
           <div class="fileDrop col-25">
             <div id="poster" name="poster"  class="poster">director_img</div>
+            <input type="hidden" name="poster" id="posterV" value="${director.director_img}">
           </div>
           <div class="row">
             <div class="col-25">
@@ -144,7 +145,9 @@ $(".fileDrop").on("dragenter dragover", function(event){
             str = "<div><a href='displayFile?fileName=" + getImageLink(data) + "'>" +
             "<img src='displayFile?fileName="+data+"'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
           }
+          data = data.replace("s_", "");
           $(".poster").append(str);
+          $("#posterV").val(data);
       }
     });/* end of upload ajax */
     

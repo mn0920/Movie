@@ -56,7 +56,7 @@
           <div class="column ${movie.genre_name}">
             <div class="content">
               <div class="poster">
-                <img src="${movie.poster}">
+                <img src='<%= request.getContextPath() %>/admin/displayFile?fileName=${movie.poster}'/>
               </div>
               <div class="context">
                 <h4>${movie.title}</h4>
@@ -64,8 +64,8 @@
                 <p>출연 배우 : ${movie.actor_name}</p>
                 <p>
                 <c:set var="TextValue" value="${movie.synopsis}" />${fn:substring(TextValue,0,30)}....</p>
-                <a href="<%= request.getContextPath() %>/board/delete?num=${board.num}"><button type="button" class="btn delete float-right">삭제</button></a>
-                <a href="<%= request.getContextPath() %>/board/modify?num=${board.num}"><button type="button" class="btn modify float-right">수정</button></a>
+                <a href="<%= request.getContextPath() %>/admin/movie/delete?id=${movie.id}"><button type="button" class="btn delete float-right">삭제</button></a>
+                <a href="<%= request.getContextPath() %>/admin/movie/modify?id=${movie.id}"><button type="button" class="btn modify float-right">수정</button></a>
               </div>
             </div>
           </div>

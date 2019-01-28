@@ -18,6 +18,10 @@ height: 259px;
 border: 1px dotted blue;
 margin-left:10px;
 }
+img{
+width: 100%;
+height: 100%;
+}
 small {
 margin-left: 3px;
 font-weight: bold;
@@ -33,17 +37,6 @@ color: grey;
 var dWin;
 var aWin;
 var gWin;
-var win;
-
-$(document).ready(function(){
-    var popupX = (window.screen.width / 2) - (430 / 2);
-    var popupY= (window.screen.height / 2) - (500 / 2);
-$('#mBtn').click(function(){
-  win = window.open('<%= request.getContextPath() %>/admin/MM/seaM','searchMovie','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
-  console.log(popupX);
-  console.log(popupY);
-});
-});
 
 $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (430 / 2);
@@ -75,15 +68,6 @@ $('#aBtn').click(function(){
 });
 });
 
-<%-- $(document).ready(function(){
-    var popupX = (window.screen.width / 2) - (430 / 2);
-    var popupY= (window.screen.height / 2) - (500 / 2);
-$('#aBtn').click(function(){
-  aWin = window.open('<%= request.getContextPath() %>/admin/lol','searchActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
-  console.log(popupX);
-  console.log(popupY);
-});
-}); --%>
 </script>
 
  <div class="all">
@@ -100,9 +84,7 @@ $('#aBtn').click(function(){
             <label for="title">Title</label>
           </div>
           <div class="col-75">
-            <input type="text" id="title" name="title" class="col82" placeholder="영화의 제목을 적어주세요." readonly>
-            <button type="button" id="mBtn"><i class="fas fa-search"></i></button>
-            <input type="text" id="actor_list" name="id" class="col82" value="${movie.id}" >
+            <input type="text" id="title" name="title" class="full" value="${movie.title}" readonly>
           </div>
         </div>
         <div class="row">
@@ -110,9 +92,9 @@ $('#aBtn').click(function(){
             <label for="genre_list">genre</label>
           </div>
           <div class="col-75">
-            <input type="text" id="m_genre_list" class="col82" placeholder="영화의 장르를 적어주세요." readonly>
+            <input type="text" id="m_genre_list" class="col82" value="${movie.genre_name}" readonly>
             <button type="button" id="gBtn"><i class="fas fa-search"></i></button>
-            <input type="text" id="genre_list" class="col82" value="${movie.id}" >
+            <input type="hidden" id="genre_list" class="col82" value="${movie.id}" >
           </div>
         </div>
         <div class="row">
@@ -120,9 +102,9 @@ $('#aBtn').click(function(){
             <label for="director_list">director</label>
           </div>
           <div class="col-75">
-            <input type="text" id="m_director_list" class="col82" placeholder="영화 감독을 적어주세요" readonly>
+            <input type="text" id="m_director_list" class="col82" value="${movie.director_name}" readonly>
             <button type="button" id="dBtn"><i class="fas fa-search"></i></button>
-            <input type="text" id="director_list" class="col82" value="${movie.id}" >
+            <input type="hidden" id="director_list" class="col82" value="${movie.id}" >
           </div>
         </div>
         <div class="row">
@@ -130,18 +112,18 @@ $('#aBtn').click(function(){
             <label for="m_actor_list">actor</label>
           </div>
           <div class="col-75">
-            <input type="text" id="m_actor_list" class="col82" placeholder="출연한 배우들의 이름을 적어주세요" readonly>
+            <input type="text" id="m_actor_list" class="col82" value="${movie.actor_name}" readonly>
             <button type="button" id="aBtn"><i class="fas fa-search"></i></button>
-            <input type="text" id="actor_list" class="col82" value="${movie.id}" >
+            <input type="hidden" id="actor_list" class="col82" value="${movie.id}" >
           </div>
         </div>
-        <form action="<%= request.getContextPath() %>/admin/movie/addM" method="POST">
+        <form action="<%= request.getContextPath() %>/admin/movie/modify" method="POST">
           <div class="row">
             <div class="col-25">
               <label for="open_date">open date</label>
             </div>
             <div class="col-25">
-              <input type="text" id="open_date" name="open_date" class="col82" >
+              <input type="text" id="open_date" name="open_date" value="${movie.open_date}" class="col82" >
             </div>
           </div>
           <div class="row">
@@ -150,19 +132,19 @@ $('#aBtn').click(function(){
             </div>
             <div class="col-25">
               <select id="rate" name="rate">
-                <option value="">연령선택</option>
-                <option value="G">전체관람</option>
-                <option value="PG12">12세 이상</option>
-                <option value="PG15">15세이상</option>
-                <option value="R">청소년관람불가</option>
-                <option value="NCR">제한상영관람</option>
+                <option value="">관람연령</option>
+                <option value="G" <c:if test="${movie.rate == 'G'}"> selected</c:if>>전체관람</option>
+                <option value="PG12" <c:if test="${movie.rate == 'PG12'}"> selected</c:if>>12세 이상</option>
+                <option value="PG15" <c:if test="${movie.rate == 'PG15'}"> selected</c:if>>15세이상</option>
+                <option value="R" <c:if test="${movie.rate == 'R'}"> selected</c:if>>청소년관람불가</option>
+                <option value="NCR" <c:if test="${movie.rate == 'NCR'}"> selected</c:if>>제한상영관람</option>
               </select>
             </div>
             <div class="col-25">
               <label for="grade" style="float: right;">grade(관객수)</label>
             </div>
             <div class="col-25">
-              <input type="text" id="grade" name="grade" placeholder="전체 관객 수를 적어주세요">
+              <input type="text" id="grade" name="grade" value="${movie.grade}" placeholder="전체 관객 수를 적어주세요">
             </div>
           </div>
             <!-- <div class="row"> -->
@@ -171,7 +153,7 @@ $('#aBtn').click(function(){
               <label for="running_time">running time</label>
             </div>
             <div class="col-25">
-              <input type="text" id="running_time" name="running_time" placeholder="상영 시간을 적어주세요">
+              <input type="text" id="running_time" name="running_time" value="${movie.running_time}" placeholder="상영 시간을 적어주세요">
             </div>
             <!-- <div class="row"> -->
             <div class="col-50">
@@ -183,10 +165,13 @@ $('#aBtn').click(function(){
               <label for="synopsis">synopsis</label>
             </div>
             <div class="col-50">
-              <textarea id="synopsis" name="synopsis" placeholder="영화 줄거리를 적어주세요" style="height: 259px"></textarea>
+              <textarea id="synopsis" name="synopsis" style="height: 259px">${movie.synopsis}</textarea>
             </div>
             <div class="fileDrop col-25">
-              <div id="poster" name="poster"  class="poster" style="height: 259px;">포스터를 여기에 올려주세요</div>
+              <div id="poster" name="poster"  class="poster" style="height: 259px;">
+                <img src='<%= request.getContextPath() %>/admin/displayFile?fileName=${movie.poster}'/>
+              </div>
+                <input type="hidden" name="poster" id="posterV" value="${movie.poster}">
             </div>
           </div>
           <div class="row">
@@ -197,12 +182,13 @@ $('#aBtn').click(function(){
           <div class="row">
             <input type="submit" value="submit" class="right">
           </div>
+          <input type="hidden" id="title2" name="title" class="full" value="${movie.title}" readonly>
         </form>
         <input type="hidden" id="movieId">
-        <input type="text" id="update" onchange="test()">
-        <input type="text" id="update1" onchange="test1()">
-        <input type="text" id="update2" onchange="test2()">
-        <input type="text" id="update3" onchange="test3()">
+        <input type="hidden" id="update" onchange="test()">
+        <input type="hidden" id="update1" onchange="test1()">
+        <input type="hidden" id="update2" onchange="test2()">
+        <input type="hidden" id="update3" onchange="test3()">
       </div>
   </div>
 </div>
@@ -239,6 +225,10 @@ function test2(){
   }, 1100);
   console.log(gWin);
 };
+
+$('#title').change( function(){
+  $('#title2').val($('#title').val());
+});
 
 
 $(document).ready(function(){
@@ -280,10 +270,12 @@ $(".fileDrop").on("dragenter dragover", function(event){
       type: 'POST',
       success: function(data){
           alert(data);
+          data = data.replace("s_", "");
           
           var str = "";
+          test = data;
           
-          console.log(data);
+          console.log("data : " + data);
           console.log(checkImageType(data));
           
           if(checkImageType(data)){
@@ -292,11 +284,15 @@ $(".fileDrop").on("dragenter dragover", function(event){
             		+data+"'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
           }
           $(".poster").append(str);
+          
       }
     });/* end of upload ajax */
     
   });/* end of $(".fileDrop").on("drop", function */
-      
+  $('form').submit(function(){
+    $("#posterV").val(test);
+  });
+  var test = null;    
   $(".poster").on("click", "small", function(event){
     
     var that = $(this);
@@ -317,7 +313,8 @@ $(".fileDrop").on("dragenter dragover", function(event){
     }); */
     
   });/* end of $(".uploadedList").on("click", "small", function */
-
+  
+  
   function deleteFileAjax(that){
     $.ajax({
         url:"/movie/admin/deleteFile",

@@ -14,7 +14,7 @@ public interface BoardService {
   public List<ActorVo> getActors();
   public List<DirectorVo> getDirectors();
 
-  public MovieVo getMovie(Integer id);
+  public ShowMovieVo getMovie(Integer id);
   public ActorVo getActor(Integer actor_id);
   public DirectorVo getDirector(Integer director_id);
 

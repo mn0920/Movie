@@ -69,7 +69,8 @@ margin-top: 30px;
     <div class="container">
         <form method="POST">
           <div class="fileDrop col-25">
-            <div id="poster" name="poster"  class="poster">배우사진</div>
+            <div id="poster" name=""  class="poster" style="height: 259px;">포스터를 여기에 올려주세요</div>
+            <input type="hidden" name="poster" id="posterV">
           </div>
           <div class="row">
             <div class="col-25">
@@ -134,6 +135,7 @@ margin-top: 30px;
   </div><!-- main -->
 </div>
 </div>
+          </div>
 
 
 
@@ -169,22 +171,29 @@ $(".fileDrop").on("dragenter dragover", function(event){
       type: 'POST',
       success: function(data){
           alert(data);
+          data = data.replace("s_", "");
           
           var str = "";
+          test = data;
           
-          console.log(data);
+          console.log("data : " + data);
           console.log(checkImageType(data));
           
           if(checkImageType(data)){
             $(".poster").empty();
-            str = "<div>" +
-            "<img src='<%= request.getContextPath() %>/admin/displayFile?fileName="+data+"'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
+            str = "<div>" + "<img src='<%= request.getContextPath() %>/admin/displayFile?fileName="
+                +data+"'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
           }
           $(".poster").append(str);
       }
+
     });/* end of upload ajax */
     
   });/* end of $(".fileDrop").on("drop", function */
+  $('form').submit(function(){
+      $("#posterV").val(test);
+    });
+    var test = null;  
       
   $(".poster").on("click", "small", function(event){
     

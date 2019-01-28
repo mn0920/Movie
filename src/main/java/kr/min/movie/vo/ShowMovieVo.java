@@ -2,11 +2,10 @@ package kr.min.movie.vo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
 
 public class ShowMovieVo {
-
+/*extends MovieVo*/
   private Integer id;
   private String title;
   private String rate;
@@ -62,12 +61,25 @@ public class ShowMovieVo {
     this.running_time = running_time;
   }
   
-  public Date getOpen_date() { //월 : 대문자 MM , 시간-분 : 소문자 mm
-    return open_date;
+  public String getOpen_date() { 
+    SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+    java.util.Date utilDate = new java.util.Date(open_date.getTime());
+    
+    return format.format(utilDate);
   }
   
-  public void setOpen_date(Date open_date) {
-    this.open_date = open_date;
+  public void setOpen_date(String open_date) {
+    SimpleDateFormat beforeFormat = new SimpleDateFormat("yyyyMMdd");
+    SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy-MM-dd");
+    java.util.Date tempDate = null;
+    try {
+        tempDate = beforeFormat.parse(open_date);
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+    String transDate = afterFormat.format(tempDate);
+    Date d = Date.valueOf(transDate);
+    this.open_date = d;
   }
 
   public String getGrade() {

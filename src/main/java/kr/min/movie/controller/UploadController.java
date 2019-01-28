@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -37,8 +38,9 @@ public class UploadController {
 
   @ResponseBody
   @RequestMapping(value = "/admin/uploadAjax", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-  public ResponseEntity<String> uploadAjaxPost(MultipartFile file) throws Exception {
-
+  public ResponseEntity<String> uploadAjaxPost(MultipartFile file, HttpServletRequest request) throws Exception {
+    
+    /*uploadPath = request.getSession().getServletContext().getRealPath("/");*/
     logger.info("originalName: " + file.getOriginalFilename());
     System.out.println(uploadPath);
     System.out.println(file.getOriginalFilename());
@@ -48,11 +50,12 @@ public class UploadController {
 
   @ResponseBody
   @RequestMapping("/admin/displayFile")
-  public ResponseEntity<byte[]> displayFile(String fileName) throws Exception {
+  public ResponseEntity<byte[]> displayFile(String fileName, HttpServletRequest request) throws Exception {
 
     InputStream in = null;
     ResponseEntity<byte[]> entity = null;
-
+    
+    /*uploadPath = request.getSession().getServletContext().getRealPath("/");*/
     logger.info("FILE NAME : " + fileName);
 
     try {
@@ -80,8 +83,9 @@ public class UploadController {
 
   @ResponseBody
   @RequestMapping(value="/admin/deleteFile", method=RequestMethod.POST)
-  public ResponseEntity<String> deleteFile(String fileName){
+  public ResponseEntity<String> deleteFile(String fileName, HttpServletRequest request){
     
+    /*uploadPath = request.getSession().getServletContext().getRealPath("/");*/
     logger.info("delete file : "+fileName);
     
     String formatName = fileName.substring(fileName.lastIndexOf(".")+1);

@@ -42,16 +42,17 @@
       
       <div class="row2">
         <c:forEach var="actor" items="${actor}">
-          <a href="<%= request.getContextPath() %>/m/A/detail?actor_id=${actor.actor_id}" class="none">
+          <a href="<%= request.getContextPath() %>/admin/actor/modify?actor_id=${actor.actor_id}" class="none">
             <div class="card">
               <div class="content"> 
                 <div class="poster">
-                <img src="${actor.actor_img}">
+                  <img src='<%= request.getContextPath() %>/admin/displayFile?fileName=${actor.actor_img}'/>
                 </div>
-                <div class="name">
-                <c:set var="TextValue" value="${actor.actor_name}"/>${fn:replace(actor.actor_name, '(', '<br>(')}</div>
+                <div class="name"><c:set var="TextValue" value="${actor.actor_name}"/>${fn:replace(actor.actor_name, '(', '<br>(')}</div>
                 <p class="birth">${actor.actor_birth}</p>
                 <p class="pro">${actor.actor_gender}</p>
+                <a href="<%= request.getContextPath() %>/admin/actor/modify?actor_id=${actor.actor_id}"><button type="button" class="btn modify float-right">수정</button></a>
+                <a href="<%= request.getContextPath() %>/admin/actor/delete?actor_id=${actor.actor_id}"><button type="button" class="btn delete float-right">삭제</button></a>
               </div>
             </div>
           </a>

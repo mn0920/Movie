@@ -66,7 +66,7 @@ public class BoardController {
 
   @RequestMapping(value = "/m/detail", method = RequestMethod.GET)
   public String mDetailGet(Model model, Integer id) {
-    MovieVo movie = boardService.getMovie(id);
+    ShowMovieVo movie = boardService.getMovie(id);
 
     model.addAttribute("movie", movie);
     return "movie/detail/mDetail";

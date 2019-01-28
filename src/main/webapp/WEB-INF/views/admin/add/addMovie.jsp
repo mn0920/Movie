@@ -18,6 +18,10 @@ height: 259px;
 border: 1px dotted blue;
 margin-left:10px;
 }
+img{
+width: 100%;
+height: 100%;
+}
 small {
 margin-left: 3px;
 font-weight: bold;
@@ -186,7 +190,8 @@ $('#aBtn').click(function(){
               <textarea id="synopsis" name="synopsis" placeholder="영화 줄거리를 적어주세요" style="height: 259px"></textarea>
             </div>
             <div class="fileDrop col-25">
-              <div id="poster" name="poster"  class="poster" style="height: 259px;">포스터를 여기에 올려주세요</div>
+              <div id="poster" name=""  class="poster" style="height: 259px;">포스터를 여기에 올려주세요</div>
+              <input type="hidden" name="poster" id="posterV">
             </div>
           </div>
           <div class="row">
@@ -290,8 +295,10 @@ $(".fileDrop").on("dragenter dragover", function(event){
             $(".poster").empty();
             str = "<div>" + "<img src='<%= request.getContextPath() %>/admin/displayFile?fileName="
             		+data+"'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
-          }
-          $(".poster").append(str);
+          };
+          data = data.replace("s_", "");
+          $(".poster").append(str)
+          $("#posterV").val(data);
       }
     });/* end of upload ajax */
     

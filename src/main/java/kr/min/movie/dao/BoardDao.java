@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import kr.min.movie.vo.ActorVo;
 import kr.min.movie.vo.DirectorVo;
 import kr.min.movie.vo.MovieVo;
-import kr.min.movie.vo.ShowMovieMutiListVo;
 import kr.min.movie.vo.ShowMovieVo;
 
 public interface BoardDao {
@@ -17,7 +16,7 @@ public interface BoardDao {
   public List<ShowMovieVo> getShowMovie();
   public List<ActorVo> getActors();
   public List<DirectorVo> getDirectors();
-  public MovieVo getMovie(@Param("id")Integer id);
+  public List<ShowMovieVo> getMovie(@Param("id")Integer id);
   public ActorVo getActor(@Param("actor_id")Integer actor_id);
   public DirectorVo getDirector(@Param("director_id")Integer director_id);
 	
