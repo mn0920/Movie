@@ -42,26 +42,35 @@ public class BoardServiceImp implements BoardService {
     String gg = "", ggg = "";
     String cast = "", c_name = "";
     Integer j = 0;
+    
 
     for (int i = 0; i < SMV.size(); i++) {
       tmp = SMV.get(i);
       tId = tmp.getId();
       if (tId == nId) {
-        if (!(aaa.equals(tmp.getActor_name()))) {
+        if(tmp.getActor_name() == null) {
+          aa = "아직 배우가 입력되지 않았습니다.";
+          cast = "";
+          c_name = "";
+        } else if (!(aaa.equals(tmp.getActor_name()))) {
           aa = aa + tmp.getActor_name() + ", ";
           aaa = tmp.getActor_name();
-
+  
           cast = cast + tmp.getCast() + ", ";
           c_name = c_name + tmp.getC_name() + ", ";
         }
-        if (!(ddd.equals(tmp.getDirector_name()))) {
+        if(tmp.getDirector_name() == null) {
+          dd = "아직 감독이 입력되지 않았습니다.";
+        } else if (!(ddd.equals(tmp.getDirector_name()))) {
           dd = dd + tmp.getDirector_name() + ", ";
           ddd = tmp.getDirector_name();
         }
-        if (!(ggg.equals(tmp.getGenre_name()))) {
+        if(tmp.getGenre_name() == null) {
+          gg = "아직 장르가 입력되지 않았습니다.";
+        } else if (!(ggg.equals(tmp.getGenre_name()))) {
           gg = gg + tmp.getGenre_name() + ", ";
           ggg = tmp.getGenre_name();
-        }
+        }  
       }
       if (tId != nId) {
         String[] genre = gg.split(", ");

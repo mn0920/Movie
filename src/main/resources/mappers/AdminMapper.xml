@@ -144,6 +144,15 @@
     (#{genreListVo.genre_list},
     #{genreListVo.genre_id});
   </update>
+  <select id="getOriActorList" resultType="kr.min.movie.vo.ActorListVo">
+    select * from m_actor_list where actor_list=#{actor_list};
+  </select>
+  <select id="getOriDirectorList" resultType="kr.min.movie.vo.DirectorListVo">
+    select * from m_director_list where director_list=#{director_list};
+  </select>
+  <select id="getOriGenreList" resultType="kr.min.movie.vo.GenreListVo">
+    select * from m_genre_list where genre_list=#{genre_list};
+  </select>
 
 
 

@@ -108,10 +108,10 @@ public class AdminModifyController {
   public String modifySearchActorPost(@ModelAttribute ActorMutiListVo actorMutiListVo) {
 
     List <ActorListVo> actorListsVo = actorMutiListVo.getActorMutiListVo();
-    
-    for (ActorListVo actorListVo : actorListsVo) {
+    adminService.modifyActorList(actorListsVo);
+    /*for (ActorListVo actorListVo : actorListsVo) {
       adminService.modifyActorList(actorListVo);
-    }
+    }*/
     
     return "admin/modify/ModifySearchActor";
   }

@@ -34,7 +34,7 @@ public interface AdminService {
   public void modifyActor(ActorVo actorVo);
   public void modifyDirector(DirectorVo directorVo);
   public void modifyMovieTitle(String title, Integer id);
-  public void modifyActorList(ActorListVo actorListVo);
+  public void modifyActorList(List<ActorListVo> actorListsVo);
   public void modifyDirectorList(DirectorListVo directorListVo);
   public void modifyGenreList(GenreListVo genreListVo);
   

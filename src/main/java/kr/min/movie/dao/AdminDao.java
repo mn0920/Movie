@@ -37,5 +37,8 @@ public interface AdminDao {
   public void modifyActorList(@Param("actorListVo")ActorListVo actorListVo);
   public void modifyDirectorList(@Param("directorListVo")DirectorListVo directorListVo);
   public void modifyGenreList(@Param("genreListVo")GenreListVo genreListVo);
+  public List<ActorListVo> getOriActorList(@Param("actor_list")Integer actor_list);
+  public List<DirectorListVo> getOriDirectorList(@Param("director_list")Integer director_list);
+  public List<GenreListVo> getOriGenreList(@Param("genre_list")Integer genre_list);
   
 }

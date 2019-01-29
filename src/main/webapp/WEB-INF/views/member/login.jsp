@@ -76,7 +76,7 @@ function addZeros(num, digit) { // 자릿수 맞춰주기
 
 <!-- Logo -->
 <div style="width:400px; height:300px; margin:auto;">
-<div style="width:200px; height:100px; line-height:250px; color:E6E6E6; font-size:100px; text-align:center; margin:auto;">Logo</div>
+<div style="width:200px; height:100px; line-height:250px; color:E6E6E6; font-size:100px; text-align:center; margin:auto;">AboutM</div>
 </div>
 
 <div class="container" style="width:560px;">
