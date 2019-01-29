@@ -35,7 +35,7 @@ float: left;
 img{
 width: 100%;
 height: 100%;
-margin-left: 32px;
+margin-left: 48px;
 }
 .row .col-25{
 padding-left: 15px;
@@ -54,9 +54,14 @@ clear: both;
 .hr{
 margin-top: 30px;
 }
+.margin32{
+width: 100%;
+height: 100%;
+margin-left: 32px;
+}
 </style>
 
-<title>actorAdd</title>
+<title>directorAdd</title>
 
 </head>
 <body>
@@ -70,7 +75,7 @@ margin-top: 30px;
   
   <div class="main">
     <div class="container">
-        <form action="<%= request.getContextPath() %>/admin/actor/modify" method="POST">
+        <form action="<%= request.getContextPath() %>/admin/director/addD" method="POST">
         <div class="info">
           <div class="fileDrop">
             <div id="poster" class="poster">
@@ -85,7 +90,7 @@ margin-top: 30px;
                 <label for="director_name">이름</label>
               </div>
               <div class="col-75">
-                <input type="text" id="director_name" name="director_name" class="col82" readonly>
+                <input type="text" id="director_name" name="director_name" class="col82" placeholder="영화 감독을 적어주세요">
                 <button type="button" id="gBtn"><i class="fas fa-search"></i></button>
               </div>
             </div>
@@ -94,7 +99,7 @@ margin-top: 30px;
                 <label for="director_birth">생년월일</label>
               </div>
               <div class="col-75">
-                <input type="text" id="director_birth" name="director_birth" class="col82" placeholder="영화 감독을 적어주세요" readonly>
+                <input type="text" id="director_birth" name="director_birth" class="col82" placeholder="영화 감독을 적어주세요">
                 <button type="button" id="dBtn"><i class="fas fa-search"></i></button>
               </div>
             </div>
@@ -103,7 +108,7 @@ margin-top: 30px;
                 <label for="director_gender">성별</label>
               </div>
               <div class="col-75">
-                <input type="text" id="director_gender" name="director_gender" class="col82" placeholder="출연한 배우들의 이름을 적어주세요" readonly>
+                <input type="text" id="director_gender" name="director_gender" class="col82" placeholder="출연한 배우들의 이름을 적어주세요" >
                 <button type="button" id="aBtn"><i class="fas fa-search"></i></button>
               </div>
             </div>
@@ -112,7 +117,7 @@ margin-top: 30px;
                 <label for="d_trophy_list">수상이력</label>
               </div>
               <div class="col-75">
-                <input type="text" id="d_trophy_list" name="d_trophy_list" class="col82" placeholder="출연한 배우들의 이름을 적어주세요" readonly>
+                <input type="text" id="d_trophy_list" name="d_trophy_list" class="col82" placeholder="출연한 배우들의 이름을 적어주세요" >
                 <button type="button" id="aBtn"><i class="fas fa-search"></i></button>
               </div>
             </div>
@@ -184,7 +189,7 @@ $(".fileDrop").on("dragenter dragover", function(event){
           if(checkImageType(data)){
             $(".poster").empty();
             str = "<div>" + "<img src='<%= request.getContextPath() %>/admin/displayFile?fileName="
-                +data+"'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
+                +data+"' class='margin32'/></a><small data-src="+data+"><i class='fas fa-times'></small></div>";
           }
           $(".poster").append(str);
       }

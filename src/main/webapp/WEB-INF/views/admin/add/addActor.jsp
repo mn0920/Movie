@@ -26,6 +26,10 @@ margin-left: 3px;
 font-weight: bold;
 color: grey;
 }
+img{
+width: 100%;
+height: 100%;
+}
 .row .col-25{
 padding-left: 15px;
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session = "true" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -30,7 +31,6 @@ color: grey;
 </style>
 
 <title>movieManagement</title>
-
 </head>
 <body>
 <script type="text/javascript">
@@ -104,9 +104,9 @@ $('#aBtn').click(function(){
             <label for="title">Title</label>
           </div>
           <div class="col-75">
-            <input type="text" id="title" name="title" class="col82" placeholder="영화의 제목을 적어주세요." readonly>
+            <input type="text" id="title" name="title" class="col82" placeholder="영화의 제목을 적어주세요."
+             value="<%=request.getSession().getAttribute("title")%>" readonly>
             <button type="button" id="mBtn"><i class="fas fa-search"></i></button>
-            <input type="text" id="actor_list" name="id" class="col82" value="${movie.id}" >
           </div>
         </div>
         <div class="row">
@@ -216,6 +216,22 @@ $('#aBtn').click(function(){
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
+<%-- 현재 정보 세션에 저장하기 추후 할 예정
+ $('#title').change(function(){
+	/* var value = @request.RequestContext.HttpContext.Session['title']; */
+	<%
+	 session.removeAttribute("title");
+   String s = $('#title').val();
+   session.setAttribute("title", s); 
+  %>
+  console.log(<%=
+  pageContext.getRequest().getParameter("title")
+  /* (String)session.getAttribute("title") */ 
+ %>+"!")
+
+ console.log($('#title').val())
+}); --%>
+
 var title;
 function test(){
   setTimeout(function () {
