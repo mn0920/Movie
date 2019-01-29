@@ -52,7 +52,7 @@ public class AdminAddController {
   public String addMoviePost(MovieVo movieVo) {
     
     System.out.println("1 : "+movieVo);
-    adminService.updateMovie(movieVo);
+    adminService.addMovie2(movieVo);
     System.out.println("2 : "+movieVo);
     
     return "redirect:/admin/movie/addM";
@@ -96,7 +96,9 @@ public class AdminAddController {
 
     List <ActorListVo> actorListsVo = actorMutiListVo.getActorMutiListVo();
     
-    
+    for (ActorListVo actorListVo : actorListsVo) {
+      adminService.addActorList(actorListVo);
+    }
     return "admin/search/searchActor";
   }
 

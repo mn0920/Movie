@@ -50,13 +50,12 @@ display: block;
 content: "";
 clear: both;
 }
-
 .hr{
 margin-top: 30px;
 }
 </style>
 
-<title>actorAdd</title>
+<title>directorModify</title>
 
 </head>
 <body>
@@ -70,15 +69,22 @@ margin-top: 30px;
   
   <div class="main">
     <div class="container">
-        <form action="<%= request.getContextPath() %>/admin/actor/modify" method="POST">
+        <form action="<%= request.getContextPath() %>/admin/director/modify" method="POST">
         <div class="info">
           <div class="fileDrop">
             <div id="poster" class="poster">
-              <img src='<%= request.getContextPath() %>/admin/displayFile?fileName=${director.director_img}'/>
+              <c:choose>
+                <c:when test="${director.director_img ne null && director.director_img ne ''}">
+                  <img src='<%= request.getContextPath() %>/admin/displayFile?fileName=${director.director_img}'/>
+                </c:when>
+                <c:otherwise>
+                  <img src='<%= request.getContextPath() %>/resources/images/noimage.jpg'/>
+                </c:otherwise>
+              </c:choose>
             </div>
-            <input type="hidden" name="actor_img" id="posterV" value="${director.director_img}">
+            <input type="hidden" name="director_img" id="posterV" value="${director.director_img}">
           </div>
-          <input type="hidden" name="actor_id" value="${director.director_id}">
+          <input type="hidden" name="director_id" value="${director.director_id}">
           <div class="inline">
             <div class="row">
               <div class="col-25">

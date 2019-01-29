@@ -45,21 +45,6 @@ public class AdminController {
     return "admin/movieMain";
   }
 
-  @RequestMapping(value = "/movie/modify", method = RequestMethod.GET)
-  public String movieModifyGet(Model model, Integer id) {
-    ShowMovieVo movie = boardService.getMovie(id);
-
-    model.addAttribute("movie", movie);
-    return "admin/modify/ModifyMovie";
-  }
-
-  @RequestMapping(value = "/movie/modify", method = RequestMethod.POST)
-  public String movieModifyPost(Model model, MovieVo movieVo) {
-    adminService.modifyMovie(movieVo);
-    model.addAttribute("id", movieVo.getId());
-    return "redirect:/admin/movie/modify";
-  }
-
   @RequestMapping(value = "/actor", method = RequestMethod.GET)
   public String actorGet(Model model) {
     List<ActorVo>  actor = boardService.getActors();
@@ -73,45 +58,17 @@ public class AdminController {
     return "admin/add/addActor";
   }
 
-  @RequestMapping(value = "/actor/modify", method = RequestMethod.GET)
-  public String actorModifyGet(Model model, Integer actor_id) {
-    ActorVo actor = boardService.getActor(actor_id);
-
-    model.addAttribute("actor", actor);
-    return "admin/modify/ModifyActor";
-  }
-
-  @RequestMapping(value = "/actor/modify", method = RequestMethod.POST)
-  public String actorModifyPost(Model model, ActorVo actorVo) {
-    System.out.println(actorVo);
-    adminService.modifyActor(actorVo);
-    model.addAttribute("actor_id", actorVo.getActor_id());
-    return "redirect:/admin/actor/modify";
-  }
-
   @RequestMapping(value = "/director", method = RequestMethod.GET)
   public String directorGet(Model model) {
+    List<DirectorVo> director = boardService.getDirectors();
+
+    model.addAttribute("director", director);
     return "admin/director";
   }
 
   @RequestMapping(value = "/director/addD", method = RequestMethod.GET)
   public String directorAddGet(Model model) {
     return "admin/add/addDirector";
-  }
-
-  @RequestMapping(value = "/director/modify", method = RequestMethod.GET)
-  public String directorModifyGet(Model model, Integer director_id) {
-    DirectorVo director = boardService.getDirector(director_id);
-
-    model.addAttribute("director", director);
-    return "admin/modify/ModifyDirector";
-  }
-
-  @RequestMapping(value = "/director/modify", method = RequestMethod.POST)
-  public String directorModifyPost(Model model, DirectorVo directorVo) {
-    adminService.modifyDirector(directorVo);
-    model.addAttribute("director_id", directorVo.getDirector_id());
-    return "redirect:/admin/director/modify";
   }
 
 }

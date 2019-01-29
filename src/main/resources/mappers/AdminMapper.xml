@@ -44,21 +44,11 @@
     value
     (#{movieVo.title}, #{movieVo.rate}, #{movieVo.synopsis});
   </insert>
-  <insert id="updateMovie">
-    <!-- update board set title=#{boardVo.title}, contents=#{boardVo.contents}, 
-      file = #{boardVo.file} where num = #{boardVo.num}; -->
+  <update id="updateMovie">
     update movie set
     rate=#{movieVo.rate}, running_time=#{movieVo.running_time}, open_date =
     #{movieVo.open_date},
     grade=#{movieVo.grade}, synopsis=#{movieVo.synopsis}, poster = #{movieVo.poster}
-    where id = #{movieVo.id};
-  </insert>
-  <update id="modifyMovie">
-    update movie set
-      title=#{movieVo.title}, rate=#{movieVo.rate}, running_time=#{movieVo.running_time},
-      open_date = #{movieVo.open_date}, grade=#{movieVo.grade},
-      synopsis=#{movieVo.synopsis},
-      poster = #{movieVo.poster}
     where id = #{movieVo.id};
   </update>
   <insert id="addActor">
@@ -74,21 +64,13 @@
     #{actorVo.actor_story},
     #{actorVo.a_trophy_list});
   </insert>
-  <update id="modifyActor">
-    update actor set
-    actor_name=#{actorVo.actor_name}, actor_img=#{actorVo.actor_img},
-    actor_birth=#{actorVo.actor_birth}, actor_country=#{actorVo.actor_country},
-    actor_gender=#{actorVo.actor_gender}, actor_story=#{actorVo.actor_story},
-    a_trophy_list=#{actorVo.a_trophy_list}
-    where actor_id = #{actorVo.actor_id};
-  </update>
-  <select id="addActorList" resultType="kr.min.movie.vo.ActorListVo">
+  <insert id="addActorList">
     insert into m_actor_list
     (actor_list, actor_id, cast, c_name)
     value
     (#{actorListVo.actor_list}, #{actorListVo.actor_id},
     #{actorListVo.cast}, #{actorListVo.c_name});
-  </select>
+  </insert>
   <insert id="addDirector">
     insert into director
     (director_name, director_img,
@@ -101,6 +83,38 @@
     #{directorVo.director_story},
     #{directorVo.d_trophy_list});
   </insert>
+  <insert id="addDirectorList">
+    insert into
+    m_director_list
+    (director_list, director_id)
+    value
+    (#{directorListVo.director_list}, #{directorListVo.director_id});
+  </insert>
+  <insert id="addGenreList">
+    insert into m_genre_list
+    (genre_list, genre_id)
+    value
+    (#{genreListVo.genre_list},
+    #{genreListVo.genre_id});
+  </insert>
+  
+  
+  <update id="modifyMovie">
+    update movie set
+      title=#{movieVo.title}, rate=#{movieVo.rate}, running_time=#{movieVo.running_time},
+      open_date = #{movieVo.open_date}, grade=#{movieVo.grade},
+      synopsis=#{movieVo.synopsis},
+      poster = #{movieVo.poster}
+    where id = #{movieVo.id};
+  </update>
+  <update id="modifyActor">
+    update actor set
+    actor_name=#{actorVo.actor_name}, actor_img=#{actorVo.actor_img},
+    actor_birth=#{actorVo.actor_birth}, actor_country=#{actorVo.actor_country},
+    actor_gender=#{actorVo.actor_gender}, actor_story=#{actorVo.actor_story},
+    a_trophy_list=#{actorVo.a_trophy_list}
+    where actor_id = #{actorVo.actor_id};
+  </update>
   <update id="modifyDirector">
     update director set
     director_name=#{directorVo.director_name}, director_img=#{directorVo.director_img},
@@ -108,20 +122,28 @@
     director_story=#{directorVo.director_story}, d_trophy_list=#{directorVo.d_trophy_list}
     where director_id = #{directorVo.director_id};
   </update>
-  <select id="addDirectorList" resultType="kr.min.movie.vo.DirectorListVo">
-    insert into
-    m_director_list
-    (director_list, director_id)
-    value
-    (#{directorListVo.director_list}, #{directorListVo.director_id});
-  </select>
-  <select id="addGenreList" resultType="kr.min.movie.vo.GenreListVo">
+  <update id="modifyMovieTitle">
+    update movie set
+      title=#{title}
+    where id = #{id};
+  </update>
+  <update id="modifyActorList">
+    update m_actor_list set
+      actor_id=#{actorListVo.actor_id}, cast=#{actorListVo.cast}, c_name=#{actorListVo.c_name}
+    where actor_list=#{actorListVo.actor_list}
+  </update>
+  <update id="modifyDirectorList">
+    update m_director_list set
+      director_id=#{directorListVo.director_id}
+    where director_list=#{directorListVo.director_list}
+  </update>
+  <update id="modifyGenreList">
     insert into m_genre_list
     (genre_list, genre_id)
     value
     (#{genreListVo.genre_list},
     #{genreListVo.genre_id});
-  </select>
+  </update>
 
 
 
