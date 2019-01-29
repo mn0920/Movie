@@ -37,12 +37,23 @@ color: grey;
 var dWin;
 var aWin;
 var gWin;
+var win;
+
+$(document).ready(function(){
+    var popupX = (window.screen.width / 2) - (430 / 2);
+    var popupY= (window.screen.height / 2) - (500 / 2);
+$('#mBtn').click(function(){
+  win = window.open('<%= request.getContextPath() %>/admin/MM/modify/seaM?id=${movie.id}','searchMovie','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  console.log(popupX);
+  console.log(popupY);
+});
+});
 
 $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (430 / 2);
     var popupY= (window.screen.height / 2) - (500 / 2);
 $('#gBtn').click(function(){
-  gWin = window.open('<%= request.getContextPath() %>/admin/MM/seaG','searchGenre','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  gWin = window.open('<%= request.getContextPath() %>/admin/MM/modify/seaG','searchGenre','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   console.log(popupX);
   console.log(popupY);
 });
@@ -52,7 +63,7 @@ $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (430 / 2);
     var popupY= (window.screen.height / 2) - (500 / 2);
 $('#dBtn').click(function(){
-  dWin = window.open('<%= request.getContextPath() %>/admin/MM/seaD','searchDirector','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  dWin = window.open('<%= request.getContextPath() %>/admin/MM/modify/seaD','searchDirector','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   console.log(popupX);
   console.log(popupY);
 });
@@ -62,7 +73,7 @@ $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (430 / 2);
     var popupY= (window.screen.height / 2) - (500 / 2);
 $('#aBtn').click(function(){
-  aWin = window.open('<%= request.getContextPath() %>/admin/MM/seaA','searchActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  aWin = window.open('<%= request.getContextPath() %>/admin/MM/modify/seaA','searchActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   console.log(popupX);
   console.log(popupY);
 });
@@ -84,7 +95,8 @@ $('#aBtn').click(function(){
             <label for="title">Title</label>
           </div>
           <div class="col-75">
-            <input type="text" id="title" name="title" class="full" value="${movie.title}" readonly>
+            <input type="text" id="title" name="title" class="col82" value="${movie.title}" readonly>
+            <button type="button" id="mBtn"><i class="fas fa-search"></i></button>
           </div>
         </div>
         <div class="row">

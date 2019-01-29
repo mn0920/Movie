@@ -23,14 +23,19 @@ public interface AdminService {
   public List<DirectorMovieVo> getDirectorOneMovie();
   
   public void addMovie(MovieVo movieVo);
-  public void updateMovie(MovieVo movieVo);
+  public void addMovie2(MovieVo movieVo);
   public void addActor(ActorVo actorVo);
   public void addActorList(ActorListVo actorListVo);
   public void addDirector(DirectorVo directorVo);
   public void addDirectorList(DirectorListVo directorListVo);
   public void addGenreList(GenreListVo genreListVo);
+  
   public void modifyMovie(MovieVo movieVo);
   public void modifyActor(ActorVo actorVo);
   public void modifyDirector(DirectorVo directorVo);
+  public void modifyMovieTitle(String title, Integer id);
+  public void modifyActorList(ActorListVo actorListVo);
+  public void modifyDirectorList(DirectorListVo directorListVo);
+  public void modifyGenreList(GenreListVo genreListVo);
   
 }

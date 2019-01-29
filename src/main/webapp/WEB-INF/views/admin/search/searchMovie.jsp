@@ -116,11 +116,9 @@
 
 <script type="text/javascript">
 var state = $("#aaaa").val();
-/* $(window).load(function() {  */
 	$(document).ready(function() { 
     $('#loading').hide();  
     if(state == 1){
-      /* $('.container').hide(); */
       $('#loading').show();
     }
    });
@@ -130,6 +128,7 @@ $("form").submit(function(){
   opener.document.getElementById('update').value = "update";
   opener.document.getElementById("title").value = title;
   opener.$('#update').trigger('change');
+  opener.$('#title').trigger('change');
 }); 
 
 document.addEventListener('keydown', function(event) {
@@ -158,60 +157,6 @@ document.addEventListener('keydown', function(event) {
     }
   }
   
-/* function email_mainform(){
-  var frm = document.form;
-  var title = $('#myInput').val();
-  
-  if(title == ""){
-     alert("제목을 확인해주세요.");
-     return;
-  } 
-  opener.document.getElementById("title").value = title;
-  window.close();
-  frm.submit();
-}; */
-
-/*  $(document).ready(function(){
-    var popupX = (window.screen.width / 2) - (990 / 2);
-    var popupY= (window.screen.height / 2) - (890 / 2); *//* 
-    
-    $('#close').click(function(){
-        var frm = document.form;
-	  var title = $('#myInput').val();
-	  var result = $('input[name=sel]').val();
-    var tbody = $("#myTable tbody");
-    var check = $('#check').click();
-    
-	  if(title == ""){
-  	   alert("제목을 확인해주세요.");
-  	   return false;
-	  } 
-/* 	  if (tbody.children().length != 0) {
-	    if(result != "" || result == ""){
-        if(check){
-            cnt++;
-          } else if(cnt == 0){
-	        alert("영화를 확인해주세요.");
-	        return false;
-	       }
-	    }
-	  } */
-
-    /* document.forms["form"].submit(); */
-    /* document.form.submit(); */
-    /* $('#form').submit(); */
-/*    frm.submit();
-	  opener.document.getElementById("title").value = title;
-    window.close();
-  });
-}); */
-
-/* $("#check").click(function(){ 
-	  var data = $('input[type="radio"]:checked').val();
-	  var id='character1';
-	  cnt ++;
-	  opener.document.getElementById(id).value = data;
-	}); */
 </script>
 </body>
 </html>

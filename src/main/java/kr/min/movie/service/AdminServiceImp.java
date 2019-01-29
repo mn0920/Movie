@@ -58,7 +58,7 @@ public class AdminServiceImp implements AdminService {
   }
 
   @Override
-  public void updateMovie(MovieVo movieVo) {
+  public void addMovie2(MovieVo movieVo) {
     adminDao.updateMovie(movieVo);
   }
 
@@ -113,6 +113,30 @@ public class AdminServiceImp implements AdminService {
   @Override
   public void modifyDirector(DirectorVo directorVo) {
     adminDao.modifyDirector(directorVo);
+  }
+
+  @Override
+  public void modifyMovieTitle(String title, Integer id) {
+    adminDao.modifyMovieTitle(title, id);
+  }
+
+  @Override
+  public void modifyActorList(ActorListVo actorListVo) {
+    if(actorListVo.getActor_id() != null)
+      adminDao.modifyActorList(actorListVo);
+  }
+
+  @Override
+  public void modifyDirectorList(DirectorListVo directorListVo) {
+    if(directorListVo.getDirector_id() != null)
+      adminDao.modifyDirectorList(directorListVo);
+    
+  }
+
+  @Override
+  public void modifyGenreList(GenreListVo genreListVo) {
+    if(genreListVo.getGenre_id() != null)
+      adminDao.modifyGenreList(genreListVo);
   }
 
 
