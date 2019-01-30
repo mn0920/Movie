@@ -1,5 +1,6 @@
 package kr.min.movie.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import kr.min.movie.dao.AdminDao;
 import kr.min.movie.vo.ActorListVo;
 import kr.min.movie.vo.ActorVo;
+import kr.min.movie.vo.AllActorListVo;
 import kr.min.movie.vo.DirectorListVo;
 import kr.min.movie.vo.DirectorMovieVo;
 import kr.min.movie.vo.DirectorVo;
@@ -121,39 +123,76 @@ public class AdminServiceImp implements AdminService {
   }
 
   @Override
+  public List<AllActorListVo> getOriActorList(Integer actor_list) {
+    return adminDao.getShowOriActorList(actor_list);
+  }
+
+  @Override
   public void modifyActorList(List<ActorListVo> actorListsVo) {
     List<ActorListVo> newList = actorListsVo;
-    Integer actor_list = ((ActorListVo) actorListsVo).getActor_list();
+    Integer actor_list = actorListsVo.get(0).getActor_list();
     List<ActorListVo> oriList = adminDao.getOriActorList(actor_list);
     
-    if(!(newList.equals(oriList))) {
-      Integer tId = 0, nId = 0;
-      String tCast = "", nCast = "";
-      String tC_name = "", nC_name = "";
-      for (int i = 0; i < oriList.size(); i++) {
-        ActorListVo ori = oriList.get(i);
-        tId = ori.getActor_id();
-          for (int j = 0; j < newList.size(); j++) {
-            ActorListVo newa = newList.get(j);
-            nId = newa.getActor_id();
-            if(nId != tId) { /* 기존의 정보가 없는건지, 있는건지 그것을 알아낼 방법을 모르겠다.*/
-              adminDao.modifyActorList(newa);
-            } else if(nId == tId) {
-              tCast = ori.getCast();
-              nCast = newa.getCast();
-              if(tCast == nCast) {
-                tC_name = ori.getC_name();
-                nC_name = newa.getC_name();
-                if(tC_name != nC_name){
-                  adminDao.modifyActorList(newa);
-                }
-              } else if(tCast != nCast){
-                adminDao.modifyActorList(newa);
-              }
-            } /* id가 같을 때 if문 끝 */
-          } /* 안쪽 for문 끝 */
-      } /* for문 끝 */
+    List<ActorListVo> modiList = getModifyActorListVo(oriList, newList);
+    for(ActorListVo changeC : modiList)
+      adminDao.modifyActorCList(changeC);
+  }
+
+  @Override
+  public void delActorList(List<ActorListVo> actorListsVo) {
+    List<ActorListVo> newList = actorListsVo;
+    Integer actor_list = actorListsVo.get(0).getActor_list();
+    List<ActorListVo> oriList = adminDao.getOriActorList(actor_list);
+    
+    List<ActorListVo> delList = getDeleteActorListVo(oriList, newList);
+    System.out.println("delList : " + delList);
+  }
+
+  public boolean equalActorListVo(ActorListVo vo1, ActorListVo vo2) {
+    if(vo1.getActor_id() != vo2.getActor_id())
+      return false;
+    if(!vo1.getC_name().equals(vo2.getC_name()))
+      return false;
+    if(!vo1.getCast().equals(vo2.getCast()))
+      return false;
+    return true;
+  }
+
+  public boolean equalActorListVoByActorId(ActorListVo vo1, ActorListVo vo2) {
+    if(vo1.getActor_id() != vo2.getActor_id())
+      return false;
+    return true;
+  }
+  
+  public List<ActorListVo> getModifyActorListVo(List<ActorListVo> oriList, List<ActorListVo> newList){
+    List<ActorListVo> list = new ArrayList<ActorListVo>();
+    
+    for(ActorListVo oritmp : oriList) {
+      for(ActorListVo newtmp : newList) {
+        if(!(equalActorListVo(oritmp, newtmp)) && equalActorListVoByActorId(oritmp, newtmp)) {
+          list.add(newtmp);
+        }
+      }
     }
+    return list;
+  }
+  
+  public List<ActorListVo> getDeleteActorListVo(List<ActorListVo> oriList, List<ActorListVo> newList){
+    List<ActorListVo> list = new ArrayList<ActorListVo>();
+    
+    for(ActorListVo oritmp : oriList) {
+      int cnt = 0;
+      for(ActorListVo newtmp : newList) {
+        if(equalActorListVo(oritmp, newtmp)) {
+          break;
+        }
+        cnt++;
+      }
+      if(cnt == newList.size()) {
+        list.add(oritmp);
+      }
+    }
+    return list;
   }
 
   @Override

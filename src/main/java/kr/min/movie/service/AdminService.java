@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.min.movie.vo.ActorListVo;
 import kr.min.movie.vo.ActorVo;
+import kr.min.movie.vo.AllActorListVo;
 import kr.min.movie.vo.DirectorListVo;
 import kr.min.movie.vo.DirectorMovieVo;
 import kr.min.movie.vo.DirectorVo;
@@ -34,8 +35,10 @@ public interface AdminService {
   public void modifyActor(ActorVo actorVo);
   public void modifyDirector(DirectorVo directorVo);
   public void modifyMovieTitle(String title, Integer id);
-  public void modifyActorList(List<ActorListVo> actorListsVo);
+  public void modifyActorList(List<ActorListVo> list);
   public void modifyDirectorList(DirectorListVo directorListVo);
   public void modifyGenreList(GenreListVo genreListVo);
+  public List<AllActorListVo> getOriActorList(Integer actor_list);
+  public void delActorList(List<ActorListVo> actorListsVo);
   
 }

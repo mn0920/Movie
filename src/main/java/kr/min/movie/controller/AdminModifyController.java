@@ -1,10 +1,9 @@
 package kr.min.movie.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kr.min.movie.service.AdminService;
 import kr.min.movie.service.BoardService;
 import kr.min.movie.vo.ActorListVo;
-import kr.min.movie.vo.ActorMutiListVo;
 import kr.min.movie.vo.ActorVo;
+import kr.min.movie.vo.AllActorListVo;
+import kr.min.movie.vo.AllActorMutiListVo;
 import kr.min.movie.vo.DirectorListVo;
-import kr.min.movie.vo.DirectorMovieVo;
 import kr.min.movie.vo.DirectorMutiListVo;
 import kr.min.movie.vo.DirectorVo;
 import kr.min.movie.vo.GenreListVo;
@@ -98,17 +97,34 @@ public class AdminModifyController {
 
   
   @RequestMapping(value = "/MM/modify/seaA", method = RequestMethod.GET)
-  public String modifySearchActorGet(Model model) {
-    ActorMutiListVo actorMutiListVo = new ActorMutiListVo();
-    model.addAttribute("actorMutiListVo", actorMutiListVo);
+  public String modifySearchActorGet(Model model, Integer id) {
+    /*AllActorMutiListVo allActorMutiListVo = new AllActorMutiListVo();*/
+    List<AllActorListVo> actorList = adminService.getOriActorList(id);
+    model.addAttribute("actorList", actorList);
+    /*model.addAttribute("allActorMutiListVo", allActorMutiListVo);*/
     return "admin/modify/ModifySearchActor";
   }
   
   @RequestMapping(value = "/MM/modify/seaA", method = RequestMethod.POST)
-  public String modifySearchActorPost(@ModelAttribute ActorMutiListVo actorMutiListVo) {
-
-    List <ActorListVo> actorListsVo = actorMutiListVo.getActorMutiListVo();
-    adminService.modifyActorList(actorListsVo);
+  public String modifySearchActorPost(Integer[] actor_id, Integer[] actor_list, String[] cast, String[] c_name) {
+     List<ActorListVo> list = new ArrayList <ActorListVo>();
+     System.out.println(actor_list.length);
+     for(int i=0; i<actor_list.length; i++) {
+       ActorListVo tmp = new ActorListVo();
+       tmp.setActor_id(actor_id[i]);
+       tmp.setActor_list(actor_list[i]);
+       tmp.setC_name(c_name[i]);
+       tmp.setCast(cast[i]);
+       if(actor_id != null && actor_list != null && !c_name.equals("") && !cast.equals("") {
+         list.add(tmp);
+       }
+       System.out.println("tmp : " + tmp);
+     }
+     /*adminService.modifyActorList(list);*/
+     adminService.delActorList(list);
+    
+    /*List <AllActorListVo> actorListsVo = ActorListVo.getActorMutiListVo();*/
+    /*adminService.modifyActorList(actorListsVo);*/
     /*for (ActorListVo actorListVo : actorListsVo) {
       adminService.modifyActorList(actorListVo);
     }*/

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import kr.min.movie.vo.ActorListVo;
 import kr.min.movie.vo.ActorVo;
+import kr.min.movie.vo.AllActorListVo;
 import kr.min.movie.vo.DirectorListVo;
 import kr.min.movie.vo.DirectorMovieVo;
 import kr.min.movie.vo.DirectorVo;
@@ -34,9 +35,10 @@ public interface AdminDao {
   public void modifyActor(@Param("actorVo")ActorVo actorVo);
   public void modifyDirector(@Param("directorVo")DirectorVo directorVo);
   public void modifyMovieTitle(@Param("title")String title, @Param("id")Integer id);
-  public void modifyActorList(@Param("actorListVo")ActorListVo actorListVo);
+  public void modifyActorCList(@Param("actorListVo")ActorListVo actorListVo);
   public void modifyDirectorList(@Param("directorListVo")DirectorListVo directorListVo);
   public void modifyGenreList(@Param("genreListVo")GenreListVo genreListVo);
+  public List<AllActorListVo> getShowOriActorList(@Param("actor_list")Integer actor_list);
   public List<ActorListVo> getOriActorList(@Param("actor_list")Integer actor_list);
   public List<DirectorListVo> getOriDirectorList(@Param("director_list")Integer director_list);
   public List<GenreListVo> getOriGenreList(@Param("genre_list")Integer genre_list);

@@ -127,10 +127,10 @@
       title=#{title}
     where id = #{id};
   </update>
-  <update id="modifyActorList">
+  <update id="modifyActorCList">
     update m_actor_list set
-      actor_id=#{actorListVo.actor_id}, cast=#{actorListVo.cast}, c_name=#{actorListVo.c_name}
-    where actor_list=#{actorListVo.actor_list}
+      cast=#{actorListVo.cast}, c_name=#{actorListVo.c_name}
+    where actor_list=#{actorListVo.actor_list} and actor_id=#{actorListVo.actor_id}
   </update>
   <update id="modifyDirectorList">
     update m_director_list set
@@ -144,7 +144,12 @@
     (#{genreListVo.genre_list},
     #{genreListVo.genre_id});
   </update>
-  <select id="getOriActorList" resultType="kr.min.movie.vo.ActorListVo">
+  <select id="getShowOriActorList" resultType="kr.min.movie.vo.AllActorListVo">
+    select * from m_actor_list LEFT JOIN actor on
+    m_actor_list.actor_id = actor.actor_id
+    where actor_list=#{actor_list};
+  </select>
+  <select id="getOriActorList" resultType="kr.min.movie.vo.AllActorListVo">
     select * from m_actor_list where actor_list=#{actor_list};
   </select>
   <select id="getOriDirectorList" resultType="kr.min.movie.vo.DirectorListVo">

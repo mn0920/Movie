@@ -53,7 +53,7 @@ $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (430 / 2);
     var popupY= (window.screen.height / 2) - (500 / 2);
 $('#gBtn').click(function(){
-  gWin = window.open('<%= request.getContextPath() %>/admin/MM/modify/seaG','searchGenre','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  gWin = window.open('<%= request.getContextPath() %>/admin/MM/modify/seaG?id=${movie.id}','searchGenre','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   console.log(popupX);
   console.log(popupY);
 });
@@ -63,7 +63,7 @@ $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (430 / 2);
     var popupY= (window.screen.height / 2) - (500 / 2);
 $('#dBtn').click(function(){
-  dWin = window.open('<%= request.getContextPath() %>/admin/MM/modify/seaD','searchDirector','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  dWin = window.open('<%= request.getContextPath() %>/admin/MM/modify/seaD?id=${movie.id}','searchDirector','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   console.log(popupX);
   console.log(popupY);
 });
@@ -73,7 +73,7 @@ $(document).ready(function(){
     var popupX = (window.screen.width / 2) - (430 / 2);
     var popupY= (window.screen.height / 2) - (500 / 2);
 $('#aBtn').click(function(){
-  aWin = window.open('<%= request.getContextPath() %>/admin/MM/modify/seaA','searchActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  aWin = window.open('<%= request.getContextPath() %>/admin/MM/modify/seaA?id=${movie.id}','searchActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
   console.log(popupX);
   console.log(popupY);
 });
