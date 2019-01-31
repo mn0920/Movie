@@ -300,7 +300,7 @@ $(document).ready(function(){
       <div class="col5">
         <button type="button" class="btn" id="btn${status.index+actorList.size()+1}" name="btn${status.index+actorList.size()}" ><i class="fas fa-search"></i></button>
       </div>
-      <input type="text" id="actor_id${status.index+actorList.size()+1}" name="actor_id" readonly>
+      <input type="text" id="actor_id${status.index+actorList.size()+1}" name="actor_id">
       <input type="text" id="actor_list${status.index+actorList.size()+1}" name="actor_list">
       </div>
     </c:forEach>

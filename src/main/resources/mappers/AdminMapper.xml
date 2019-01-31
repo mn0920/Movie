@@ -138,7 +138,7 @@
     where director_list=#{directorListVo.director_list}
   </update>
   <update id="modifyGenreList">
-    insert into m_genre_list
+    update into m_genre_list
     (genre_list, genre_id)
     value
     (#{genreListVo.genre_list},
@@ -147,9 +147,9 @@
   <select id="getShowOriActorList" resultType="kr.min.movie.vo.AllActorListVo">
     select * from m_actor_list LEFT JOIN actor on
     m_actor_list.actor_id = actor.actor_id
-    where actor_list=#{actor_list};
+    where actor_list=#{actor_list} and m_actor_list.show=1;
   </select>
-  <select id="getOriActorList" resultType="kr.min.movie.vo.AllActorListVo">
+  <select id="getOriActorList" resultType="kr.min.movie.vo.ActorListVo">
     select * from m_actor_list where actor_list=#{actor_list};
   </select>
   <select id="getOriDirectorList" resultType="kr.min.movie.vo.DirectorListVo">
@@ -158,6 +158,11 @@
   <select id="getOriGenreList" resultType="kr.min.movie.vo.GenreListVo">
     select * from m_genre_list where genre_list=#{genre_list};
   </select>
+  <update id="delActorList">
+    update m_actor_list set
+      m_actor_list.show=0
+    where actor_list=#{actorListVo.actor_list} and actor_id=#{actorListVo.actor_id}
+  </update>
 
 
 

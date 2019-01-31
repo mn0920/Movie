@@ -10,9 +10,9 @@ public class ActorListVo {
   private String cast;
   private String c_name;
   private List<ActorListVo> a_list;
+  private Integer show;
   
 
-  
   public Integer getM_actor_list_id() {
     return m_actor_list_id;
   }
@@ -55,9 +55,16 @@ public class ActorListVo {
     this.a_list = a_list;
   }
   
+  public Integer getShow() {
+    return show;
+  }
+  public void setShow(Integer show) {
+    this.show = show;
+  }
+  
   @Override
   public String toString() {
-    return "ActorListVo [m_actor_list_id=" + m_actor_list_id + ", actor_list=" + actor_list + ", actor_id=" + actor_id + ", cast=" + cast + ", c_name=" + c_name + "]";
+    return "ActorListVo [m_actor_list_id=" + m_actor_list_id + ", actor_list=" + actor_list + ", actor_id=" + actor_id + ", cast=" + cast + ", c_name=" + c_name + ", show=" + show + "]";
   }
 
 }

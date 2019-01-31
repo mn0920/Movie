@@ -31,6 +31,7 @@ public interface AdminDao {
   public void addDirector(@Param("directorVo")DirectorVo directorVo);
   public void addDirectorList(@Param("directorListVo")DirectorListVo directorListVo);
   public void addGenreList(@Param("genreListVo")GenreListVo genreListVo);
+  
   public void modifyMovie(@Param("movieVo")MovieVo movieVo);
   public void modifyActor(@Param("actorVo")ActorVo actorVo);
   public void modifyDirector(@Param("directorVo")DirectorVo directorVo);
@@ -42,5 +43,6 @@ public interface AdminDao {
   public List<ActorListVo> getOriActorList(@Param("actor_list")Integer actor_list);
   public List<DirectorListVo> getOriDirectorList(@Param("director_list")Integer director_list);
   public List<GenreListVo> getOriGenreList(@Param("genre_list")Integer genre_list);
+  public void delActorList(@Param("actorListVo")ActorListVo del);
   
 }

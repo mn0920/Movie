@@ -98,36 +98,28 @@ public class AdminModifyController {
   
   @RequestMapping(value = "/MM/modify/seaA", method = RequestMethod.GET)
   public String modifySearchActorGet(Model model, Integer id) {
-    /*AllActorMutiListVo allActorMutiListVo = new AllActorMutiListVo();*/
     List<AllActorListVo> actorList = adminService.getOriActorList(id);
     model.addAttribute("actorList", actorList);
-    /*model.addAttribute("allActorMutiListVo", allActorMutiListVo);*/
     return "admin/modify/ModifySearchActor";
   }
   
   @RequestMapping(value = "/MM/modify/seaA", method = RequestMethod.POST)
   public String modifySearchActorPost(Integer[] actor_id, Integer[] actor_list, String[] cast, String[] c_name) {
      List<ActorListVo> list = new ArrayList <ActorListVo>();
-     System.out.println(actor_list.length);
+     
      for(int i=0; i<actor_list.length; i++) {
        ActorListVo tmp = new ActorListVo();
        tmp.setActor_id(actor_id[i]);
        tmp.setActor_list(actor_list[i]);
        tmp.setC_name(c_name[i]);
        tmp.setCast(cast[i]);
-       if(actor_id != null && actor_list != null && !c_name.equals("") && !cast.equals("") {
+       if(actor_id[i] != null) {
          list.add(tmp);
+         System.out.println("send");
        }
-       System.out.println("tmp : " + tmp);
      }
-     /*adminService.modifyActorList(list);*/
-     adminService.delActorList(list);
-    
-    /*List <AllActorListVo> actorListsVo = ActorListVo.getActorMutiListVo();*/
-    /*adminService.modifyActorList(actorListsVo);*/
-    /*for (ActorListVo actorListVo : actorListsVo) {
-      adminService.modifyActorList(actorListVo);
-    }*/
+     
+     adminService.updateActorList(list);
     
     return "admin/modify/ModifySearchActor";
   }

@@ -35,10 +35,13 @@ public interface AdminService {
   public void modifyActor(ActorVo actorVo);
   public void modifyDirector(DirectorVo directorVo);
   public void modifyMovieTitle(String title, Integer id);
-  public void modifyActorList(List<ActorListVo> list);
   public void modifyDirectorList(DirectorListVo directorListVo);
   public void modifyGenreList(GenreListVo genreListVo);
   public List<AllActorListVo> getOriActorList(Integer actor_list);
-  public void delActorList(List<ActorListVo> actorListsVo);
+  public List<ActorListVo> newActorList(List<ActorListVo> oriList, List<ActorListVo> modiList,
+      List<ActorListVo> delList, List<ActorListVo> list);
+  public void updateActorList(List<ActorListVo> list);
+  /* 현재 이 아이가 위의 세개를 다 같이 해준다. 
+   * return type List<ActorList> */
   
 }
