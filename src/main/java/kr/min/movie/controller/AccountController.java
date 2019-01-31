@@ -1,6 +1,7 @@
 package kr.min.movie.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -16,6 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.min.movie.service.AccountService;
 import kr.min.movie.service.AdminService;
 import kr.min.movie.vo.AccountVo;
+import kr.min.movie.vo.ActorVo;
+import kr.min.movie.vo.DirectorMovieVo;
+import kr.min.movie.vo.GenreListVo;
+import kr.min.movie.vo.GenreVo;
 import kr.min.movie.vo.MovieVo;
 
 /**
@@ -26,6 +31,8 @@ public class AccountController {
 
   @Autowired
   private AccountService accountService;
+  @Autowired
+  private AdminService adminService;
   
   private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
   
@@ -97,6 +104,39 @@ public class AccountController {
     System.out.println("id : " + id);
     System.out.println("pw : " + pw);
     return "redirect:/login";
+  }
+  
+  @RequestMapping(value="/login/joinUs", method = RequestMethod.GET)
+  public String loginJoinGet() {
+    return "member/introduceLogin";
+  }
+
+  
+  @RequestMapping(value = "/join/A/cho", method = RequestMethod.GET)
+  public String searchActor1Get(Model model) {
+    
+    List<ActorVo> actor = adminService.getActor();
+    
+    model.addAttribute("actor", actor);
+    return "member/searchActor";
+  }
+  
+  @RequestMapping(value = "/join/D/cho", method = RequestMethod.GET)
+  public String searchDirector1Get(Model model) {
+    
+    List<DirectorMovieVo> director = adminService.getDirectorOneMovie();
+    
+    model.addAttribute("director", director);
+    
+    return "member/searchDirector";
+  }
+  
+  @RequestMapping(value = "/join/G/cho", method = RequestMethod.GET)
+  public String searchGenreGet(GenreVo genreVo,  Model model) {
+    List<GenreVo> genre = adminService.getGenre();
+    
+    model.addAttribute("genre", genre);
+    return "member/searchGenre";
   }
   
 }

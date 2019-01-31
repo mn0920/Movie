@@ -1,39 +1,38 @@
 @charset "UTF-8";
 
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-
 body, html {
   height: 100%;
   margin: 0;
   font-family: Arial;
-  background: url(/movie/resources/images/4.jpg) no-repeat center center fixed;
+  background: url(/movie/resources/images/4.jpg) no-repeat center center
+    fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  
   border: 0;
   margin: 0;
   padding: 0;
 }
 
-
 /* 가운데정렬 */
 .Center-Container {
   position: relative;
+  height: 100%;
+  width: 100%;
   height: 100%;
 }
 
 .Absolute-Center {
   width: 60%;
   height: 60%;
-  min-height:490px;
+  min-height: 490px;
   overflow: auto;
   margin: auto;
   position: absolute;
@@ -42,11 +41,10 @@ body, html {
   bottom: 0;
   right: 0;
   /* border: solid black; */
-  padding : 10px;
+  padding: 10px;
 }
 
 /* Style the tab content (and add height:100% for full page content) */
-
 .tabcontent {
   color: black;
   display: none;
@@ -56,26 +54,44 @@ body, html {
   height: 95%;
 }
 
-.mainDiv{
-  height: 98%;
-  display: block;
-  padding:0px;
-  
+.tabs {
+  height: 90%;
+  margin: 0;
+  padding: 0;
 }
 
-.mainTitle{
+.mainDiv {
+  height: 377px;
+  display: block;
+  padding: 0px;
+}
+
+.mainTitle {
   margin-top: 30px;
   text-align: center;
 }
 
-.subTitle{
+.subTitle {
   margin-top: 5px;
   text-align: center;
 }
 
-.btn-next{
+.btn-search {
   height: 30px;
   margin: 0;
+  float: right;
+  font-size: 14px;
+  text-align: center;
+  line-height: 29px;
+  padding: 0 10px;
+  width: 10%;
+  /* text-align: start; */
+}
+
+.btn-next {
+  height: 30px;
+  margin: 0;
+  margin-top: 10px;
   margin-right: 13px;
   float: right;
   font-size: 14px;
@@ -85,26 +101,46 @@ body, html {
   /* text-align: start; */
 }
 
-.input-text{
+.btn-before {
+  height: 30px;
+  margin: 0;
+  margin-top: 10px; margin-left : 13px;
+  float: left;
+  font-size: 14px;
+  text-align: center;
+  line-height: 29px;
+  padding: 0 10px;
+  margin-left: 13px;
+  /* text-align: start; */
+}
+
+.input-text {
   margin: auto;
   display: inline-block;
 }
 
-.form-group{
-  margin-bottom:5px;
+.form-group {
+  margin-bottom: 5px;
+}
+
+.tab1>.form-group {
+  margin-bottom: 5px;
+  padding-left: 30px;
 }
 /* textEffect */
+.input-p {
+  width: 80px;
+  display: inline-block;
+}
 
-input[type="text"],
-input[type="password"],
-input[type="email"]{
+input[type="text"], input[type="password"], input[type="email"] {
   font: 17px "Lato", Arial, sans-serif;
   color: #333;
   width: 80%;
-  height:33px;
-  margin-bottom:5px;
+  height: 33px;
+  margin-bottom: 5px;
   letter-spacing: 1px;
-  background:transparent;
+  background: transparent;
 }
 /* end of style for tab1 */
 
@@ -120,30 +156,16 @@ input[type=checkbox]:before+button {
 input[type=checkbox]:checked:before+button {
   background: green;
 }
-/* 
-input[type="checkbox"]+label {
-  display:none;
-  background-color:white;
+
+input[type=text].col82 {
+  width: 78%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
 }
 
-input[type="checkbox"]:checked+ label:active:after {
-  display:none;
-  background-color: black;
-} */
-
-/* .checkbox-container input[type="checkbox"]:checked+button {
-  display:none;
-  background-color: #666665;
-
-} */
-
-/* .checkbox button{
-  background-color: transparent;
-} */
-
-/* end of style for tab2 */
-
-/* start tab3 */ 
+/* start tab3 */
 .title-arch {
   text-align: center;
   margin: 50px 0;
@@ -167,11 +189,11 @@ input[type="checkbox"]:checked+ label:active:after {
 }
 
 .project-3 {
-    background-image: url("/movie/resources/images/genre.jpg");
+  background-image: url("/movie/resources/images/genre.jpg");
 }
 
 .project-4 {
-    background-image: url("/movie/resources/images/apprisal.jpg");
+  background-image: url("/movie/resources/images/apprisal.jpg");
 }
 
 .project-hover {
@@ -222,5 +244,10 @@ input[type="checkbox"]:checked+ label:active:after {
 .project:hover .project-hover hr {
   width: 100%;
   height: 5px;
-} 
+}
+
+.done {
+  text-decoration: none;
+  color: white;
+}
 /* end of tab3 */

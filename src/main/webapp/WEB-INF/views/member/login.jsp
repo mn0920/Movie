@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 	<title>Home</title>
@@ -9,7 +8,6 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/login.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -17,6 +15,7 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/login.css">
   
   <script>
 function printClock() {
@@ -50,15 +49,35 @@ function addZeros(num, digit) { // 자릿수 맞춰주기
       return zero + num;
 }
 </script>
-    <script type="text/javascript">
-    var loginOk = document.getElementById('loginOk');
-    if(loginOk.value == 0){
-        alert('아이디 또는 패스워드를 잘 못 입력했습니다.');
-    }
-    if(${join} == 1){
-        alert('회원가입에 성공했습니다.');
-    }
-    </script>
+<script type="text/javascript">
+
+var win;
+$(document).ready(function(){
+    var popupX = (window.screen.width / 2) - (450 / 2);
+    var popupY= (window.screen.height / 2) - (450 / 2);
+$('#info').click(function(){
+  win = window.open('<%= request.getContextPath() %>/login/joinUs','JoinUs!','width=430,height=260,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  console.log(popupX);
+  console.log(popupY);
+  });
+});
+var title;
+function test(){
+  setTimeout(function () {
+    win.close();
+    location.href=$("#update").val();
+  }, 500);
+  var title;
+};
+  
+var loginOk = document.getElementById('loginOk');
+if(loginOk.value == 0){
+    alert('아이디 또는 패스워드를 잘 못 입력했습니다.');
+}
+if(${join} == 1){
+    alert('회원가입에 성공했습니다.');
+}
+</script>
   
 </head>
 <body>
@@ -69,14 +88,11 @@ function addZeros(num, digit) { // 자릿수 맞춰주기
 <!-- clock -->
 <body onload="printClock()">
 <span style="border:solid 0px; width:200px; height:100px; line-height:100px; color:E6E6E6;font-size:30px; text-align:center; margin-left:30px" id="clock"></span>
-  <button type="button" class="btn btn-light float-right btn-group-lg" style="margin: 35px 50px; text-color:white;">
-      <a href="<%= request.getContextPath() %>/join">회원가입</a>
-  </button>
 </body>
 
 <!-- Logo -->
-<div style="width:400px; height:300px; margin:auto;">
-<div style="width:200px; height:100px; line-height:250px; color:E6E6E6; font-size:100px; text-align:center; margin:auto;">AboutM</div>
+<div style="width:400px; height:250px; margin:auto;">
+<div style="width:400px; height:100px; line-height:250px; color:E6E6E6; font-size:100px; text-align:center; margin:auto;">AboutM</div>
 </div>
 
 <div class="container" style="width:560px;">
@@ -90,15 +106,17 @@ function addZeros(num, digit) { // 자릿수 맞춰주기
         
         
         <div class="btn-group btn-group-lg block" style="width:530px;">
-          <button type="button" class="btn btn-primary help-tip" style="border:solid 1px white; width:265px; background-color:transparent;">
-             <p>회원가입을 하시면 추천영화를 받을 수 있어요!<br>추천영화를 받고싶으시다면 오른쪽 상단에 있는<br>
-             <a href="<%= request.getContextPath() %>/join">[회원가입]</a>을 눌러주세요.<br>그냥 이용하시겠다면 버튼을 다시 눌러주세요</p>
-            <a href="#" style="color:white;">
+          <button type="button" id="info" class="btn btn-primary help-tip" style="border:solid 1px white; width:265px; background-color:transparent;">
             비회원 로그인
-            </a>
+            <input type="hidden" id="update" onchange="test()">
           </button>
           <button type="submit" class="btn btn-primary" style="border:solid 1px white; width:265px; background-color:transparent;">
             로그인
+          </button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-primary" style="margin-top:5px; width:100%; color:white; border:solid 1px white; background-color:transparent;">
+              <a href="<%= request.getContextPath() %>/join">회원가입</a>
           </button>
         </div>
 

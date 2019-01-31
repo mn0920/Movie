@@ -18,19 +18,55 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/join2-1.js"></script>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/global.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/join.css">
 
 
-<title>Join22</title>
+<script type="text/javascript">
+var dWin;
+var aWin;
+var gWin;
+
+$(document).ready(function(){
+    var popupX = (window.screen.width / 2) - (430 / 2);
+    var popupY= (window.screen.height / 2) - (500 / 2);
+$('#gBtn').click(function(){
+  gWin = window.open('<%= request.getContextPath() %>/join/G/cho','searchGenre','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  console.log(popupX);
+  console.log(popupY);
+});
+});
+
+$(document).ready(function(){
+    var popupX = (window.screen.width / 2) - (430 / 2);
+    var popupY= (window.screen.height / 2) - (500 / 2);
+$('#dBtn').click(function(){
+  dWin = window.open('<%= request.getContextPath() %>/join/D/cho','searchDirector','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  console.log(popupX);
+  console.log(popupY);
+});
+});
+
+$(document).ready(function(){
+    var popupX = (window.screen.width / 2) - (430 / 2);
+    var popupY= (window.screen.height / 2) - (500 / 2);
+$('#aBtn').click(function(){
+  aWin = window.open('<%= request.getContextPath() %>/join/A/cho','searchActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  console.log(popupX);
+  console.log(popupY);
+});
+});
+</script>
+
+<title>Join</title>
 </head>
 <body onload="document.getElementById('defaultOpen').click();">
 
-  <div class="Center-Container" style="width: 100%; height: 100%;">
+  <div class="Center-Container">
     <div class="Absolute-Center">
-      <!-- <form action="" method="POST"> -->
-      <div class="tabs" style="height: 90%; margin: 0; padding: 0;'">
+      <form action="" method="POST">
+      <div class="tabs">
         <p class="active" onclick="openPage('tab1')" id="defaultOpen">
         <div id="tab1" class="tabcontent">
           <div class="mainDiv">
@@ -38,46 +74,46 @@
             <p class="subTitle">Set your information</p>
 
             <div style="margin-top: 30px;">
-              <div class="form-group" style="padding-left: 30px">
-                <p style="width: 80px; display: inline-block;">
+              <div class="form-group">
+                <p class="input-p">
                   <label for="id" style="margin: auto">ID:</label>
                 </p>
-                <input type="text" id="id" name="id" class="form-control input-text">
+                <input type="text" name="id" class="form-control input-text">
               </div>
 
-              <div class="form-group" style="padding-left: 30px">
-                <p style="width: 80px; display: inline-block;">
+              <div class="form-group">
+                <p class="input-p">
                   <label for="nickname" style="margin: auto">Nick name:</label>
                 </p>
-                <input type="text" id="nickname" name="nickname" class="form-control input-text">
+                <input type="text" name="nickname" class="form-control input-text">
               </div>
 
-              <div class="form-group" style="padding-left: 30px">
-                <p style="width: 80px; display: inline-block;">
+              <div class="form-group">
+                <p class="input-p">
                   <label for="pwd">Password:</label>
                 </p>
-                <input type="password" id="pw" name="pw" class="form-control input-text">
+                <input type="password" name="pw" class="form-control input-text">
               </div>
 
-              <div class="form-group" style="padding-left: 30px">
-                <p style="width: 80px; display: inline-block;">
+              <div class="form-group">
+                <p class="input-p">
                   <label for="email" style="margin: auto">E-mail:</label>
                 </p>
-                <input type="text" id="email" name="email" class="form-control input-text">
+                <input type="text" name="email" class="form-control input-text">
               </div>
 
-              <div class="form-group" style="padding-left: 30px">
-                <p style="width: 80px; display: inline-block;">
+              <div class="form-group">
+                <p class="input-p">
                   <label for="age" style="margin: auto">Age:</label>
                 </p>
-                <input type="text" id="age" name="age" class="form-control input-text" placeholder="ex)19870101">
+                <input type="text" name="age" class="form-control input-text" placeholder="ex)19870101">
               </div>
 
 
             </div>
           </div>
           <div>
-            <button type="button" class="btn btn-primary btn-next" onclick="openPage('tab2')">Next</button>
+            <button type="button" class="btn btn-primary btn-next" onclick="openPage('tab2')">다음</button>
           </div>
         </div>
         </p>
@@ -91,47 +127,39 @@
 
             <!-- Actor -->
             <div style="margin-top: 50px;">
-              <div class="form-group" style="padding-left: 30px">
-                <p style="width: 80px; display: inline-block;">
+              <div class="form-group">
+                <p class="input-p">
                   <label for="selectMovie">Actor:</label>
                 </p>
-                <input type="text" class="form-control form-control-lg input-text" id="selectActor" placeholder="Search for actors">
+                <input type="text" class="form-control form-control-lg input-text col82"
+                 id="selectActor" placeholder="Search for actors">
+                <button type="button" class="btn btn-primary btn-search" id="aBtn"><i class="fas fa-search"></i></button>
               </div>
               <!-- Director -->
-              <div class="form-group" style="padding-left: 30px">
-                <p style="width: 80px; display: inline-block;">
+              <div class="form-group">
+                <p class="input-p">
                   <label for="selectDirector">Director:</label>
                 </p>
-                <input type="text" class="form-control form-control-lg input-text" id="selectDirector" placeholder="Search for directors">
+                <input type="text" class="form-control form-control-lg input-text col82"
+                 id="selectDirector" placeholder="Search for directors">
+                <button type="button" class="btn btn-primary btn-search" id="dBtn"><i class="fas fa-search"></i></button>
               </div>
               <!-- Genre -->
-              <div class="form-group" style="padding-left: 30px">
-                <p style="width: 80px; display: inline-block;">
+              <div class="form-group">
+                <p class="input-p">
                   <label for="selectGenre">Genre:</label>
                 </p>
-                <!-- start of selectGenre checkboxes -->
-
-                <button>
-                  <label><input type="checkbox" value="thrill" name="genre">스릴</label>
-                </button>
-                <button>
-                  <label><input type="checkbox" value="horror" name="genre">호러</label>
-                </button>
-
-                <!--                 <div class="checkbox-container">
-
-                  <input type="checkbox" id="is-subscription"><label for="is-subscription">구독신청</label>
-
-                </div> -->
-
-                <!-- end of selectGenre checkboxes -->
+                <input type="text" class="form-control form-control-lg input-text col82"
+                 id="selectGenre" placeholder="Search for genre">
+                <button type="button" class="btn btn-primary btn-search" id="gBtn"><i class="fas fa-search"></i></button>
               </div>
 
             </div>
           </div>
           <!-- end of tab2 main div -->
           <div>
-            <button type="button" class="btn btn-primary btn-next" onclick="openPage('tab3')">Next</button>
+            <button type="button" class="btn btn-primary btn-before" onclick="openPage('tab1')">이전</button>
+            <button type="button" class="btn btn-primary btn-next" onclick="openPage('tab3')">다음</button>
           </div>
         </div>
         <!-- end of tab2 -->
@@ -178,7 +206,8 @@
 
           </div>
           <div>
-            <button type="button" class="btn btn-primary btn-next" onclick="openPage('tab4')">Next</button>
+            <button type="button" class="btn btn-primary btn-before" onclick="openPage('tab2')">이전</button>
+            <button type="button" class="btn btn-primary btn-next" onclick="openPage('tab4')">다음</button>
           </div>
         </div>
 
@@ -189,12 +218,13 @@
             <p>what I gonna put in here?</p>
           </div>
           <div>
+            <button type="button" class="btn btn-primary btn-before" onclick="openPage('tab3')">이전</button>
             <button type="submit" class="btn btn-primary btn-next">
-              <a href="<%=request.getContextPath()%>/">Done</a>
+              <a href="<%=request.getContextPath()%>/" class="done">Done</a>
             </button>
           </div>
         </div>
-        <!-- </form> -->
+        </form>
 
       </div>
     </div>

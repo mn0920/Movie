@@ -39,6 +39,14 @@
     top:-40px;
     left:0;
 }
+a{
+  color:white;
+  text-decoration: none;
+}
+a:hover, a:focus{
+  color:white;
+  text-decoration: none;
+}
 @-webkit-keyframes fadeIn {
     0% { 
         opacity:0; 
