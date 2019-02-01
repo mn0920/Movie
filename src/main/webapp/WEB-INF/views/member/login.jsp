@@ -71,7 +71,7 @@ function test(){
 };
   
 var loginOk = document.getElementById('loginOk');
-if(loginOk.value == 0){
+if(${loginOk} == 0){
     alert('아이디 또는 패스워드를 잘 못 입력했습니다.');
 }
 if(${join} == 1){

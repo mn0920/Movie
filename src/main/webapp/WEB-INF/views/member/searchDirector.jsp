@@ -10,7 +10,7 @@
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminSearch1.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminSearchDirector1.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
@@ -55,14 +55,13 @@ $(document).ready(function(){
 
     <hr>
 
-<form name="searchD" method="POST">
     <div id="tableScroll" class="tableScroll">
       <table id="myTable" class="input-large form-control none" name="normal">
         <thead>
           <tr class="header">
             <th style="width: 8%;" name="checkList"><i class="far fa-check-circle"></i></th>
-            <th style="width: 80%;">이름</th>
-            <th style="width: 12%;">최근 영화</th>
+            <th style="width: 32%;">이름</th>
+            <th style="width: 60%;">최근 영화</th>
           </tr>
         </thead>
         <tbody>
@@ -80,14 +79,13 @@ $(document).ready(function(){
       </table>
     </div>
     <button type="button" id="choice">선택</button>
-    </form>
     
     <br>
     <div style="margin-top:10px;">찾고자하는 감독이 없다면 추가 버튼을 눌러주세요</div>
     <button type="button" id="add" name="add">추가</button>
    </div>
   <input type="hidden" id="directorId">
-  <input type="text" id="update" onchange="test()">
+  <input type="hidden" id="update" onchange="test()">
   
   
 <script type="text/javascript">
@@ -107,14 +105,12 @@ $("#choice").click(function(){
   console.log(data);
   console.log(data2);
   
-  var id=opener.document.getElementById('selectDirector').value;
-  var did=opener.document.getElementById('selectDirectorId').value;
   if(!data){
       alert('인물을 선택해주세요.');
     }
-  opener.document.getElementById(id).value = data;
-  opener.document.getElementById(did).value = data2;
-  window.opener.$('#'+id).trigger('change');
+  opener.document.getElementById('u_favorite_director_name').value = data;
+  opener.document.getElementById('u_favorite_director_id').value = data2;
+  window.opener.$('#update2').trigger('change');
   window.close();
 });
 </script>

@@ -42,39 +42,6 @@
 		}
 	}
 
-	$(document).ready(
-			function() {
-				document.getElementById("genre_list").value = opener.document.getElementById("genre_list").value;
-				$('#done').click(function() {
-
-					/* var data = []; */
-					var chk = $('input[type="checkbox"]:checked').val();
-					if (!chk) {
-						alert('장르를 선택해주세요.');
-					}
-
-					var str = new String();
-					var cnt = 0;
-          var data2 = $('input[type="checkbox"]:checked').parent().find('input[type="hidden"]');
-          console.log(data2);
-          
-					$(data2).each(function() {
-						var tmp = $(this).val();
-						if (tmp != "") {
-							if (cnt == 0)
-								str += tmp;
-							else
-								str += ", " + tmp;
-							cnt++;
-						}
-					});
-					console.log(str);
-					opener.document.getElementById("m_genre_list").value = str;
-			    opener.document.getElementById('update3').value = "update";
-			    opener.$('#update3').trigger('change');
-					/* window.close(); */
-				});
-			});
 </script>
 
 <style>
@@ -90,7 +57,6 @@
 
     <hr>
 
-    <form name="searchG" method="post">
       <div id="tableScroll" class="tableScroll">
         <table id="myTable" class="input-large form-control none" name="normal">
           <thead>
@@ -105,8 +71,8 @@
             <c:forEach var="genre" items="${genre}" varStatus="status">
               <tr>
                 <td>
-                  <input type="checkbox" value="${genre.genre_id}" name="checkList">
-                  <input type="hidden" value="${genre.genre_name}">
+                  <input type="hidden" value="${genre.genre_id}" name="checkList">
+                  <input type="radio" value="${genre.genre_name}">
                   <!-- genreMutiListVo[${status.index}]. -->
                 </td>
                 <td>${genre.genre_id}</td>
@@ -116,15 +82,36 @@
           </tbody>
         </table>
       </div>
-    <input type="text" id="genre_list" name="genre_list">
+      <input type="text" id="genre_list" name="genre_list">
       <button type="submit" id="done">확인</button>
-    </form>
 
-    <br>
-    <div style="margin-top: 10px;">등록하고자 하는 장르가 없다면 진행을 눌러주세요.</div>
-    <button type="button" id="check">진행</button>
   </div>
+<script type="text/javascript">
+var win;
+function test(){
+  setTimeout(() => {
+    win.close();
+    window.location.reload(); 
+  }, 500);
+  console.log(win);
+};
 
+$("#done").click(function(){ 
+  var data = $('input[type="radio"]:checked').val();
+  var data2 = $('input[type="radio"]:checked').parent().find('input[type="hidden"]').val();
+  
+  console.log(data);
+  console.log(data2);
+  
+  if(!data){
+      alert('인물을 선택해주세요.');
+    }
+  opener.document.getElementById('u_favorite_genre_name').value = data;
+  opener.document.getElementById('u_favorite_genre_id').value = data2;
+  window.opener.$('#update3').trigger('change');
+  window.close();
+});
+</script>
 
 </body>
 </html>

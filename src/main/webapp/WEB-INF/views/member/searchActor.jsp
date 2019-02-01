@@ -54,7 +54,6 @@ $(document).ready(function(){
 
     <hr>
 
-<form name="searchA">
     <div id="tableScroll" class="tableScroll">
       <table id="myTable" class="input-large form-control none" name="normal">
         <thead>
@@ -79,14 +78,13 @@ $(document).ready(function(){
       </table>
     </div>
     <button type="button" id="choice">선택</button>
-    </form>
     
     <br>
     <div style="margin-top:10px;">찾고자하는 배우가 없다면 추가 버튼을 눌러주세요</div>
     <button type="button" id="add" name="add">추가</button>
    </div>
   <input type="hidden" id="characterId">
-  <input type="text" id="update" onchange="test()">
+  <input type="hidden" id="update" onchange="test()">
   
   
 <script type="text/javascript">
@@ -106,26 +104,14 @@ $("#choice").click(function(){
 	console.log(data);
 	console.log(data2);
 	
-	var id=opener.document.getElementById('selectCharacter').value;
-  var aid=opener.document.getElementById('selectCharacterId').value;
   if(!data){
 	    alert('인물을 선택해주세요.');
 	  }
-	opener.document.getElementById(id).value = data;
-  opener.document.getElementById(aid).value = data2;
-	/* $(opener.document).find('.actor').trigger('change'); */
-	window.opener.$('#'+id).trigger('change');
-	/* opener.document.getElementById(id).trigger('change'); */
+	opener.document.getElementById('u_favorite_actor_name').value = data;
+  opener.document.getElementById('u_favorite_actor_id').value = data2;
+	window.opener.$('#update1').trigger('change');
 	window.close();
 });
-
-
-
-    /* var name = $('input[type="radio"]')
-    var rowData = new Array(); 
-    var tdArr = new Array();
-    var radiobtn = $("input[name=sel]:checked");
-    */
 </script>
 </body>
 </html>
