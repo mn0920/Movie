@@ -88,6 +88,10 @@ body, html {
   /* text-align: start; */
 }
 
+.btns{
+  position: relative;
+}
+
 .btn-next {
   height: 30px;
   margin: 0;
@@ -101,10 +105,23 @@ body, html {
   /* text-align: start; */
 }
 
+.btn-refresh {
+  height: 30px;
+  margin: 0;
+  margin-top: 10px;
+  position: absolute;
+  left:calc(50% - 14px);
+  font-size: 14px;
+  text-align: center;
+  line-height: 29px;
+  padding: 0 10px;
+  /* text-align: start; */
+}
+
 .btn-before {
   height: 30px;
   margin: 0;
-  margin-top: 10px; margin-left : 13px;
+  margin-top: 10px;
   float: left;
   font-size: 14px;
   text-align: center;
@@ -207,6 +224,7 @@ input[type=text].col82 {
   transition: all 0.5s ease;
   background-color: rgba(81, 81, 81, 0.7);
   padding: 40% 30px !important;
+  cursor: pointer;
 }
 
 .project-hover hr {

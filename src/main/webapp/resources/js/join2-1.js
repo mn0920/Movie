@@ -1,6 +1,7 @@
- 
-function openPage(pageName, elmnt, color) {
+
+function openPage(pageName) {
         var i, tabcontent, tablinks;
+        /*alert(pageName);*/
         tabcontent = document.getElementsByClassName("tabcontent");
         /* tab들의 class명이 전부다 tabcontent로 지정되어 있음 */
         for (i = 0; i < tabcontent.length; i++) {
@@ -15,23 +16,52 @@ function openPage(pageName, elmnt, color) {
         document.getElementById(pageName).style.display = "block";
         /* elmnt.style.backgroundColor = color; */
     }
+ 
+$(document).ready(function(){
+	
+	var str = new String();
+	var cnt = 1;
+	
+	$('.project-hover').click(function(){
+		var t = $(this).prop('id');
+		if(str.indexOf(t) == -1){
+			if(cnt < 4){
+				str += t+",";
+			} else if(cnt == 4){
+				str += t;
+				put = 1;
+			}
+		cnt++
+		alert(str);
+		}
+		if(cnt == 5){
+			document.getElementById("u_preference").value = str;
+		}
+	});
 
-/*     document.getElementById("btn_click").addEventListener("click", function(e) {
-        openTab(e, "tab2");
-    }) */
-    
-/*     $(window).load(function(){
-        $(".col-3 input").val("");
-        
-        $(".input-effect input").focusout(function(){
-            if($(this).val() != ""){
-                $(this).addClass("has-content");
-            }else{
-                $(this).removeClass("has-content");
-            }
-        })
-    }); */
-
+/*	function abled() {
+		var btn = document.getElementById("gbtn3");
+		alert('undisabled');
+		btn.disabled = false;
+	}*/
+	
+	$('#hbtn2').click(function(){
+		$('#hbtn1').val(0);
+	});
+	
+	$('#gbtn2').click(function(){
+		var btn = document.getElementById("gbtn3");
+		alert('disabled');
+		btn.disabled = true;
+	});
+	
+	$('#btn-refresh').click(function(){
+		$('#u_preference').val("");
+	});
+	
+	var asd = $("#u_preference").val();
+	if(asd != "") $("#gbtn3").disabled = false;
+	
 /* tab1 */
 var form = document.getElementsByTagName('form');
 //form[0].onsubmit = checkValid;
@@ -104,10 +134,10 @@ function checkRegex(regexPw, str){
             maxlength : 20,
             regex: /^\w*(\d[A-z]|[A-z]\d)\w*$/
         },
-        pwConfirm: {
+        /*pwConfirm: {
             required : true,
             equalTo : pw
-        },
+        },*/
         email: {
             required : true,
             email : true
@@ -126,14 +156,24 @@ function checkRegex(regexPw, str){
             maxlength : "최대 {0}글자이하이어야 합니다",
             regex : "영문자, 숫자로 이루어져있으며 최소 하나이상 포함"
         },
-        pwConfirm: {
+        /*pwConfirm: {
             required : "필수로입력하세요",
             equalTo : "비밀번호가 일치하지 않습니다."
-        },
+        },*/
         email: {
             required : "필수로입력하세요",
             email : "메일규칙에 어긋납니다"
         },
+    },
+    submitHandler: function(form) {
+        /*form.submit();*/
+    	if($('#hbtn1').val() == 0){
+    		$('#hbtn1').val(1);
+    		openPage('tab2');
+    		return false;
+    	} else {
+    		form.submit();
+    	}
     }
 });
 $.validator.addMethod(
@@ -188,12 +228,4 @@ function myFunction() {
     }
 }
 
-$(document).ready(function(){
-    $("#checkBoxId").change(function(){
-        if($("#checkBoxId").is(":checked")){
-            alert("체크박스 체크했음!");
-        }else{
-            alert("체크박스 체크 해제!");
-        }
-    });
 });
