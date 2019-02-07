@@ -101,35 +101,39 @@ $(document).ready(function(){
         <label for="character1">감독이름:</label>
       </div>
     </div>
-    
-    <div class="row mart5">
-      <div class="col20">
-        <label for="director1" class="form-control hei33" style="height: 33px;" readonly>감독</label>
-      </div>
-      <div class="col75">
-        <input type="text" class="form-control hei34 director" id="director1" name="directorMutiListVo[0].character" readonly required>
-      </div>
-    <div class="col5">
-      <button type="button" id="btn1" class="btn"><i class="fas fa-search"></i></button>
-    </div>
-    <input type="text" class="form-control hei34" id="director_id1" name="directorMutiListVo[0].director_id" readonly>
-    <input type="text" id="director_list1" name="directorMutiListVo[0].director_list">
-    </div>
-  
-    <div class="row mart5">
-      <div class="col20">
-        <label for="director2" class="form-control hei33" style="height: 33px;" readonly>감독</label>
-      </div>
-      <div class="col75">
-        <input type="text" class="form-control hei34 director" id="director2" name="directorMutiListVo[1].character" readonly>
-      </div>
-    <div class="col5">
-      <button type="button" id="btn2" class="btn"><i class="fas fa-search"></i></button>
-    </div>
-    <input type="text" class="form-control hei34" id="director_id2" name="directorMutiListVo[1].director_id" readonly>
-    <input type="text" id="director_list2" name="directorMutiListVo[1].director_list">
-    </div>
+    <c:forEach var="directorList" items="${directorList}" varStatus="status">
+	    <div class="row mart5">
+	      <div class="col20">
+	        <label for="director2" class="form-control hei33" style="height: 33px;" readonly>감독</label>
+	      </div>
+	      <div class="col75">
+	        <input type="text" class="form-control hei34 director" id="director" value="${directorList.director_name}" readonly>
+	      </div>
+	      <div class="col5">
+	        <button type="button" id="btn2" class="btn"><i class="fas fa-search"></i></button>
+	      </div>
+	      <input type="text" class="form-control hei34" id="director_id" value="${directorList.director_id}" name="director_id" readonly>
+	      <input type="text" id="director_list2" value="${directorList.director_list}" name="director_list">
+	    </div>
+    </c:forEach>
   <br>
+  <c:if test="${directorList.size() < 2}">
+    <c:forEach var="i" begin="0" end="${1-directorList.size()}" varStatus="status">
+      <div class="row">
+        <div class="col20">
+          <label for="director2" class="form-control hei33" style="height: 33px;" readonly>감독</label>
+        </div>
+        <div class="col75">
+	      <input type="text" class="form-control hei34 director" id="director" readonly>
+        </div>
+      <div class="col5">
+        <button type="button" id="btn2" class="btn"><i class="fas fa-search"></i></button>
+      </div>
+        <input type="text" class="form-control hei34" id="director_id${status.index+directorList.size()+1}" name="director_id" readonly>
+        <input type="text" id="director_list${status.index+directorList.size()+1}" name="director_list">
+      </div>
+    </c:forEach>
+  </c:if>
   <button type="submit" class="done">감독 선택 완료</button>
 </form>
 </div>

@@ -1,6 +1,6 @@
 package kr.min.movie.controller;
 
-import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,12 +11,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.min.movie.pagenation.Criteria;
+import kr.min.movie.pagenation.MovieCriteria;
+import kr.min.movie.pagenation.MoviePageMaker;
 import kr.min.movie.service.AccountService;
 import kr.min.movie.service.AdminService;
 import kr.min.movie.service.BoardService;
 import kr.min.movie.vo.ActorVo;
 import kr.min.movie.vo.DirectorVo;
-import kr.min.movie.vo.MovieVo;
 import kr.min.movie.vo.ShowMovieVo;
 
 @Controller
@@ -38,16 +40,20 @@ public class AdminController {
   }
 
   @RequestMapping(value = "/movie", method = RequestMethod.GET)
-  public String movieGet(Model model) {
-    List<ShowMovieVo> movie = boardService.getShowMovie();
+  public String movieGet(Model model, MovieCriteria cri) {
+	MoviePageMaker pageMaker = boardService.getPageMaker(cri, 10);
+	System.out.println("pageMaker : " + pageMaker);
+	List<ShowMovieVo> movie = new ArrayList <ShowMovieVo>();
+	movie = boardService.getShowMovie(cri);
 
     model.addAttribute("movie", movie);
+	model.addAttribute("pageMaker", pageMaker);
     return "admin/movieMain";
   }
 
   @RequestMapping(value = "/actor", method = RequestMethod.GET)
-  public String actorGet(Model model) {
-    List<ActorVo>  actor = boardService.getActors();
+  public String actorGet(Model model, Criteria cri) {
+    List<ActorVo>  actor = boardService.getActors(cri);
 
     model.addAttribute("actor", actor);
     return "admin/actor";
@@ -59,8 +65,8 @@ public class AdminController {
   }
 
   @RequestMapping(value = "/director", method = RequestMethod.GET)
-  public String directorGet(Model model) {
-    List<DirectorVo> director = boardService.getDirectors();
+  public String directorGet(Model model, Criteria cri) {
+    List<DirectorVo> director = boardService.getDirectors(cri);
 
     model.addAttribute("director", director);
     return "admin/director";

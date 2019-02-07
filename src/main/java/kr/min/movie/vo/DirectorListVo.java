@@ -7,6 +7,7 @@ public class DirectorListVo {
   private Integer m_director_list_id;
   private Integer director_list;
   private Integer director_id;
+  private Integer show;
   private List<DirectorListVo> d_list;
   
   
@@ -31,6 +32,13 @@ public class DirectorListVo {
     this.director_id = director_id;
   }
   
+  public Integer getShow() {
+    return show;
+  }
+  public void setShow(Integer show) {
+    this.show = show;
+  }
+  
   public List<DirectorListVo> getD_list() {
     return d_list;
   }
@@ -41,7 +49,7 @@ public class DirectorListVo {
   
   @Override
   public String toString() {
-    return "DirectorListVo [m_director_list_id=" + m_director_list_id + ", director_list=" + director_list + ", director_id=" + director_id + "]";
+    return "DirectorListVo [m_director_list_id=" + m_director_list_id + ", director_list=" + director_list + ", director_id=" + director_id + ", show=" + show + "]";
   }
   
   

@@ -102,6 +102,7 @@ $("#done").click(function(){
   
   console.log(data);
   console.log(data2);
+  alert("data" + data + "data2" + data2);
   
   if(!data){
       alert('인물을 선택해주세요.');

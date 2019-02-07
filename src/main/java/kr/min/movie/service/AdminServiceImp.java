@@ -10,6 +10,7 @@ import kr.min.movie.dao.AdminDao;
 import kr.min.movie.vo.ActorListVo;
 import kr.min.movie.vo.ActorVo;
 import kr.min.movie.vo.AllActorListVo;
+import kr.min.movie.vo.AllDirectorListVo;
 import kr.min.movie.vo.DirectorListVo;
 import kr.min.movie.vo.DirectorMovieVo;
 import kr.min.movie.vo.DirectorVo;
@@ -23,6 +24,8 @@ public class AdminServiceImp implements AdminService {
 
   @Autowired
   AdminDao adminDao;
+  
+  MethodClass method = new MethodClass();
 
   @Override
   public List<MovieVo> getMovie() {
@@ -131,7 +134,7 @@ public class AdminServiceImp implements AdminService {
       List<ActorListVo> delList, List<ActorListVo> list) {
     List<ActorListVo> newList = new ArrayList<ActorListVo>();
     for(ActorListVo tmp : list) {
-      if(!isInclude(modiList, tmp) && !isInclude(delList, tmp) && !isInclude(oriList, tmp))
+      if(!method.isInclude(modiList, tmp) && !method.isInclude(delList, tmp) && !method.isInclude(oriList, tmp))
         newList.add(tmp);
     }
     return newList;
@@ -143,8 +146,8 @@ public class AdminServiceImp implements AdminService {
     Integer actor_list = list.get(0).getActor_list();
     List<ActorListVo> oriList = adminDao.getOriActorList(actor_list);
     
-    List<ActorListVo> modiList = getModifyActorListVo(oriList, list);
-    List<ActorListVo> delList = getDeleteActorListVo(oriList, list);
+    List<ActorListVo> modiList = method.getModifyActorListVo(oriList, list);
+    List<ActorListVo> delList = method.getDeleteActorListVo(oriList, list);
     List<ActorListVo> newList = newActorList(oriList, modiList, delList, list);
     for (ActorListVo changeC : modiList)
       adminDao.modifyActorCList(changeC);
@@ -157,93 +160,58 @@ public class AdminServiceImp implements AdminService {
     System.out.println("newList push : " + newList);
   }
 
-  public boolean equalActorListVo(ActorListVo vo1, ActorListVo vo2) {
-    if (vo1.getActor_id() != vo2.getActor_id())
-      return false;
-    if (!vo1.getC_name().equals(vo2.getC_name()))
-      return false;
-    if (!vo1.getCast().equals(vo2.getCast()))
-      return false;
-    return true;
+  @Override
+  public List<AllDirectorListVo> getOriDirectorList(Integer director_list) {
+	  List<AllDirectorListVo> dn = new ArrayList <AllDirectorListVo>(); 
+	  List<AllDirectorListVo> dl = adminDao.getShowOriDirectorList(director_list);
+	  for(AllDirectorListVo tmp : dl) {
+		  if(tmp.getDirector_id() == null) {
+			  tmp.setDirector_id(0);
+			  tmp.setDirector_name("아직 감독이 등록 되지 않았습니다.");
+			  System.out.println("tmp : " + tmp);
+		  }
+		  dn.add(tmp);
+		  System.out.println("add");
+	  }
+		  
+    return dn;
   }
 
-  public boolean equalActorListVoByActorId(ActorListVo vo1, ActorListVo vo2) {
-    if (vo1.getActor_id() != vo2.getActor_id())
-      return false;
-    return true;
-  }
-
-  public boolean isNull(ActorListVo vo1) {
-    if (vo1.getActor_id() != null)
-      return false;
-    if (vo1.getC_name() != null)
-      return false;
-    if (vo1.getCast() != null)
-      return false;
-    return true;
-  }
-
-  public List<ActorListVo> getModifyActorListVo(List<ActorListVo> oriList, List<ActorListVo> newList) {
-    List<ActorListVo> list = new ArrayList<ActorListVo>();
-
-    for (ActorListVo oritmp : oriList) {
-      for (ActorListVo newtmp : newList) {
-        if (!(equalActorListVo(oritmp, newtmp)) && equalActorListVoByActorId(oritmp, newtmp)) {
-          list.add(newtmp);
-        }
-      }
-    }
-    return list;
-  }
-
-  public List<ActorListVo> getDeleteActorListVo(List<ActorListVo> oriList, List<ActorListVo> newList) {
-    List<ActorListVo> list = new ArrayList<ActorListVo>();
-
-    for (ActorListVo oritmp : oriList) {
-      int cnt = 0;
-      for (ActorListVo newtmp : newList) {
-        if (equalActorListVo(oritmp, newtmp)) {
-          break;
-        }
-        cnt++;
-      }
-      if (cnt == newList.size()) {
-        list.add(oritmp);
-      }
-    }
-    return list;
-  }
-
-  public boolean isInclude(List<ActorListVo> list, ActorListVo vo) {
-    for(ActorListVo tmp:list) {
-      if(equalActorListVo(tmp, vo))
-        return true;
-    }
-    return false;
-  }
-
-  public boolean isNull(List<ActorListVo> list, ActorListVo vo) {
-    for(ActorListVo tmp:list) {
-      if(equalActorListVo(tmp, vo))
-        return true;
-    }
-    return false;
-  }
+	@Override
+	public List<DirectorListVo> newDirectorList(List<DirectorListVo> oriList, List<DirectorListVo> delList, List<DirectorListVo> list) {
+	    List<DirectorListVo> newList = new ArrayList<DirectorListVo>();
+	    for(DirectorListVo tmp : list) {
+	      if(!method.isInclude(delList, tmp) && !method.isInclude(oriList, tmp))
+	    	  System.out.println("newDirectorList : " + tmp);
+	        newList.add(tmp);
+	    }
+	    return newList;
+	}
 
   @Override
-  public void modifyDirectorList(DirectorListVo directorListVo) {
-    Integer director_list = directorListVo.getDirector_list();
-    List<DirectorListVo> ori = adminDao.getOriDirectorList(director_list);
+  public void updateDirectorList(List<DirectorListVo> list) {
+	    System.out.println("get");
+	    Integer director_list = list.get(0).getDirector_list();
+	    List<DirectorListVo> oriList = adminDao.getOriDirectorList(director_list);
+	    
+	    List<DirectorListVo> delList = method.getDeleteDirectorListVo(oriList, list);
+	    List<DirectorListVo> newList = newDirectorList(oriList, delList, list);
+	    
+	    for (DirectorListVo del : delList)
+	      adminDao.delDirectorList(del);
+	    System.out.println("delList push" + delList);
+	    
+	    for (DirectorListVo newa : newList)
+	      adminDao.addDirectorList(newa);
+	    System.out.println("newList push : " + newList);
+	  }
 
-    adminDao.modifyDirectorList(directorListVo);
-  }
+	  @Override
+	  public void modifyGenreList(GenreListVo genreListVo) {
+	    Integer genre_list = genreListVo.getGenre_list();
+	    List<GenreListVo> ori = adminDao.getOriGenreList(genre_list);
 
-  @Override
-  public void modifyGenreList(GenreListVo genreListVo) {
-    Integer genre_list = genreListVo.getGenre_list();
-    List<GenreListVo> ori = adminDao.getOriGenreList(genre_list);
-
-    adminDao.modifyGenreList(genreListVo);
-  }
+	    adminDao.modifyGenreList(genreListVo);
+	  }
 
 }

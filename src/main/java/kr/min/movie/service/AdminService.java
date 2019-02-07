@@ -5,6 +5,7 @@ import java.util.List;
 import kr.min.movie.vo.ActorListVo;
 import kr.min.movie.vo.ActorVo;
 import kr.min.movie.vo.AllActorListVo;
+import kr.min.movie.vo.AllDirectorListVo;
 import kr.min.movie.vo.DirectorListVo;
 import kr.min.movie.vo.DirectorMovieVo;
 import kr.min.movie.vo.DirectorVo;
@@ -35,13 +36,14 @@ public interface AdminService {
   public void modifyActor(ActorVo actorVo);
   public void modifyDirector(DirectorVo directorVo);
   public void modifyMovieTitle(String title, Integer id);
-  public void modifyDirectorList(DirectorListVo directorListVo);
   public void modifyGenreList(GenreListVo genreListVo);
+  
   public List<AllActorListVo> getOriActorList(Integer actor_list);
-  public List<ActorListVo> newActorList(List<ActorListVo> oriList, List<ActorListVo> modiList,
-      List<ActorListVo> delList, List<ActorListVo> list);
-  public void updateActorList(List<ActorListVo> list);
-  /* 현재 이 아이가 위의 세개를 다 같이 해준다. 
-   * return type List<ActorList> */
+  public List<ActorListVo> newActorList(List<ActorListVo> oriList, List<ActorListVo> modiList, List<ActorListVo> delList, List<ActorListVo> list);
+  public void updateActorList(List<ActorListVo> list); /* 현재 이 아이가 위의 세개를 다 같이 해준다. return type List<ActorList> */
+  
+  public List<AllDirectorListVo> getOriDirectorList(Integer director_list);
+  public List<DirectorListVo> newDirectorList(List<DirectorListVo> oriList, List<DirectorListVo> delList, List<DirectorListVo> list);
+  public void updateDirectorList(List<DirectorListVo> list);
   
 }
