@@ -1,6 +1,6 @@
 package kr.min.movie.pagenation;
 
-public class Criteria {
+public class MovieCriteria {
 //	한 페이지당 보여지는 컨텐츠 수(게시글 수)
 	private int perPageNum;
 //	현재 페이지
@@ -44,9 +44,9 @@ public class Criteria {
 	public int getStartPage() {
 		return (page-1)*perPageNum;
 	}
-	public Criteria() {
+	public MovieCriteria() {
 		page = 1;
-		perPageNum = 18;
+		perPageNum = 8;
 		search = "";
 		type = 0;
 	}

@@ -1,8 +1,8 @@
 package kr.min.movie.pagenation;
 
-public class PageMaker {
+public class MoviePageMaker {
 //	현재 페이지 정보
-	private Criteria criteria;
+	private MovieCriteria criteria;
 //	전체 게시글 수
 	private int totalCount;
 //	한 블록의 시작페이지와 끝페이지 번 호
@@ -32,7 +32,7 @@ public class PageMaker {
 	}
 
 
-	public Criteria getCriteria() {
+	public MovieCriteria getCriteria() {
 		return criteria;
 	}
 
@@ -61,7 +61,7 @@ public class PageMaker {
 		return displayPageNum;
 	}
 
-	public void setCriteria(Criteria cri) {
+	public void setCriteria(MovieCriteria cri) {
 		this.criteria = cri;
 	}
 
