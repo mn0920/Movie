@@ -10,7 +10,12 @@
     select pw from account where id = #{id}
   </select>
   <insert id="setAccount">
-    insert into account(id, pw, nickname, email, age) values(#{id}, #{pw}, #{nickname}, #{email}, #{age})
+    insert into account(id, pw, email, age, nickname, u_favorite_genre_id,
+      u_favorite_genre_name, u_favorite_actor_id, u_favorite_actor_name,
+      u_favorite_director_id, u_favorite_director_name, u_preference)
+    values(#{id}, #{pw}, #{email}, #{age}, #{nickname}, #{u_favorite_genre_id},
+      #{u_favorite_genre_name}, #{u_favorite_actor_id}, #{u_favorite_actor_name},
+      #{u_favorite_director_id}, #{u_favorite_director_name}, #{u_preference})
   </insert>
   <select id="getAccount" resultType="kr.min.movie.vo.AccountVo">
    select * from account where id = #{id}

@@ -1,24 +1,54 @@
 
 function openPage(pageName) {
         var i, tabcontent, tablinks;
-        /*alert(pageName);*/
         tabcontent = document.getElementsByClassName("tabcontent");
-        /* tab들의 class명이 전부다 tabcontent로 지정되어 있음 */
         for (i = 0; i < tabcontent.length; i++) {
             tabcontent[i].style.display = "none";
         }
         tablinks = document.getElementsByClassName("tablink");
-        /* tab을 클릭했을때 내가 지금 현재 어느 tab에 있다라는 것을 보여주기 위한 것 */
-        /* tablink는 위에 있는 button을 이야기하는 것임 */
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].style.backgroundColor = "";
         }
         document.getElementById(pageName).style.display = "block";
-        /* elmnt.style.backgroundColor = color; */
     }
- 
+
+var dWin;
+var aWin;
+var gWin;
+
 $(document).ready(function(){
-	
+    var popupX1 = (window.screen.width / 2) - (730 / 2);
+    var popupY1= (window.screen.height / 2) - (600 / 2);
+    var dPath = "/movie/join/D/cho";
+	$('#dBtn').click(function(){
+	  dWin = window.open(dPath,'searchDirector','width=700,height=500,location=no,status=no,scrollbars=yes,top='+popupY1+',left='+popupX1);
+	  console.log(popupX1);
+	  console.log(popupY1);
+	  console.log(dWin);
+	});
+    var popupX2 = (window.screen.width / 2) - (430 / 2);
+    var popupY2= (window.screen.height / 2) - (600 / 2);
+    var aPath = "/movie/join/A/cho";
+	$('#aBtn').click(function(){
+	  aWin = window.open(aPath,'searchActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY2+',left='+popupX2);
+	  console.log(popupX2);
+	  console.log(popupY2);
+	  console.log(aWin);
+	});
+	var popupX3 = (window.screen.width / 2) - (430 / 2);
+	var popupY3= (window.screen.height / 2) - (600 / 2);
+    var gPath = "/movie/join/G/cho";
+	$('#gBtn').click(function(){
+	  gWin = window.open(gPath,'searchGenre','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY3+',left='+popupX3);
+	  console.log(popupX3);
+	  console.log(popupY3);
+	  console.log(gWin);
+	});
+});
+
+$(document).ready(function(){
+
+	var btn = document.getElementById("gbtn3");
 	var str = new String();
 	var cnt = 1;
 	
@@ -36,14 +66,16 @@ $(document).ready(function(){
 		}
 		if(cnt == 5){
 			document.getElementById("u_preference").value = str;
+			alert('abled');
+			btn.disabled = false;
 		}
 	});
-
-/*	function abled() {
-		var btn = document.getElementById("gbtn3");
-		alert('undisabled');
-		btn.disabled = false;
-	}*/
+	
+	$('.btn-refresh').click(function(){
+		document.getElementById("u_preference").value = "";
+		cnt = 0;
+		btn.disabled = true;
+	});
 	
 	$('#hbtn2').click(function(){
 		$('#hbtn1').val(0);
@@ -55,16 +87,11 @@ $(document).ready(function(){
 		btn.disabled = true;
 	});
 	
-	$('#btn-refresh').click(function(){
-		$('#u_preference').val("");
-	});
+
 	
-	var asd = $("#u_preference").val();
-	if(asd != "") $("#gbtn3").disabled = false;
 	
 /* tab1 */
 var form = document.getElementsByTagName('form');
-//form[0].onsubmit = checkValid;
 function checkValid(){
 	if(!checkValidId()){
 		alert('아이디는 5~12자로 숫자와 영문자로 이루어져있습니다.');
@@ -93,7 +120,6 @@ function checkValidEmail(){
 }
 function checkValidPw(){
     var regexPw = /^(?=\w{8,20}$)\w*(\d[A-z]|[A-z]\d)\w*$/;
-    //pw에 비밀번호 입력창에 있는 문자열을 저장
     var pw = document.getElementsByName('pw')[0].value;
     if(!checkRegex(regexPw, pw)){
        return false;
@@ -134,10 +160,10 @@ function checkRegex(regexPw, str){
             maxlength : 20,
             regex: /^\w*(\d[A-z]|[A-z]\d)\w*$/
         },
-        /*pwConfirm: {
+        pwConfirm: {
             required : true,
             equalTo : pw
-        },*/
+        },
         email: {
             required : true,
             email : true
@@ -156,17 +182,16 @@ function checkRegex(regexPw, str){
             maxlength : "최대 {0}글자이하이어야 합니다",
             regex : "영문자, 숫자로 이루어져있으며 최소 하나이상 포함"
         },
-        /*pwConfirm: {
+        pwConfirm: {
             required : "필수로입력하세요",
             equalTo : "비밀번호가 일치하지 않습니다."
-        },*/
+        },
         email: {
             required : "필수로입력하세요",
             email : "메일규칙에 어긋납니다"
         },
     },
     submitHandler: function(form) {
-        /*form.submit();*/
     	if($('#hbtn1').val() == 0){
     		$('#hbtn1').val(1);
     		openPage('tab2');
@@ -210,22 +235,5 @@ $("#dup").on("click",function(){
 	  });
 	});
 
-/* tab2 */
-function myFunction() {
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("myUL");
-    li = ul.getElementsByTagName("li");
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
-    }
-}
 
 });

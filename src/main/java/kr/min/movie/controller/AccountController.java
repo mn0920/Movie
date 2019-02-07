@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,16 +54,16 @@ public class AccountController {
   }
   
   @RequestMapping(value = "/", method = RequestMethod.POST)
-  public String homepost(AccountVo accountVo, Model model) {
-    AccountVo user = accountService.signin(accountVo);
-    
-    if(user == null) {
-      model.addAttribute("loginOk", 0);
-      return "redirect:/";
-    }
-    model.addAttribute("user", user);
-    return "redirect:/movie/main";
-  }
+	public String loginPost(AccountVo accountVo, HttpSession session, Model model, HttpServletRequest request, String id) {
+	    AccountVo user = accountService.signin(accountVo);
+	    
+	    if(user == null) {
+	      model.addAttribute("loginOk", 0);
+	      return "redirect:/";
+	    }
+	    model.addAttribute("user", user);
+	    return "redirect:/m/main";
+	  }
   
   
   @RequestMapping(value="/join", method = RequestMethod.GET)
@@ -68,12 +71,14 @@ public class AccountController {
     if(join == null) {
       join = -1;
     }
+    System.out.println("GET : " + join);
     model.addAttribute("join", join);
     return "member/join";
   }
   
   @RequestMapping(value="/join", method = RequestMethod.POST)
   public String signupPost(AccountVo accountVo, Model model) {
+    System.out.println("POST : " + accountVo);
     if(accountService.signup(accountVo)) {
       model.addAttribute("join", 1);
       return "redirect:/";

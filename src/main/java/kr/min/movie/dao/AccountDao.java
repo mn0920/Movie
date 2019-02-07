@@ -18,7 +18,21 @@ public interface AccountDao {
 	public void setAuthor(@Param("id") String id, @Param("author") String author);
 	public List<AccountVo> getAccountLists(@Param("cri")Criteria cri, @Param("id")String id);
 	public int getTotalCount(@Param("id")String id);
-  public int getUserCount(@Param("id")String id);
-  public AccountVo changePw(@Param("id")String id, @Param("pw")String pw);
-  public void modifyAccount(@Param("user")AccountVo user);
+	public int getUserCount(@Param("id")String id);
+	public AccountVo changePw(@Param("id")String id, @Param("pw")String pw);
+	public void modifyAccount(@Param("user")AccountVo user);
+	
+
+	public void join_Cnt_Up(@Param("id")String id);
+	public int getIdCnt(@Param("id")String id);
+	public int getNickCnt(@Param("nickname")String nickname);
+	public List<AccountVo> getaccountBoardLists(@Param("cri")Criteria cri);
+	public int getaccountBoardListCount(@Param("cri")Criteria cri);
+	
+	public void updateAccountAuthorCall(@Param("id")String id,@Param("author")String author, AccountVo loginUser);
+	public void updateAccountStatusCall(@Param("id")String id,@Param("status")String status, AccountVo loginUser);
+	
+	public String idSearch(@Param("account")AccountVo accountVo);
+	public boolean pwSearch(@Param("account")AccountVo accountVo);
+	public void updateAccountInfo(@Param("user")AccountVo accountVo);
 }

@@ -21,44 +21,6 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/join.css">
 
 
-<script type="text/javascript">
-var dWin;
-var aWin;
-var gWin;
-
-$(document).ready(function(){
-    var popupX = (window.screen.width / 2) - (430 / 2);
-    var popupY= window.screen.height / 2) - (600 / 2);
-$('#gBtn').click(function(){
-  gWin = window.open('<%= request.getContextPath() %>/join/G/cho','searchGenre','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
-  console.log(popupX);
-  console.log(popupY);
-});
-});
-
-$(document).ready(function(){
-    var popupX = (window.screen.width / 2) - (730 / 2);
-    var popupY= (window.screen.height / 2) - (600 / 2);
-$('#dBtn').click(function(){
-  dWin = window.open('<%= request.getContextPath() %>/join/D/cho','searchDirector','width=700,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
-  console.log(popupX);
-  console.log(popupY);
-});
-});
-
-$(document).ready(function(){
-    var popupX = (window.screen.width / 2) - (430 / 2);
-    var popupY= (window.screen.height / 2) - (600 / 2);
-$('#aBtn').click(function(){
-  aWin = window.open('<%= request.getContextPath() %>/join/A/cho','searchActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
-  console.log(popupX);
-  console.log(popupY);
-});
-});
-
-
-</script>
-
 <title>Join</title>
 </head>
 <body onload="openPage('tab1');">
@@ -139,8 +101,8 @@ $('#aBtn').click(function(){
                 <p class="input-p">
                   <label for="selectMovie">Actor:</label>
                 </p>
-                <input type="text" class="form-control form-control-lg input-text col82"
-                 id="u_favorite_actor_name" placeholder="Press the button for search actors">
+                <input type="text" class="form-control form-control-lg input-text col82" name="u_favorite_actor_name"
+                 id="u_favorite_actor_name" placeholder="Press the button for search actors" readonly>
                 <button type="button" class="btn btn-primary btn-search" id="aBtn"><i class="fas fa-search"></i></button>
               </div>
               <input type="hidden" name="u_favorite_actor_id" id="u_favorite_actor_id">
@@ -150,8 +112,8 @@ $('#aBtn').click(function(){
                 <p class="input-p">
                   <label for="selectDirector">Director:</label>
                 </p>
-                <input type="text" class="form-control form-control-lg input-text col82"
-                 id="u_favorite_director_name" placeholder="Press the button for search directors">
+                <input type="text" class="form-control form-control-lg input-text col82" name="u_favorite_director_name"
+                 id="u_favorite_director_name" placeholder="Press the button for search directors" readonly>
                 <button type="button" class="btn btn-primary btn-search" id="dBtn"><i class="fas fa-search"></i></button>
               </div>
               <input type="hidden" name="u_favorite_director_id" id="u_favorite_director_id">
@@ -161,8 +123,8 @@ $('#aBtn').click(function(){
                 <p class="input-p">
                   <label for="selectGenre">Genre:</label>
                 </p>
-                <input type="text" class="form-control form-control-lg input-text col82"
-                 id="u_favorite_genre_name" placeholder="Press the button for search genre">
+                <input type="text" class="form-control form-control-lg input-text col82" name="u_favorite_genre_name"
+                 id="u_favorite_genre_name" placeholder="Press the button for search genre" readonly>
                 <button type="button" class="btn btn-primary btn-search" id="gBtn"><i class="fas fa-search"></i></button>
               </div>
               <input type="hidden" name="u_favorite_genre_id" id="u_favorite_genre_id">
@@ -215,7 +177,7 @@ $('#aBtn').click(function(){
                   <p>If you choice this one first then u can get high score movies. score: appraisal+comments</p>
                 </div>
               </div>
-              <div class="clearfix"><input type="text" id="u_preference" name="u_preference"></div>
+              <div class="clearfix"><input type="hidden" id="u_preference" name="u_preference" onfocus="abled()"></div>
             </div>
 
           </div>
@@ -235,7 +197,7 @@ $('#aBtn').click(function(){
           <div>
             <button type="button" class="btn btn-primary btn-before" onclick="openPage('tab3')">이전</button>
             <button type="submit" class="btn btn-primary btn-next">
-              <a href="<%=request.getContextPath()%>/" class="done">Done</a>
+             <%--  <a href="<%=request.getContextPath()%>/" class="done"> --%>Done<!-- </a> -->
             </button>
           </div>
         </div>
