@@ -7,21 +7,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<link rel="stylesheet"
-  href="<%=request.getContextPath()%>/resources/css/nav.css">
-<link rel="stylesheet"
-  href="<%=request.getContextPath()%>/resources/css/adminBasic.css">
-<link rel="stylesheet"
-  href="<%=request.getContextPath()%>/resources/css/movieUserMain.css">
-<link rel="stylesheet"
-  href="<%=request.getContextPath()%>/resources/css/adminMain.css">
-<link rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-  integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
-  crossorigin="anonymous">
-<script
-  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/nav.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminBasic.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/movieUserMain.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminMain.css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
 <title>movie</title>
 </head>
@@ -71,6 +66,31 @@
           </div>
         </c:forEach>
       </div>
+      
+      <div id="pagination">
+      <!-- 가운데 정렬을 하기위해 div에 id를 부여했다. -->
+      <ul class="pagination">
+        <!-- ul은 부트스트렙 예제를 가지고 와서 고정된 1,2,3을 foreach로 바꾼것이다. -->
+        <li class="page-item <c:if test="${!(pageMaker.prev)}">disabled</c:if>">
+          <!-- c:if를 사용해서 사용이 가능하게, 가능하지 못하게 한 것이다. -->
+          <a class="page-link" href="<%=request.getContextPath()%>/admin/movie?page=${pageMaker.startPage - 1}&search=${pageMaker.criteria.search}&type=${pageMaker.criteria.type}"><i class="fas fa-angle-left"></i></a>
+        </li>
+        <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="i">
+          <li class="page-item <c:if test="${pageMaker.criteria.page == i}">active</c:if>">
+            <!-- c:if문을 사용해서 현재 페이지에 색이 나오게 했다. -->
+            <a class="page-link" href="<%=request.getContextPath()%>/admin/movie?page=${i}&search=${pageMaker.criteria.search}&type=${pageMaker.criteria.type}">${i}</a>
+          </li>
+        </c:forEach>
+        <li class="page-item <c:if test="${!(pageMaker.next)}">disabled</c:if>">
+          <a class="page-link" href="<%=request.getContextPath()%>/admin/movie?page=${pageMaker.endPage + 1}&search=${pageMaker.criteria.search}&type=${pageMaker.criteria.type}"><i class="fas fa-angle-right"></i></a>
+        </li>
+      </ul>
+    </div>
+    <a href="<%=request.getContextPath()%>/admin/movie/addM">
+      <button class="btn btn-primary">등록</button>
+    </a>
+	<br><br>
+      
     </div>
 
   </div>

@@ -91,7 +91,11 @@
   float: right;
 }
 
-.topnav #search {
+.search-container{
+	width:43%;
+}
+
+.topnav .search-container #search {
   padding: 6px;
   margin-top: 8px;
   font-size: 17px;
@@ -101,6 +105,7 @@
   height:23px;
   width:68%;
   box-sizing: content-box;
+  display:inline-block;
 }
 
 .topnav .search-container #btnSearch {
@@ -116,6 +121,7 @@
   border-top-right-radius: 8px;
   height:35px;
   width:23%;
+  display:inline-block;
 }
 
 .topnav .search-container #btnSearch:hover {
