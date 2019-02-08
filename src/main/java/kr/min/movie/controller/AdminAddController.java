@@ -218,5 +218,21 @@ public class AdminAddController {
     }
     return "admin/search/searchGenre";
   }
+  
+  @RequestMapping(value = "/MM/seaG/addG", method = RequestMethod.GET)
+  public String addGenreGet(Model model, Integer state) {
+    if(state == null) {
+      state = 0;
+    }
+    model.addAttribute("state", state);
+    return "admin/add/sAddGenre";
+  }
+  
+  @RequestMapping(value = "/MM/seaG/addG", method = RequestMethod.POST)
+  public String addGenrePost(GenreVo genreVo, Model model){
+    adminService.addGenre(genreVo);
+    model.addAttribute("state", 1);
+    return "redirect:/admin/MM/seaG/addG";
+  }
 
 }

@@ -20,6 +20,7 @@ import kr.min.movie.vo.ActorVo;
 import kr.min.movie.vo.AllActorListVo;
 import kr.min.movie.vo.AllDirectorListVo;
 import kr.min.movie.vo.DirectorListVo;
+import kr.min.movie.vo.DirectorMovieVo;
 import kr.min.movie.vo.DirectorVo;
 import kr.min.movie.vo.GenreListVo;
 import kr.min.movie.vo.GenreVo;
@@ -94,12 +95,17 @@ public class AdminModifyController {
 	@RequestMapping(value = "/MM/modify/seaA", method = RequestMethod.GET)
 	public String modifySearchActorGet(Model model, Integer id) {
 		List<AllActorListVo> actorList = adminService.getOriActorList(id);
+    System.out.println("GET actorList : " + actorList);
 		model.addAttribute("actorList", actorList);
 		return "admin/modify/ModifySearchActor";
 	}
 
 	@RequestMapping(value = "/MM/modify/seaA", method = RequestMethod.POST)
 	public String modifySearchActorPost(Integer[] actor_id, Integer[] actor_list, String[] cast, String[] c_name) {
+    System.out.println("POST actor_id : " + actor_id);
+    System.out.println("POST actor_list : " + actor_list);
+    System.out.println("POST cast : " + cast);
+    System.out.println("POST c_name : " + c_name);
 		List<ActorListVo> list = new ArrayList<ActorListVo>();
 
 		for (int i = 0; i < actor_list.length; i++) {
@@ -118,6 +124,7 @@ public class AdminModifyController {
 	}
 
 	
+	
 	@RequestMapping(value = "/director/modify", method = RequestMethod.GET)
 	public String directorModifyGet(Model model, Integer director_id) {
 		DirectorVo director = boardService.getDirector(director_id);
@@ -133,18 +140,21 @@ public class AdminModifyController {
 		model.addAttribute("Director_id", directorVo.getDirector_id());
 		return "redirect:/admin/director/modify";
 	}
+	
+	
 
 	@RequestMapping(value = "/MM/modify/seaD", method = RequestMethod.GET)
-	public String modifySearchDirectorGet(Model model, Integer director_list) {
-		List<AllDirectorListVo> directorList = adminService.getOriDirectorList(director_list);
+	public String modifySearchDirectorGet(Model model, Integer id) {
+		List<AllDirectorListVo> directorList = adminService.getOriDirectorList(id);
+		System.out.println("GET director_list : " + id);
 		model.addAttribute("directorList", directorList);
 		return "admin/modify/ModifySearchDirector";
 	}
 
 	@RequestMapping(value = "/MM/modify/seaD", method = RequestMethod.POST)
 	public String modifySearchDirectorPost(Integer[] director_id, Integer[] director_list) {
-		System.out.println("director_id : " + director_id);
-		System.out.println("director_list : " + director_list);
+		System.out.println("POST director_id : " + director_id);
+		System.out.println("POST director_list : " + director_list);
 		
 		List<DirectorListVo> list = new ArrayList<DirectorListVo>();
 		
@@ -154,6 +164,7 @@ public class AdminModifyController {
 			tmp.setDirector_list(director_list[i]);
 			if (director_id[i] != null) {
 				list.add(tmp);
+				System.out.println(list);
 				System.out.println("send");
 			}
 		}
@@ -163,6 +174,18 @@ public class AdminModifyController {
 		adminService.updateDirectorList(list);
 		return "admin/modify/ModifySearchDirector";
 	}
+  
+  @RequestMapping(value = "/MM/modify/seaD/cho", method = RequestMethod.GET)
+  public String searchDirector1Get(Model model) {
+    List<DirectorMovieVo> director = adminService.getDirectorOneMovie();
+    model.addAttribute("director", director);
+    return "admin/modify/searchDirector1";
+  }
+  
+  @RequestMapping(value = "/MM/modify/seaD/cho", method = RequestMethod.POST)
+  public String searchDirector1Post(Model model, String[] actor) {
+    return "admin/modify/searchDirector1";
+  }  
 
 	/*
 	 * 만약 버튼을 누른 횟수가 i>1이라면 update문 불러오는 것으로 변경 부모창에다가 카운트 변수 하나 놓고 버튼이 눌리때마다 ++,

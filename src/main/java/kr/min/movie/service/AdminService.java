@@ -30,6 +30,7 @@ public interface AdminService {
   public void addActorList(ActorListVo actorListVo);
   public void addDirector(DirectorVo directorVo);
   public void addDirectorList(DirectorListVo directorListVo);
+  public void addGenre(GenreVo genreVo);
   public void addGenreList(GenreListVo genreListVo);
   
   public void modifyMovie(MovieVo movieVo);

@@ -144,10 +144,14 @@ $(document).ready(function(){
       //character
       var str = $(this).prop('id');
       console.log(str);
+      var targetListId = 'actor_list'+str[str.length-1];
+      var actor_list = document.getElementById("actor_list1").value;
+      console.log(actor_list);
       var data = 'character'+str[str.length-1];
       var data2 = 'actor_id'+str[str.length-1];
         $('#selectCharacter').val(data)
         $('#selectCharacterId').val(data2)
+        $('#'+targetListId).val(actor_list)
       console.log(data);
         openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaA/cho','choiceActor','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
         console.log(openWin)
@@ -285,7 +289,7 @@ $(document).ready(function(){
     <c:forEach var="i" begin="0" end="${7-actorList.size()}" varStatus="status">
       <div class="row">
         <div class="col20">
-          <select class="form-control hei33" id="select${status.index+actorList.size()+1}" name="cast" style="height: 33px;" onChange="ChangecatList${status.count}()">
+          <select class="form-control hei33" id="select${status.index+actorList.size()+1}" name="cast" style="height: 33px;" onChange="ChangecatList${status.index+actorList.size()+1}()">
             <option value="">배역</option>
             <option value="main">주연</option>
             <option value="support">조연</option>

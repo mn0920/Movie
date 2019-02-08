@@ -9,19 +9,29 @@
 
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
   rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-  integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-  crossorigin="anonymous">
-<link rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-  integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-  crossorigin="anonymous">
-<link rel="stylesheet"
-  href="<%=request.getContextPath()%>/resources/css/adminSearch1.css">
-<script type="text/javascript"
-  src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminSearch1.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
+<script type="text/javascript">
+$(document).ready(function(){
+
+    var popupX = (window.screen.width / 2) - (750 / 2);
+    var popupY= (window.screen.height / 2) - (150 / 2);
+  $('#add').click(function(){
+    win = window.open('<%=request.getContextPath()%>/admin/MM/seaG/addG','addGenre','width=750,height=150,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+  });
+});
+
+function test(){
+  setTimeout(() => {
+    win.close();
+    window.location.reload(); 
+  }, 500);
+  console.log(win);
+};
+</script>
 <script type="text/javascript">
 	function myFunction() {
 		var input, filter, table, tr, td, i, txtValue;
@@ -122,9 +132,10 @@
 
     <br>
     <div style="margin-top: 10px;">등록하고자 하는 장르가 없다면 진행을 눌러주세요.</div>
-    <button type="button" id="check">진행</button>
+    <button type="button" id="add">진행</button>
   </div>
-
+  <input type="text" id="update" onchange="test()">
+  
 
 </body>
 </html>

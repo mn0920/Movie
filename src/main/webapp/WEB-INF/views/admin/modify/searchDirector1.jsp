@@ -111,7 +111,9 @@ $("#choice").click(function(){
   if(!data){
       alert('인물을 선택해주세요.');
     }
-  
+  console.log(data);
+  console.log(did);
+  console.log(id);
   opener.document.getElementById(id).value = data;
   opener.document.getElementById(did).value = data2;
   window.opener.$('#'+id).trigger('change');

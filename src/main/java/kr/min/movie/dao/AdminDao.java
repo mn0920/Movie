@@ -29,6 +29,7 @@ public interface AdminDao {
   public void addMovie(@Param("movieVo")MovieVo movieVo);
   public void addActor(@Param("actorVo")ActorVo actorVo);
   public void addDirector(@Param("directorVo")DirectorVo directorVo);
+  public void addGenre(@Param("genreVo")GenreVo genreVo);
   
   public void addActorList(@Param("actorListVo")ActorListVo actorListVo);
   public void addDirectorList(@Param("directorListVo")DirectorListVo directorListVo);

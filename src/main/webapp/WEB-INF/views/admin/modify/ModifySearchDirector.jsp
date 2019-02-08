@@ -22,11 +22,15 @@ $(document).ready(function(){
     var str = $(this).prop('id');
     var data = 'director'+str[str.length-1];
     var data2 = 'director_id'+str[str.length-1];
+    var targetListId = 'director_list'+str[str.length-1];
+    var director_list = document.getElementById("director_list1").value;
       $('#selectDirector').val(data)
       $('#selectDirectorId').val(data2)
+      $('#'+targetListId).val(director_list)
+    console.log(director_list);
     console.log(data);
     console.log(data2);
-    openWin = window.open('<%=request.getContextPath()%>/admin/MM/seaD/cho','choiceDirector','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
+    openWin = window.open('<%=request.getContextPath()%>/admin/MM/modify/seaD/cho','choiceDirector','width=430,height=500,location=no,status=no,scrollbars=yes,top='+popupY+',left='+popupX);
     console.log(openWin);
     /* openWin.document.getElementById("characterId").value = data; */
   });
@@ -104,16 +108,16 @@ $(document).ready(function(){
     <c:forEach var="directorList" items="${directorList}" varStatus="status">
 	    <div class="row mart5">
 	      <div class="col20">
-	        <label for="director2" class="form-control hei33" style="height: 33px;" readonly>감독</label>
+	        <label for="director1" class="form-control hei33" style="height: 33px;" readonly>감독</label>
 	      </div>
 	      <div class="col75">
-	        <input type="text" class="form-control hei34 director" id="director" value="${directorList.director_name}" readonly>
+	        <input type="text" class="form-control hei34 director" id="director1" value="${directorList.director_name}" readonly>
 	      </div>
 	      <div class="col5">
-	        <button type="button" id="btn2" class="btn"><i class="fas fa-search"></i></button>
+	        <button type="button" id="btn1" class="btn"><i class="fas fa-search"></i></button>
 	      </div>
-	      <input type="text" class="form-control hei34" id="director_id" value="${directorList.director_id}" name="director_id" readonly>
-	      <input type="text" id="director_list2" value="${directorList.director_list}" name="director_list">
+	      <input type="text" class="form-control hei34" id="director_id1" value="${directorList.director_id}" name="director_id" readonly>
+	      <input type="text" id="director_list1" value="${directorList.director_list}" name="director_list">
 	    </div>
     </c:forEach>
   <br>
@@ -124,10 +128,10 @@ $(document).ready(function(){
           <label for="director2" class="form-control hei33" style="height: 33px;" readonly>감독</label>
         </div>
         <div class="col75">
-	      <input type="text" class="form-control hei34 director" id="director" readonly>
+	      <input type="text" class="form-control hei34 director" id="director${status.index+directorList.size()+1}" readonly>
         </div>
       <div class="col5">
-        <button type="button" id="btn2" class="btn"><i class="fas fa-search"></i></button>
+        <button type="button" id="btn${status.index+directorList.size()+1}" class="btn"><i class="fas fa-search"></i></button>
       </div>
         <input type="text" class="form-control hei34" id="director_id${status.index+directorList.size()+1}" name="director_id" readonly>
         <input type="text" id="director_list${status.index+directorList.size()+1}" name="director_list">

@@ -90,6 +90,12 @@
     value
     (#{directorListVo.director_list}, #{directorListVo.director_id});
   </insert>
+  <insert id="addGenre">
+    insert into genre
+    (genre_name)
+    value
+    (#{genreVo.genre_name});
+  </insert>
   <insert id="addGenreList">
     insert into m_genre_list
     (genre_list, genre_id)
@@ -144,22 +150,23 @@
     where genre_list=#{genreListVo.genre_list};
   </update>
   <select id="getShowOriActorList" resultType="kr.min.movie.vo.AllActorListVo">
-    select * from m_actor_list LEFT JOIN actor on
-    m_actor_list.actor_id = actor.actor_id
+    select * from m_actor_list LEFT JOIN actor on m_actor_list.actor_id = actor.actor_id
     where actor_list=#{actor_list} and m_actor_list.show=1;
   </select>
   <select id="getOriActorList" resultType="kr.min.movie.vo.ActorListVo">
-    select * from m_actor_list where actor_list=#{actor_list};
+    select * from m_actor_list where actor_list=#{actor_list} and m_actor_list.show=1;
   </select>
   <update id="delActorList">
     update m_actor_list set
       m_actor_list.show=0
-    where actor_list=#{actorListVo.actor_list} and actor_id=#{actorListVo.actor_id}
-  </update>
+    where actor_list=#{actorListVo.actor_list} and actor_id=#{actorListVo.actor_id};
+  </update><!-- 
+  <delete id="delActorList">
+    delete from m_actor_list where actor_list=#{actorListVo.actor_list} and actor_id=#{actorListVo.actor_id};
+  </delete> -->
   
   <select id="getShowOriDirectorList" resultType="kr.min.movie.vo.AllDirectorListVo">
-    select * from m_director_list LEFT JOIN director on
-    m_director_list.director_id = director.director_id
+    select * from m_director_list LEFT JOIN director on m_director_list.director_id = director.director_id
     where director_list=#{director_list} and m_director_list.show=1;
   </select>
   <select id="getOriDirectorList" resultType="kr.min.movie.vo.DirectorListVo">
