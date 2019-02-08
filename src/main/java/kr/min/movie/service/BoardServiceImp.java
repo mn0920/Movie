@@ -1,28 +1,32 @@
 package kr.min.movie.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.min.movie.dao.AccountDao;
 import kr.min.movie.dao.BoardDao;
 import kr.min.movie.pagenation.Criteria;
 import kr.min.movie.pagenation.MovieCriteria;
 import kr.min.movie.pagenation.MoviePageMaker;
 import kr.min.movie.pagenation.PageMaker;
+import kr.min.movie.vo.AccountVo;
 import kr.min.movie.vo.ActorVo;
 import kr.min.movie.vo.DirectorVo;
 import kr.min.movie.vo.ShowMovieVo;
-import kr.min.movie.service.MethodClass;
 
 @Service
 public class BoardServiceImp implements BoardService {
 
   @Autowired
   BoardDao boardDao;
-  
+  @Autowired
+  AccountDao accountDao;
+
   MethodClass method = new MethodClass();
 
   @Override
@@ -42,11 +46,52 @@ public class BoardServiceImp implements BoardService {
   }
 
   @Override
+  public List<ShowMovieVo> getRecommendMovie(AccountVo user) {
+    System.out.println("user : " + user);
+
+    List<ShowMovieVo> showMovieVo = new ArrayList<ShowMovieVo>();
+    List<ShowMovieVo> SMV1 = result(user);
+    showMovieVo = method.setMovieList(SMV1);
+
+    return showMovieVo;
+  }
+
+  public List<ShowMovieVo> result(AccountVo user) {
+    List<ShowMovieVo> showMovieVo = new ArrayList<ShowMovieVo>();
+
+    Integer aId = user.getU_favorite_actor_id();
+    Integer dId = user.getU_favorite_director_id();
+    Integer gId = user.getU_favorite_genre_id();
+    String u_preference = user.getU_preference();
+    String[] array = u_preference.split(",");
+    System.out.println("0 : " + array[0] + ", 1 : " + array[1]);
+    System.out.println("aId : " + aId + ", dId : " + dId + ", gId : " + gId);
+    if (array[0] == "C") {
+      if (array[1].equals("A")) {
+        showMovieVo = boardDao.getShowMovieByActor(aId, dId, gId);
+      } else if (array[1].equals("D")) {
+        showMovieVo = boardDao.getShowMovieByDirector(aId, dId, gId);
+      } else if (array[1].equals("G")) {
+        showMovieVo = boardDao.getShowMovieByGenre(aId, dId, gId);
+      }
+    } else {
+      if (array[0].equals("A")) {
+        showMovieVo = boardDao.getShowMovieByActor(aId, dId, gId);
+      } else if (array[0].equals("D")) {
+        showMovieVo = boardDao.getShowMovieByDirector(aId, dId, gId);
+      } else if (array[0].equals("G")) {
+        showMovieVo = boardDao.getShowMovieByGenre(aId, dId, gId);
+      }
+    }
+    return showMovieVo;
+  }
+
+  @Override
   public MoviePageMaker getPageMaker(MovieCriteria cri, int displayPageNum) {
     int totalCount = boardDao.getCountBoardLists(cri);
 
     MoviePageMaker pageMaker = method.moviePageMaker(cri, displayPageNum, totalCount);
-    
+
     return pageMaker;
   }
 
@@ -54,9 +99,9 @@ public class BoardServiceImp implements BoardService {
   public PageMaker getActorPageMaker(Criteria cri, int displayPageNum) {
     int totalCount = boardDao.getActorCountBoardLists(cri);
     System.out.println("totalCount : " + totalCount + " / 수 : " + cri);
-    
+
     PageMaker pageMaker = method.adPageMaker(cri, displayPageNum, totalCount);
-    
+
     return pageMaker;
   }
 
@@ -64,7 +109,7 @@ public class BoardServiceImp implements BoardService {
   public PageMaker getDirectorPageMaker(Criteria cri, int displayPageNum) {
     int totalCount = boardDao.getDirectorCountBoardLists(cri);
     System.out.println("totalCount : " + totalCount + " / 수 : " + cri);
-    
+
     PageMaker pageMaker = method.adPageMaker(cri, displayPageNum, totalCount);
 
     return pageMaker;

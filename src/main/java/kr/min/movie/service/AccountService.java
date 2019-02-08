@@ -11,6 +11,7 @@ import kr.min.movie.vo.AccountVo;
 public interface AccountService {
 	public AccountVo signin(AccountVo accountVo);
 	public boolean signup(AccountVo accountVo);
+  public AccountVo getAccount(AccountVo user);
 	
 	public List<AccountVo> getAccounts(HttpServletRequest request, Criteria cri);
 	public void setAuthor(HttpServletRequest request, String id, String author);

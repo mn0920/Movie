@@ -2,10 +2,13 @@ package kr.min.movie.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.min.movie.pagenation.Criteria;
 import kr.min.movie.pagenation.MovieCriteria;
 import kr.min.movie.pagenation.MoviePageMaker;
 import kr.min.movie.pagenation.PageMaker;
+import kr.min.movie.vo.AccountVo;
 import kr.min.movie.vo.ActorVo;
 import kr.min.movie.vo.DirectorVo;
 import kr.min.movie.vo.ShowMovieVo;
@@ -14,6 +17,7 @@ public interface BoardService {
 
   /*public void searchActor(String[] actor);*/
   public List<ShowMovieVo> getShowMovie(MovieCriteria cri);
+  public List<ShowMovieVo> getRecommendMovie(AccountVo user);
   /*public List<ShowMovieVo> getShowMovie();*/
   public List<ActorVo> getActors(Criteria cri);
   public List<DirectorVo> getDirectors(Criteria cri);

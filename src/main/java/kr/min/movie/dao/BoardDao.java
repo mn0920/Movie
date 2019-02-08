@@ -25,5 +25,8 @@ public interface BoardDao {
   public int getCountBoardLists(@Param("cri")MovieCriteria cri);
   public int getActorCountBoardLists(@Param("cri")Criteria cri);
   public int getDirectorCountBoardLists(@Param("cri")Criteria cri);
-	
+  public List<ShowMovieVo> getShowMovieByActor(@Param("aId")Integer aId, @Param("dId")Integer dId, @Param("gId")Integer gId);
+  public List<ShowMovieVo> getShowMovieByDirector(@Param("aId")Integer aId, @Param("dId")Integer dId, @Param("gId")Integer gId);
+  public List<ShowMovieVo> getShowMovieByGenre(@Param("aId")Integer aId, @Param("dId")Integer dId, @Param("gId")Integer gId);
+  
 }

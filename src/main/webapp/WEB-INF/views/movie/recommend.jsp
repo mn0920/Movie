@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-<%@ page session="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +66,7 @@ font-weight: bold;
 <!-- Portfolio Gallery Grid -->
 
 	<div class="row2">
-	  <c:forEach var="movie" items="${movie}" >
+	  <c:forEach var="movie" items="${movie}" begin="0" end="7" step="1">
 	    <div class="column ${movie.genre_name}">
 	      <div class="content"> 
 	        <img src="${movie.poster}">
@@ -80,28 +78,6 @@ font-weight: bold;
 	    </div>
 	  </c:forEach>
 	</div>
-
-    <div id="pagination">
-      <!-- 가운데 정렬을 하기위해 div에 id를 부여했다. -->
-      <ul class="pagination">
-        <!-- ul은 부트스트렙 예제를 가지고 와서 고정된 1,2,3을 foreach로 바꾼것이다. -->
-        <li class="page-item <c:if test="${!(pageMaker.prev)}">disabled</c:if>">
-          <!-- c:if를 사용해서 사용이 가능하게, 가능하지 못하게 한 것이다. -->
-          <a class="page-link" href="<%=request.getContextPath()%>/m/R?page=${pageMaker.startPage - 1}&search=${pageMaker.criteria.search}&type=${pageMaker.criteria.type}"><i class="fas fa-angle-left"></i></a>
-        </li>
-        <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="i">
-          <li class="page-item <c:if test="${pageMaker.criteria.page == i}">active</c:if>">
-            <!-- c:if문을 사용해서 현재 페이지에 색이 나오게 했다. -->
-            <a class="page-link" href="<%=request.getContextPath()%>/m/R?page=${i}&search=${pageMaker.criteria.search}&type=${pageMaker.criteria.type}">${i}</a>
-          </li>
-        </c:forEach>
-        <li class="page-item <c:if test="${!(pageMaker.next)}">disabled</c:if>">
-          <a class="page-link" href="<%=request.getContextPath()%>/m/R?page=${pageMaker.endPage + 1}&search=${pageMaker.criteria.search}&type=${pageMaker.criteria.type}"><i class="fas fa-angle-right"></i></a>
-        </li>
-      </ul>
-    </div>
-	<br><br>
-</div>
 
 <script>
 filterSelection("all")

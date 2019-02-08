@@ -3,6 +3,7 @@ package kr.min.movie.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,11 +36,11 @@ public class BoardController {
 		AccountVo user = accountService.getLoginUser(request);
 		/*Integer count = boardService.countMovie(movie);*/
 		MoviePageMaker pageMaker = boardService.getPageMaker(cri, 10);
-		System.out.println("pageMaker Controller : " + pageMaker);
+		/*System.out.println("pageMaker Controller : " + pageMaker);*/
 
 		List<ShowMovieVo> movie = boardService.getShowMovie(cri);
 		/*movie = boardService.getShowMovie(cri);*/
-		System.out.println("movie : " + movie);
+		/*System.out.println("movie : " + movie);*/
 		
 		model.addAttribute("movie", movie);
 		model.addAttribute("pageMaker", pageMaker);
@@ -74,14 +75,13 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/R", method = RequestMethod.GET)
-	public String recommendGet(Model model, MovieCriteria cri) {
-		MoviePageMaker pageMaker = boardService.getPageMaker(cri, 10);
-
-		List<ShowMovieVo> movie = boardService.getShowMovie(cri);
-		/*List<ShowMovieVo> movie = boardService.getShowMovie();*/
+	public String recommendGet(Model model, HttpServletRequest request) {
+    AccountVo user = accountService.getLoginUser(request);
+    AccountVo setUser = accountService.getAccount(user);
+    
+		List<ShowMovieVo> movie = boardService.getRecommendMovie(setUser);
 
 		model.addAttribute("movie", movie);
-		model.addAttribute("pageMaker", pageMaker);
 
 		return "movie/recommend";
 	}

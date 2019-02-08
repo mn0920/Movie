@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,9 +23,7 @@ import kr.min.movie.service.AdminService;
 import kr.min.movie.vo.AccountVo;
 import kr.min.movie.vo.ActorVo;
 import kr.min.movie.vo.DirectorMovieVo;
-import kr.min.movie.vo.GenreListVo;
 import kr.min.movie.vo.GenreVo;
-import kr.min.movie.vo.MovieVo;
 
 /**
  * Handles requests for the application home page.
@@ -42,8 +41,9 @@ public class AccountController {
   /**
    * Simply selects the home view to render by returning its name.
    */
+  
   @RequestMapping(value = "/", method = RequestMethod.GET)
-  public String homeGet(Integer loginOk, Integer join, Model model) {
+  public String homeGet(Integer loginOk, Integer join, Model model, HttpServletRequest request) {
     if(loginOk == null)
       loginOk = -1;
     if(join == null)
@@ -61,6 +61,8 @@ public class AccountController {
 	      model.addAttribute("loginOk", 0);
 	      return "redirect:/";
 	    }
+	    
+	    
 	    model.addAttribute("user", user);
 	    return "redirect:/m/main";
 	  }
