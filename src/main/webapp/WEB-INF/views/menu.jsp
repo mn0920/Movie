@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
   <div class="background">
     <div class="header">
@@ -20,7 +20,22 @@
           <a href="<%=request.getContextPath()%>/m/A" id="A">배우</a>
           <a href="<%=request.getContextPath()%>/m/D" id="D">감독</a>
           <a href="<%=request.getContextPath()%>/m/my" id="my">내 서재</a>
-          <a href="<%=request.getContextPath()%>/logout" id="my">로그아웃</a>
+          <c:if test="${user != null && !user.author.equals('user')}">
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> 관리자 페이지 </a>
+              <div class="dropdown-menu">
+                <c:if test="${user.author.equals('super admin')}">
+                  <a class="dropdown-item" href="<%=request.getContextPath()%>/admin/user">회원관리</a>
+                </c:if>
+                <a class="dropdown-item" href="<%=request.getContextPath()%>/admin/movie">영화관리</a>
+              </div></li>
+          </c:if>
+          <c:if test="${user != null && user.author.equals('user')}">
+            <a href="<%=request.getContextPath()%>/logout">로그아웃</a>
+          </c:if>
+          <c:if test="${user == null}">
+            <a href="<%=request.getContextPath()%>/">로그인/회원가입</a>
+          </c:if>
           <p style="display: inline-block; width: 10px;"></p>
         <div class="navbar-right search-container">
           <!-- <form method="GET">
