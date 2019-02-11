@@ -18,13 +18,33 @@
     select * from director where director_name like CONCAT('%',#{cri.search},'%') order by director_id
     DESC limit #{cri.startPage}, #{cri.perPageNum};
   </select>
+  <select id="getGenre" resultType="String">
+    select genre_name from genre where genre_id =#{genre_id};
+  </select>
+  
   <select id="getDirectorCountBoardLists" resultType="int">
     select count(director_id) from director where director_name like CONCAT('%',#{cri.search},'%')
   </select>
+  <select id="getMovieByGenreLists" resultType="kr.min.movie.vo.GenreMovieVo">
+	select * from movie LEFT JOIN m_genre_list ON movie.id = m_genre_list.genre_list WHERE m_genre_list.genre_id = #{genre_id} AND STATUS=1 order BY movie.id desc LIMIT #{cri.startPage}, #{cri.perPageNum};
+  </select>
+  <select id="getMovieByActorLists" resultType="kr.min.movie.vo.ActorShowVo">
+	SELECT * from actor LEFT JOIN m_actor_list ON m_actor_list.actor_id = actor.actor_id
+  	LEFT JOIN movie ON movie.id = m_actor_list.actor_list WHERE actor.actor_id = #{actor_id};
+  </select>
+  <select id="getMovieByActorWorkLists" resultType="kr.min.movie.vo.ActorShowVo">
+	SELECT * from actor LEFT JOIN m_actor_list ON m_actor_list.actor_id = actor.actor_id
+  	LEFT JOIN movie ON movie.id = m_actor_list.actor_list WHERE actor.actor_id = #{actor_id} order BY movie.open_date desc LIMIT 5;
+  </select>
+  <select id="getMovieByDirectorLists" resultType="kr.min.movie.vo.DirectorShowVo">
+	SELECT * from director LEFT JOIN m_director_list ON m_director_list.director_id = director.director_id
+	LEFT JOIN movie ON movie.id = m_director_list.director_list WHERE director.director_id = #{director_id};
+  </select>
+  
   <select id="getMovie" resultType="kr.min.movie.vo.ShowMovieVo">
     SELECT actor.actor_id, actor.actor_name, m_actor_list.cast, m_actor_list.c_name, director.director_id, director.director_name,
     genre.genre_name, movie.id, movie.title, movie.rate, movie.running_time, movie.open_date, movie.grade, movie.synopsis,
-    movie.poster, movie.status
+    movie.poster, movie.status<!-- , tlike.like -->
     FROM movie
     LEFT JOIN m_director_list ON movie.id = m_director_list.director_list
     LEFT JOIN director ON director.director_id = m_director_list.director_id
@@ -32,6 +52,7 @@
     LEFT JOIN actor ON actor.actor_id = m_actor_list.actor_id
     LEFT JOIN m_genre_list ON movie.id = m_genre_list.genre_list
     LEFT JOIN genre ON genre.genre_id = m_genre_list.genre_id
+    <!-- LEFT JOIN tlike ON tlike.movie_id = movie.id -->
     HAVING movie.id = #{id};
   </select>
   <select id="getActor" resultType="kr.min.movie.vo.ActorVo">
@@ -40,22 +61,23 @@
   <select id="getDirector" resultType="kr.min.movie.vo.DirectorVo">
     select * from director where director_id = #{director_id};
   </select>
+  
   <select id="getCountBoardLists" resultType="Integer">
     select count(id) from movie where title like CONCAT('%',#{cri.search},'%') and status=1;
-    <!-- SELECT actor.actor_id, actor.actor_name, m_actor_list.cast, m_actor_list.c_name, 
-      director.director_id, director.director_name, genre.genre_name, movie.id, 
-      movie.title, movie.rate, movie.running_time, movie.open_date, movie.grade, 
-      movie.synopsis, movie.poster, movie.status, COUNT(movie.id) FROM movie LEFT 
-      JOIN m_director_list ON movie.id = m_director_list.director_list LEFT JOIN 
-      director ON director.director_id = m_director_list.director_id LEFT JOIN 
-      m_actor_list ON movie.id = m_actor_list.actor_list LEFT JOIN actor ON actor.actor_id 
-      = m_actor_list.actor_id LEFT JOIN m_genre_list ON movie.id = m_genre_list.genre_list 
-      LEFT JOIN genre ON genre.genre_id = m_genre_list.genre_id SELECT COUNT(movie.id) 
-      FROM movie <if test="cri.type == 0"> where title like CONCAT('%',#{cri.search},'%') 
-      </if> <if test="cri.type == 1"> where actor_name like CONCAT('%',#{cri.search},'%') 
-      </if> <if test="cri.type == 2"> where director_name like CONCAT('%',#{cri.search},'%') 
-      </if> AND movie.status = 1 order by id DESC LIMIT #{cri.startPage}, #{cri.perPageNum}; -->
   </select>
+  <select id="getCountBoardListsByGenre" resultType="Integer">
+  	select count(id) from movie LEFT JOIN m_genre_list ON movie.id = m_genre_list.genre_list WHERE m_genre_list.genre_id = #{genre_id} AND STATUS=1
+    <!-- select count(id) from movie where title like CONCAT('%',#{cri.search},'%') and status=1; -->
+  </select>
+  <select id="getCountBoardListsByActor" resultType="Integer">
+  	SELECT count(id) from actor LEFT JOIN m_actor_list ON m_actor_list.actor_id = actor.actor_id
+  	LEFT JOIN movie ON movie.id = m_actor_list.actor_list WHERE actor.actor_id = #{actor_id};
+  </select>
+  <select id="getCountBoardListsByDirector" resultType="Integer">
+  	SELECT count(id) from director LEFT JOIN m_director_list ON m_director_list.director_id = director.director_id
+	LEFT JOIN movie ON movie.id = m_director_list.director_list WHERE director.director_id = #{director_id};
+  </select>
+  
   <select id="getShowMovieByActor" resultType="kr.min.movie.vo.ShowMovieVo">
     SELECT actor.actor_id, actor.actor_name, m_actor_list.cast, m_actor_list.c_name, director.director_id, director.director_name,
     genre.genre_name, movie.id, movie.title, movie.rate, movie.running_time, movie.open_date, movie.grade, movie.synopsis,
@@ -98,5 +120,12 @@
     WHERE movie.status = 1 AND genre.genre_id = #{gId}
     OR director.director_id = #{dId} OR actor.actor_id = #{aId} ORDER BY movie.grade DESC;
   </select>
+  
+  <insert id="like">
+    insert into tlike
+    (movie_id, account_id, like)
+    value
+    (#{movieVo.movie_id}, #{movieVo.account_id}, 1);
+  </insert>
 
 </mapper>

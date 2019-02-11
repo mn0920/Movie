@@ -63,7 +63,8 @@ color: black;
 <div class="main2">
 <br>
 
-<h2>MOVIE</h2>
+<h2>MOVIE
+(${genre_name})</h2>
 <%-- <form method="GET">
       <div class="input-group mt-3 mb-3">
         <div class="form-group" style="margin: 0";>
@@ -80,17 +81,19 @@ color: black;
     </form> --%>
 
 <div id="myBtnContainer">
+<form>
   <button class="btn active" onclick="filterSelection('all')"> Show all</button>
-  <button class="btn" onclick="filterSelection('nature')"> Nature</button>
-  <button class="btn" onclick="filterSelection('cars')"> Cars</button>
-  <button class="btn" onclick="filterSelection('people')"> People</button>
+  <c:forEach var="genre" items="${genre}" >
+    <button class="btn <c:if test="${genre.genre_id} eq '${id}'">active</c:if>" name="genre_id" value="${genre.genre_id}"> ${genre.genre_name}</button>
+  </c:forEach>
+</form>
 </div>
 
 <!-- Portfolio Gallery Grid -->
 
 	<div class="row2">
 	  <c:forEach var="movie" items="${movie}" >
-	     <div class="column ${movie.genre_name}">
+	     <div class="column">
 	      	<div class="content"> 
 	          <a href="<%= request.getContextPath() %>/m/m/detail?id=${movie.id}&page=${pageMaker.criteria.page}&search=${pageMaker.criteria.search}&type=${pageMaker.criteria.type}"><img src="${movie.poster}">
 	          <h4><c:set var="TextValue" value="${movie.title}"/>${fn:replace(movie.title, '(', '<br>(')}</h4>
@@ -139,8 +142,8 @@ function filterSelection(c) {
 
 function w3AddClass(element, name) {
   var i, arr1, arr2;
-  arr1 = element.className.split(" ");
-  arr2 = name.split(" ");
+  arr1 = element.className.split(", ");
+  arr2 = name.split(", ");
   for (i = 0; i < arr2.length; i++) {
     if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
   }
@@ -169,6 +172,14 @@ for (var i = 0; i < btns.length; i++) {
     this.className += " active";
   });
 }
+
+if(${alert} == 1){ 
+    alert('회원분들께서만 영화 추천란을 이용하실 수 있습니다.'); 
+  } 
+
+if(${alert} == 0){ 
+    alert('회원분들께서만 내 서재란을 이용하실 수 있습니다.'); 
+  } 
 </script>
     
 </body>

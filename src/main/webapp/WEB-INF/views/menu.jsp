@@ -20,12 +20,13 @@
           <a href="<%=request.getContextPath()%>/m/A" id="A">배우</a>
           <a href="<%=request.getContextPath()%>/m/D" id="D">감독</a>
           <a href="<%=request.getContextPath()%>/m/my" id="my">내 서재</a>
+          <a href="<%=request.getContextPath()%>/logout" id="my">로그아웃</a>
           <p style="display: inline-block; width: 10px;"></p>
         <div class="navbar-right search-container">
-          <form method="GET">
+          <!-- <form method="GET">
             <input class="form-control mr-sm-2" type="text" id="search" placeholder="Search the Movie!" id="search" name="search">
             <button class="btn btn-success" type="submit" id="btnSearch" name="btnSearch">Search</button>
-          </form>
+          </form> -->
         </div>
       </div>
     </div>

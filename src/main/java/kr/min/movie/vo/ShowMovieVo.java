@@ -29,6 +29,8 @@ public class ShowMovieVo {
   private Integer genre_list;
   private Integer genre_id;
 
+  /*private Integer like;*/
+
   public Integer getId() {
     return id;
   }
@@ -192,14 +194,25 @@ public class ShowMovieVo {
 
   public void setGenre_id(Integer genre_id) {
     this.genre_id = genre_id;
+  }/*
+
+  public Integer getLike() {
+    if(like == null) {
+      like = 0;
+    }
+    return like;
   }
+
+  public void setLike(Integer like) {
+    this.like = like;
+  }*/
 
 
   @Override
   public String toString() {
     return "ShowMovieVo [id=" + id + ", title=" + title + ", rate=" + rate + ", running_time=" + running_time + ", open_date=" + open_date + ", grade=" + grade + ", synopsis=" + synopsis + ", poster="
         + poster + ", actor_id=" + actor_id + ", actor_list=" + actor_list + ", actor_name=" + actor_name + ", cast=" + cast + ", c_name=" + c_name + ", director_id="
-        + director_id + ", director_name=" + director_name + ", director_list=" + director_list + ", genre_name=" + genre_name + ", genre_list=" + genre_list + "genre_id" + genre_id + "]";
+        + director_id + ", director_name=" + director_name + ", director_list=" + director_list + ", genre_name=" + genre_name + ", genre_list=" + genre_list + "genre_id" + genre_id /*+ "like" + like*/ + "]";
   }
 
 }

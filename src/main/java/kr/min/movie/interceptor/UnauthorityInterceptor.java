@@ -15,7 +15,8 @@ public class UnauthorityInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		AccountVo user = (AccountVo)session.getAttribute("user");
 		if(user != null) {
-			response.sendRedirect("/spring/board/list");
+			response.sendRedirect("/movie/m/R");
+			/*alert("추천영화는 회원분들만 받을 수 있습니다.");*/
 			return false;
 		}
 		return true;
