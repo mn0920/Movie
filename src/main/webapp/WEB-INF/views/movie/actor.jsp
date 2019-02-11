@@ -54,13 +54,6 @@
 
 <h2>Profile Card</h2>
 
-	<div id="myBtnContainer">
-	  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
-	  <button class="btn" onclick="filterSelection('nature')"> Nature</button>
-	  <button class="btn" onclick="filterSelection('cars')"> Cars</button>
-	  <button class="btn" onclick="filterSelection('people')"> People</button>
-	</div>
-
 	<div class="row2">
 	  <c:forEach var="actor" items="${actor}">
 	    <a href="<%= request.getContextPath() %>/m/A/detail?actor_id=${actor.actor_id}" class="none">

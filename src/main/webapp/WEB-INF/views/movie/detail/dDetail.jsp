@@ -90,16 +90,17 @@
             
             <hr>
             work activity
+            <p>${director.title} :  ${director.grade}</p>
             <hr>
-            box-office recode(recent 5 movie)
+            <!-- box-office recode(recent 5 movie)
             <hr>
             about
-            <button type="button" class="float-right">감독 정보등록</button>
+            <button type="button" class="float-right">감독 정보등록</button> -->
             
           </div><!-- top -->
         </div>
 
-        <div class="bottom-container">Actor who don't let you down rank</div>
+        <!-- <div class="bottom-container">Actor who don't let you down rank</div> -->
 
 
       </div>

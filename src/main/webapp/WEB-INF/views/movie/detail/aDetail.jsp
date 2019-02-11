@@ -101,16 +101,18 @@
             
             <hr>
             work activity
+            <p>${actor.title} :  ${actor.grade}</p>
             <hr>
-            box-office recode(recent 5 movie)
+            <%-- box-office recode(recent 5 movie)
+            <p>${actor.title}</p>
             <hr>
             about
-            <button type="button" class="float-right">배우 정보등록</button>
+            <button type="button" class="float-right">배우 정보등록</button> --%>
             
           </div><!-- top -->
         </div>
 
-        <div class="bottom-container">Actor who don't let you down rank</div>
+        <!-- <div class="bottom-container">Actor who don't let you down rank</div> -->
 
 
       </div>
