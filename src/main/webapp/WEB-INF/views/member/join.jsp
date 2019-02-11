@@ -27,7 +27,7 @@
 
   <div class="Center-Container">
     <div class="Absolute-Center">
-      <form action="" method="POST">
+      <form action="" name="myform" method="POST">
       <div class="tabs">
         <div class="active">
         <div id="tab1" class="tabcontent">
@@ -41,6 +41,7 @@
                   <label for="id" style="margin: auto">ID:</label>
                 </p>
                 <input type="text" name="id" id="id" class="form-control input-text">
+                <button type="button" class="btn" id="dup"><i class="fas fa-search"></i></button>
               </div>
 
               <div class="form-group">
@@ -48,6 +49,7 @@
                   <label for="nickname" style="margin: auto">Nick name:</label>
                 </p>
                 <input type="text" name="nickname" id="nickname" class="form-control input-text">
+                <button type="button" class="btn" id="dup1"><i class="fas fa-search"></i></button>
               </div>
 
               <div class="form-group">
@@ -75,7 +77,10 @@
                 <p class="input-p">
                   <label for="age" style="margin: auto">Age:</label>
                 </p>
-                <input type="text" name="age" id="age" class="form-control input-text" placeholder="ex)19870101">
+                <select class="form-control col33" name="yy" class="age" id="year" required><option>..</option></select>년
+                <select class="form-control col33" name="mm" class="age" id="month" required><option>..</option></select>월
+                <select class="form-control col33" name="dd" class="age" id="day"required><option>..</option></select>일<br>
+                <input type="hidden" name="age">
               </div>
 
 
@@ -148,7 +153,7 @@
 
             <div class="container-fluid" style="margin: 0; margin-botton: 5px">
 
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project wow animated animated4 fadeInLeft">
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project wow animated animated4 fadeInLeft" id="Dp">
                 <div class="project-hover" id="D">
                   <h2>Director</h2>
 
@@ -156,21 +161,21 @@
                   <p>If you choice this one first then u can get all of the director movies</p>
                 </div>
               </div>
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project project-2 wow animated animated3 fadeInLeft">
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project project-2 wow animated animated3 fadeInLeft" id="Ap">
                 <div class="project-hover" id="A">
                   <h2>Actor</h2>
                   <hr />
                   <p>If you choice this one first then u can get all of the actor movies</p>
                 </div>
               </div>
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project project-3 wow animated animated2 fadeInLeft">
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project project-3 wow animated animated2 fadeInLeft" id="Gp">
                 <div class="project-hover" id="G">
                   <h2>Genre</h2>
                   <hr />
                   <p>If you choice this one first then u can get all of the genre movies</p>
                 </div>
               </div>
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project project-4 wow animated fadeInLeft">
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 project project-4 wow animated fadeInLeft" id="Cp">
                 <div class="project-hover" id="C">
                   <h2>Score</h2>
                   <hr />
@@ -192,7 +197,8 @@
           <div class="mainDiv">
             <h2 class="mainTitle">WELCOME!</h2>
             <p class="subTitle"></p>
-            <p>what I gonna put in here?</p>
+            <p>회원 가입하신 것을 환영합니다.</p>
+            <p>이제 회원님께서 작성해주신 정보를 바탕으로 좋아하실 법한 영화를 추천해드릴 수 있게되었습니다!</p>
           </div>
           <div>
             <button type="button" class="btn btn-primary btn-before" onclick="openPage('tab3')">이전</button>
@@ -208,6 +214,36 @@
     </div>
   </div>
   <script type="text/javascript">
+  // 생년월일 select박스 배열처리
+  $(document).ready(function(){
+    var date = new Date();
+    var year = date.getFullYear();
+    var selectValue = document.getElementById("year");
+    var optionIndex = 1;
+    for(var i=year-100;i<=year;i++){
+      selectValue.add(new Option(i,i),optionIndex++);                        
+      };
+  
+    var selectValue = document.getElementById("month"); 
+    for(var i=1;i<=12;i++){
+      selectValue.add(new Option(i,i),optionIndex++);
+      };
+    
+    var selectValue = document.getElementById("day");
+    for(var i=1;i<=31;i++){
+      selectValue.add(new Option(i,i),optionIndex++);
+      };
+  });
+  // 입력된 값이 숫자가 아니면 삭제
+  function removeChar(event) {
+      event = event || window.event;
+      var keyID = (event.which) ? event.which : event.keyCode;
+      if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+          return;
+      else
+          event.target.value = event.target.value.replace(/[^0-9]/g, "");
+  }
+  
 
   function test1(){
       setTimeout(function () {

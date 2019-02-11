@@ -51,7 +51,7 @@ $(document).ready(function(){
 	var btn = document.getElementById("gbtn3");
 	var str = new String();
 	var cnt = 1;
-	
+
 	$('.project-hover').click(function(){
 		var t = $(this).prop('id');
 		if(str.indexOf(t) == -1){
@@ -66,14 +66,22 @@ $(document).ready(function(){
 		}
 		if(cnt == 5){
 			document.getElementById("u_preference").value = str;
-			alert('abled');
+			/*alert('abled');*/
 			btn.disabled = false;
 		}
+	});
+	$('.project-hover').on("click", function() { 
+		var id = $(this).parent().prop('id');
+		console.log(id);
+		  $("button").click(function(){
+		    $("p:first").addClass("intro");
+		  });
 	});
 	
 	$('.btn-refresh').click(function(){
 		document.getElementById("u_preference").value = "";
-		cnt = 0;
+		str="";
+		cnt = 1;
 		btn.disabled = true;
 	});
 	
@@ -83,7 +91,7 @@ $(document).ready(function(){
 	
 	$('#gbtn2').click(function(){
 		var btn = document.getElementById("gbtn3");
-		alert('disabled');
+		/*alert('disabled');*/
 		btn.disabled = true;
 	});
 	
@@ -93,6 +101,10 @@ $(document).ready(function(){
 /* tab1 */
 var form = document.getElementsByTagName('form');
 function checkValid(){
+	var yy = myform.yy.value;
+	var mm = myform.mm.value;
+	var dd = myform.dd.value;
+	var age = yy+mm+dd;
 	if(!checkValidId()){
 		alert('아이디는 5~12자로 숫자와 영문자로 이루어져있습니다.');
 		return false;
@@ -109,6 +121,14 @@ function checkValid(){
         alert('이메일을 입력해주세요');
         return false;
     }
+	if(!checkValidNickname()){
+		alert('닉네임은 2~8자내로 입력해주세요.');
+		return false;
+	}
+	if(!checkValidAge()){
+		alert('생년월일을 확인해주세요')
+		return false;
+	}
     return true;
 }
 function checkValidEmail(){
@@ -133,10 +153,37 @@ function checkValidId(){
        return false;
     }
     return true;
-}function checkValidPwConfirm(){
+}
+function checkValidPwConfirm(){
 	var pw = document.getElementsByName('pw')[0].value;
 	var pwConfirm = document.getElementsByName('pwConfirm')[0].value;
 	if(pw != pwConfirm){
+		return false;
+	}
+	return true;
+}
+function checkValidNickname(){
+	var regexNickname = /^[A-z 0-9 ㄱ-힣]{2,8}$/;
+	var nickname = $('#nickname').val();
+	if(!checkRegex(regexNickname,nickname)){
+		return false
+	}
+	return true;
+}
+function checkValidAge(){
+	/*
+	 * var yy =
+	 * document.getElementsByName('yy')[0].value;myform.form-group.yy.value; var
+	 * mm =
+	 * document.getElementsByName('mm')[0].value;myform.form-group.mm.value; var
+	 * dd =
+	 * document.getElementsByName('dd')[0].value;myform.form-group.dd.value;
+	 */
+	var yy = myform.yy.value;
+	var mm = myform.mm.value;
+	var dd = myform.dd.value;
+	if(yy==".."||mm==".."||dd==".."){
+		alert("생년월일을 입력해주세요");
 		return false;
 	}
 	return true;
@@ -164,12 +211,17 @@ function checkRegex(regexPw, str){
             required : true,
             equalTo : pw
         },
+        nickname: {
+            required : true,
+            minlength : 2,
+            maxlength : 12
+        },
         email: {
             required : true,
             email : true
         },
     },
-    //규칙체크 실패시 출력될 메시지
+    // 규칙체크 실패시 출력될 메시지
     messages : {
         id: {
             required : "필수로입력하세요",
@@ -185,6 +237,11 @@ function checkRegex(regexPw, str){
         pwConfirm: {
             required : "필수로입력하세요",
             equalTo : "비밀번호가 일치하지 않습니다."
+        },
+        nickname: {
+            required : "필수로입력하세요",
+            minlength : "최소 {0}글자이상이어야 합니다",
+            maxlength : "최대 {0}글자이하이어야 합니다"
         },
         email: {
             required : "필수로입력하세요",
@@ -214,9 +271,9 @@ $.validator.addMethod(
 $("#dup").on("click",function(){
 	if(!checkValidId()){
 		alert('아이디는 5~12글자로 숫자와 영문으로 이루어져 있습니다.');
-		return; //그리고 밑에 있는 것이 실행 안되게 그냥 되돌려준다.
+		return; // 그리고 밑에 있는 것이 실행 안되게 그냥 되돌려준다.
 	}
-	  var id = $("#id").val();//id가 id인 input 태그에 입력된 id 가져오기
+	  var id = $("#id").val();// id가 id인 input 태그에 입력된 id 가져오기
 	  $.ajax({
 	    async:true,
 	    type:'POST',
@@ -234,6 +291,28 @@ $("#dup").on("click",function(){
 	    }
 	  });
 	});
+$("#dup1").on("click",function(){
+	if(!checkValidNickname()){
+		return
+	}
+	var nickname= $('#nickname').val();
+	$.ajax({
+	    async:true,
+	    type:'POST',
+	    data:nickname,
+	    url:"dup",// 컨트롤러에 설정할 URL
+	    dataType:"json",
+	    contentType:"application/json; charset=UTF-8",
+	    success : function(data){
+	    	console.log(data.dup);
+	      if(data.dup){
+	        alert("이미 사용중인 닉네임입니다.");
+	      }else{
+	        alert("사용 가능한 닉네임입니다.");
+	      }
+	    }
+	});
+});
 
 
 });

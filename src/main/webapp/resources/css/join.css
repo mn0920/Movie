@@ -88,7 +88,7 @@ body, html {
   /* text-align: start; */
 }
 
-.btns{
+.btns {
   position: relative;
 }
 
@@ -110,7 +110,7 @@ body, html {
   margin: 0;
   margin-top: 10px;
   position: absolute;
-  left:calc(50% - 14px);
+  left: calc(50% - 14px);
   font-size: 14px;
   text-align: center;
   line-height: 29px;
@@ -150,7 +150,8 @@ body, html {
   display: inline-block;
 }
 
-input[type="text"], input[type="password"], input[type="email"] {
+input[type="text"], input[type="password"], input[type="email"], select
+  {
   font: 17px "Lato", Arial, sans-serif;
   color: #333;
   width: 80%;
@@ -158,6 +159,45 @@ input[type="text"], input[type="password"], input[type="email"] {
   margin-bottom: 5px;
   letter-spacing: 1px;
   background: transparent;
+}
+
+.birth {
+  margin-top: 1vh;
+  font: 17px "Lato", Arial, sans-serif;
+  color: #333;
+  width: 80%;
+  height: 33px;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+  background: transparent;
+}
+
+.birth * {
+  width: 8vh;
+  padding: 0;
+  font: 17px "Lato", Arial, sans-serif;
+  color: #333;
+  width: 80%;
+  height: 33px;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+  background: transparent;
+}
+
+.col33 {
+  width: 24%;
+  display: inline-block;
+  margin-bottom: 5px;
+  font: 17px "Lato", Arial, sans-serif;
+  color: #333;
+  height: 33px;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  background: transparent;
+}
+
+#tab1btn{
+  margin-top: 20px;
 }
 /* end of style for tab1 */
 

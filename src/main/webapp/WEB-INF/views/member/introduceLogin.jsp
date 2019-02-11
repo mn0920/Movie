@@ -100,16 +100,14 @@ a {
 <script>
 $(document).ready(function(){
   $(".conti").click(function(){
-    opener.document.getElementById('update').value = "<%=request.getContextPath()%>/m/main"
+    opener.document.getElementById('update').value ="<%=request.getContextPath()%>/m/main"
     opener.$('#update').trigger('change');
   }); 
   $(".join").click(function(){
-	    opener.document.getElementById('update').value = "<%=request.getContextPath()%>
-	/join"
-											opener.$('#update').trigger(
-													'change');
-										});
-					});
+	    opener.document.getElementById('update').value ="<%=request.getContextPath()%>/join"
+		opener.$('#update').trigger('change');
+  });
+});
 </script>
 <title>JoinUs!</title>
 </head>
