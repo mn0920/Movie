@@ -129,17 +129,17 @@
           </div>
         </div>
         
-        <div class="right-container">
+        <!-- <div class="right-container">
           <div class="bottom-container">
             <div class="col-100">
               <button type="button" class="btn" id="btn1" name="btn1">
                 <i class='far fa-heart'></i>
               </button>
-              <!-- <button type="button" class="btn" id="btn1" name="btn1" ><i class="fas fa-heart"></i></button> -->
+              <button type="button" class="btn" id="btn1" name="btn1" ><i class="fas fa-heart"></i></button>
             </div>
           </div>
           <div class="comments-container"></div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
