@@ -41,18 +41,19 @@ public interface AdminDao {
   public void modifyMovieTitle(@Param("title")String title, @Param("id")Integer id);
   public void modifyActor(@Param("actorVo")ActorVo actorVo);
   public void modifyDirector(@Param("directorVo")DirectorVo directorVo);
-  public void modifyDirectorList(@Param("directorListVo")DirectorListVo directorListVo);
-  public void modifyGenreList(@Param("genreListVo")GenreListVo genreListVo);
   
   public List<AllActorListVo> getShowOriActorList(@Param("actor_list")Integer actor_list);
   public List<ActorListVo> getOriActorList(@Param("actor_list")Integer actor_list);
   public void modifyActorCList(@Param("actorListVo")ActorListVo actorListVo);
   public void delActorList(@Param("actorListVo")ActorListVo del);
-  
+
+  public void modifyDirectorList(@Param("directorListVo")DirectorListVo directorListVo);
   public List<AllDirectorListVo> getShowOriDirectorList(@Param("director_list")Integer director_list);
   public List<DirectorListVo> getOriDirectorList(@Param("director_list")Integer director_list);
   public void delDirectorList(@Param("directorListVo")DirectorListVo del);
-  
+
+  public void modifyGenreList(@Param("genreListVo")GenreListVo genreListVo);
   public List<GenreListVo> getOriGenreList(@Param("genre_list")Integer genre_list);
+  public void delGenreList(@Param("genreListVo")GenreListVo genreListVo);
   
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kr.min.movie.service.AdminService;
 import kr.min.movie.service.BoardService;
 import kr.min.movie.vo.ActorListVo;
+import kr.min.movie.vo.ActorShowVo;
 import kr.min.movie.vo.ActorVo;
 import kr.min.movie.vo.AllActorListVo;
 import kr.min.movie.vo.AllDirectorListVo;
@@ -78,7 +79,7 @@ public class AdminModifyController {
 	
 	@RequestMapping(value = "/actor/modify", method = RequestMethod.GET)
 	public String actorModifyGet(Model model, Integer actor_id) {
-		ActorVo actor = boardService.getActor(actor_id);
+	  ActorShowVo actor = boardService.getActor(actor_id);
 
 		model.addAttribute("actor", actor);
 		return "admin/modify/ModifyActor";
@@ -119,6 +120,7 @@ public class AdminModifyController {
 				System.out.println("send");
 			}
 		}
+    System.out.println("list2 : " + list);
 		adminService.updateActorList(list);
 		return "admin/modify/ModifySearchActor";
 	}
@@ -158,13 +160,13 @@ public class AdminModifyController {
 		
 		List<DirectorListVo> list = new ArrayList<DirectorListVo>();
 		
-		for (int i = 0; i < director_list.length; i++) {
+		for (int i = 0; i < director_id.length; i++) {
+		  System.out.println("size : " +director_list.length);
 			DirectorListVo tmp = new DirectorListVo();
 			tmp.setDirector_id(director_id[i]);
 			tmp.setDirector_list(director_list[i]);
 			if (director_id[i] != null) {
 				list.add(tmp);
-				System.out.println(list);
 				System.out.println("send");
 			}
 		}
@@ -201,13 +203,18 @@ public class AdminModifyController {
 
 	@RequestMapping(value = "/MM/modify/seaG", method = RequestMethod.POST)
 	public String searchGenrePost(Integer[] checkList, Integer genre_list) {
+	  List<GenreListVo> genreListVo = new ArrayList <GenreListVo>();
+
 		Integer gl = genre_list;
 		if (checkList != null) {
+		  System.out.println(" POST checkList : " + checkList);
 			for (Integer tmp : checkList) {
-				GenreListVo genreListVo = new GenreListVo();
-				genreListVo.setGenre_id(tmp);
-				genreListVo.setGenre_list(gl);
-				adminService.modifyGenreList(genreListVo);
+			  GenreListVo tmpVo = new GenreListVo();
+			  tmpVo.setGenre_id(tmp);
+			  tmpVo.setGenre_list(gl);
+				genreListVo.add(tmpVo);
+	      System.out.println(" POST tmpVo : " + tmpVo);
+				adminService.updateGenreList(genreListVo);
 			}
 		}
 		return "redirect:/admin/MM/modify/seaG";

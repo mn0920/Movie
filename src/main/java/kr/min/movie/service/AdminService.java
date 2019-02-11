@@ -37,7 +37,10 @@ public interface AdminService {
   public void modifyActor(ActorVo actorVo);
   public void modifyDirector(DirectorVo directorVo);
   public void modifyMovieTitle(String title, Integer id);
-  public void modifyGenreList(GenreListVo genreListVo);
+  
+  public void updateGenreList(List<GenreListVo> genreListVo);
+  public List<GenreListVo> newGenreList(List<GenreListVo> oriList, List<GenreListVo> delList, List<GenreListVo> list);
+  /*public void modifyGenreList(Integer tmp, Integer genre_list);*/
   
   public List<AllActorListVo> getOriActorList(Integer actor_list);
   public List<ActorListVo> newActorList(List<ActorListVo> oriList, List<ActorListVo> modiList, List<ActorListVo> delList, List<ActorListVo> list);

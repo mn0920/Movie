@@ -111,12 +111,12 @@ $(document).ready(function(){
 	        <label for="director1" class="form-control hei33" style="height: 33px;" readonly>감독</label>
 	      </div>
 	      <div class="col75">
-	        <input type="text" class="form-control hei34 director" id="director1" value="${directorList.director_name}" readonly>
+	        <input type="text" class="form-control hei34 director" id="director1" value="${directorList.director_name}">
 	      </div>
 	      <div class="col5">
 	        <button type="button" id="btn1" class="btn"><i class="fas fa-search"></i></button>
 	      </div>
-	      <input type="text" class="form-control hei34" id="director_id1" value="${directorList.director_id}" name="director_id" readonly>
+	      <input type="text" class="form-control hei34" id="director_id1" value="${directorList.director_id}" name="director_id">
 	      <input type="text" id="director_list1" value="${directorList.director_list}" name="director_list">
 	    </div>
     </c:forEach>

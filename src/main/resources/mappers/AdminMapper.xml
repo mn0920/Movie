@@ -156,14 +156,14 @@
   <select id="getOriActorList" resultType="kr.min.movie.vo.ActorListVo">
     select * from m_actor_list where actor_list=#{actor_list} and m_actor_list.show=1;
   </select>
-  <update id="delActorList">
+  <!-- <update id="delActorList">
     update m_actor_list set
       m_actor_list.show=0
     where actor_list=#{actorListVo.actor_list} and actor_id=#{actorListVo.actor_id};
-  </update><!-- 
+  </update> -->
   <delete id="delActorList">
     delete from m_actor_list where actor_list=#{actorListVo.actor_list} and actor_id=#{actorListVo.actor_id};
-  </delete> -->
+  </delete>
   
   <select id="getShowOriDirectorList" resultType="kr.min.movie.vo.AllDirectorListVo">
     select * from m_director_list LEFT JOIN director on m_director_list.director_id = director.director_id
@@ -172,9 +172,20 @@
   <select id="getOriDirectorList" resultType="kr.min.movie.vo.DirectorListVo">
     select * from m_director_list where director_list=#{director_list};
   </select>
+<!--   <update id="delDirectorList">
+    update m_director_list set
+      m_director_list.show=0
+    where director_list=#{directorListVo.director_list} and director_id=#{directorListVo.director_id};
+  </update> -->
+  <delete id="delDirectorList">
+    delete from m_director_list where director_list=#{directorListVo.director_list} and director_id=#{directorListVo.director_id};
+  </delete>
   <select id="getOriGenreList" resultType="kr.min.movie.vo.GenreListVo">
     select * from m_genre_list where genre_list=#{genre_list};
   </select>
+  <delete id="delGenreList">
+    delete from m_genre_list where genre_list=#{genreListVo.genre_list} and genre_id=#{genreListVo.genre_id};
+  </delete>
 
 
 

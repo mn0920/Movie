@@ -8,9 +8,9 @@ import kr.min.movie.pagenation.Criteria;
 import kr.min.movie.pagenation.MovieCriteria;
 import kr.min.movie.pagenation.MoviePageMaker;
 import kr.min.movie.pagenation.PageMaker;
-import kr.min.movie.vo.AccountVo;
 import kr.min.movie.vo.ActorListVo;
 import kr.min.movie.vo.DirectorListVo;
+import kr.min.movie.vo.GenreListVo;
 import kr.min.movie.vo.ShowMovieVo;
 
 public class MethodClass {
@@ -384,8 +384,61 @@ public class MethodClass {
     }
     return false;
   }
+
+
+  public boolean equalGenreListVo(GenreListVo vo1, GenreListVo vo2) {
+    if (vo1.getGenre_id() != vo2.getGenre_id())
+      return false;
+    return true;
+  }
+
+  public boolean equalGenreListVoByGenreId(GenreListVo vo1, GenreListVo vo2) {
+    if (vo1.getGenre_id() != vo2.getGenre_id())
+      return false;
+    return true;
+  }
+
+  public boolean isNull(GenreListVo vo1) {
+    if (vo1.getGenre_id() != null)
+      return false;
+    return true;
+  }
+
+  public List<GenreListVo> getDeleteGenreListVo(List<GenreListVo> oriList, List<GenreListVo> newList) {
+    List<GenreListVo> list = new ArrayList<GenreListVo>();
+
+    for (GenreListVo oritmp : oriList) {
+      int cnt = 0;
+      for (GenreListVo newtmp : newList) {
+        if (equalGenreListVo(oritmp, newtmp)) {
+          break;
+        }
+        cnt++;
+      }
+      if (cnt == newList.size()) {
+        list.add(oritmp);
+      }
+    }
+    return list;
+  }
+
+  public boolean isInclude(List<GenreListVo> list, GenreListVo vo) {
+    for(GenreListVo tmp:list) {
+      if(equalGenreListVo(tmp, vo))
+        return true;
+    }
+    return false;
+  }
+
+  public boolean isNull(List<GenreListVo> list, GenreListVo vo) {
+    for(GenreListVo tmp:list) {
+      if(equalGenreListVo(tmp, vo))
+        return true;
+    }
+    return false;
+  }
   
-/*
+  /*
   업데이트를 하면 차후 사용하는 것으로
   public void result(AccountVo user) {
     Integer aId = user.getU_favorite_actor_id();
