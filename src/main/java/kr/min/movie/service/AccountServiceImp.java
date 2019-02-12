@@ -206,4 +206,40 @@ public class AccountServiceImp implements AccountService {
     accountDao.join_Cnt_Up(id);
   }
 
+  @Override
+  public void updatePreferenceInfo(AccountVo accountVo, AccountVo oriUser) {
+    String id = oriUser.getId();
+    String nickname = oriUser.getNickname();
+    Integer u_favorite_genre_id = oriUser.getU_favorite_genre_id();
+    String u_favorite_genre_name = oriUser.getU_favorite_genre_name();
+    Integer u_favorite_actor_id = oriUser.getU_favorite_actor_id();
+    String u_favorite_actor_name = oriUser.getU_favorite_actor_name();
+    Integer u_favorite_director_id = oriUser.getU_favorite_director_id();
+    String u_favorite_director_name = oriUser.getU_favorite_director_name();
+    String u_preference = oriUser.getU_preference();
+    System.out.println("nickname : " + nickname);
+    System.out.println("u_favorite_genre_id : " + u_favorite_genre_id);
+    System.out.println("u_favorite_genre_name : " + u_favorite_genre_name);
+    System.out.println("u_favorite_actor_id : " + u_favorite_actor_id);
+    System.out.println("u_favorite_actor_name : " + u_favorite_actor_name);
+    System.out.println("u_favorite_director_id : " + u_favorite_director_id);
+    System.out.println("u_favorite_director_name : " + u_favorite_director_name);
+    System.out.println("u_preference : " + u_preference);
+    
+    System.out.println("1 accountVo : " + accountVo);
+    if(accountVo.getNickname() == null) accountVo.setNickname(nickname);
+    if(accountVo.getU_favorite_genre_id() == null) accountVo.setU_favorite_genre_id(u_favorite_genre_id);
+    if(accountVo.getU_favorite_genre_name().equals("") || accountVo.getU_favorite_genre_name().equals(null)) accountVo.setU_favorite_genre_name(u_favorite_genre_name);
+    if(accountVo.getU_favorite_actor_id() == null) accountVo.setU_favorite_actor_id(u_favorite_actor_id);
+    if(accountVo.getU_favorite_actor_name().equals("")) accountVo.setU_favorite_actor_name(u_favorite_actor_name);
+    if(accountVo.getU_favorite_director_id() == null) accountVo.setU_favorite_director_id(u_favorite_director_id);
+    if(accountVo.getU_favorite_director_name().equals("")) accountVo.setU_favorite_director_name(u_favorite_director_name);
+    if(accountVo.getU_preference().equals("")) accountVo.setU_preference(u_preference);
+    accountVo.setId(id);
+    
+    System.out.println("2 accountVo : " + accountVo);
+    
+    accountDao.updatePreferenceInfo(accountVo);
+  }
+
 }

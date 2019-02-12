@@ -8,6 +8,7 @@
 
   <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/nav.css">
   <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/adminBasic.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/global.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -18,15 +19,34 @@ height: 259px;
 border: 1px dotted blue;
 margin-left:10px;
 }
+
 img{
 width: 100%;
 height: 100%;
 }
+
 small {
 margin-left: 3px;
 font-weight: bold;
 color: grey;
 }
+
+.size {
+  /* border-radius:12px; */
+  padding: 12px 16px;
+  margin-left: 10px;
+  width: 100px;
+  height: 40px;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.right{
+float: right;
+}
+
 </style>
 
 <title>movieManagement</title>
@@ -193,6 +213,7 @@ $('#aBtn').click(function(){
           </div>
           <div class="row">
             <input type="submit" value="submit" class="right">
+            <a href="<%=request.getContextPath()%>/admin/movie"><button type="button" class="right size float-right">돌아가기</button></a>
           </div>
           <input type="hidden" id="title2" name="title" class="full" value="${movie.title}" readonly>
         </form>

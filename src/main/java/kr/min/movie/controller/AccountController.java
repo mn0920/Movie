@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +36,8 @@ public class AccountController {
   private AccountService accountService;
   @Autowired
   private AdminService adminService;
+  @Autowired
+  BCryptPasswordEncoder passwordEncoder;
 
   private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
@@ -148,6 +151,45 @@ public class AccountController {
   public String logout(HttpSession session) {
     session.invalidate();
     return "redirect:/";
+  }
+  
+  @RequestMapping(value = "/m/my/chkId", method = RequestMethod.GET)
+  public String beforeModifiyMyGet(Integer checkOk, Model model, HttpServletRequest request) {
+    if (checkOk == null)
+      checkOk = -1;
+    model.addAttribute("checkOk", checkOk);
+    return "member/beforeModifiyMy";
+  }
+
+  @RequestMapping(value = "/m/my/chkId", method = RequestMethod.POST)
+  public String beforeModifiyMyPost(AccountVo accountVo, Integer checkOk, Model model, HttpServletRequest request) {
+    AccountVo oriUser = accountService.getLoginUser(request);
+    if(!passwordEncoder.matches(accountVo.getPw(), oriUser.getPw())) {
+      model.addAttribute("checkOk", 0);
+      return "redirect:/m/my/chkId";
+    }
+    return "redirect:/m/my/modi";
+  }
+  
+  @RequestMapping(value = "/m/my/modi", method = RequestMethod.GET)
+  public String modifiyMyGet(Integer changeOk, Model model, HttpServletRequest request) {
+    AccountVo user = accountService.getLoginUser(request);
+    AccountVo setUser = accountService.getAccount(user);
+    
+    if (changeOk == null)
+      changeOk = -1;
+    
+    model.addAttribute("changeOk", changeOk);
+    model.addAttribute("user", setUser);
+    return "member/modifiyMy";
+  }
+
+  @RequestMapping(value = "/m/my/modi", method = RequestMethod.POST)
+  public String modifiyMyPost(Model model, HttpServletRequest request, AccountVo accountVo) {
+    AccountVo oriUser = accountService.getLoginUser(request);
+    System.out.println("modifiyMyPost accountVo : " + accountVo);
+    accountService.updatePreferenceInfo(accountVo, oriUser);
+    return "redirect:/m/my";
   }
 
 }

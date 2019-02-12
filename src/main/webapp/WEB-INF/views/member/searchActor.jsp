@@ -80,9 +80,7 @@ $(document).ready(function(){
     <button type="button" id="choice">선택</button>
     
     <br>
-    <div style="margin-top:10px;">찾고자하는 배우가 없다면 추가 버튼을 눌러주세요</div>
-    <button type="button" id="add" name="add">추가</button>
-   </div>
+    </div>
   <input type="hidden" id="characterId">
   <input type="hidden" id="update" onchange="test()">
   

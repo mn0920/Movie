@@ -26,6 +26,12 @@
   <update id="setAuthor">
       update account set author=#{author} where id = #{id};
   </update>
+  <update id="updatePreferenceInfo">
+    update account set nickname = #{user.nickname}, u_favorite_genre_id = #{user.u_favorite_genre_id}, u_favorite_genre_name = #{user.u_favorite_genre_name},
+    u_favorite_actor_id = #{user.u_favorite_actor_id}, u_favorite_actor_name = #{user.u_favorite_actor_name},
+    u_favorite_director_id = #{user.u_favorite_director_id}, u_favorite_director_name = #{user.u_favorite_director_name}, u_preference = #{user.u_preference} 
+    where id = #{user.id};
+  </update>
   <select id="getAccountLists" resultType="kr.min.movie.vo.AccountVo">
       select * from account where id != #{id} and author != 'super admin' order by id asc limit #{cri.startPage}, #{cri.perPageNum};
   </select>

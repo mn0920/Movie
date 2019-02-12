@@ -51,7 +51,7 @@
 
 <body>
   <div class="container">
-    <h2>영화 검색</h2>
+    <h2>장르 검색</h2>
     <input type="text" id="myInput" class="input-large form-control" 
     onChange="myFunction()" placeholder="Search for names.." title="Type in a name">
 
@@ -82,7 +82,7 @@
           </tbody>
         </table>
       </div>
-      <input type="text" id="genre_list" name="genre_list">
+      <input type="hidden" id="genre_list" name="genre_list">
       <button type="submit" id="done">확인</button>
 
   </div>
