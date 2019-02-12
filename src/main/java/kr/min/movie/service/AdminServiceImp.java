@@ -226,4 +226,9 @@ public class AdminServiceImp implements AdminService {
     System.out.println("newList push : " + newList);
   }
 
+  @Override
+  public void deleteMovie(Integer id) {
+    adminDao.deleteMovie(id);
+  }
+
 }

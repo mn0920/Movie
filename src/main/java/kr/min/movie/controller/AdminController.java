@@ -40,20 +40,28 @@ public class AdminController {
   }
 
   @RequestMapping(value = "/movie", method = RequestMethod.GET)
-  public String movieGet(Model model, MovieCriteria cri) {
-	MoviePageMaker pageMaker = boardService.getPageMaker(cri, 10);
-	System.out.println("pageMaker : " + pageMaker);
-	List<ShowMovieVo> movie = new ArrayList <ShowMovieVo>();
-	movie = boardService.getShowMovie(cri);
+  public String movieGet(Integer del, Model model, MovieCriteria cri) {
+    if (del == null)
+      del = -1;
+    MoviePageMaker pageMaker = boardService.getPageMaker(cri, 10);
+    System.out.println("pageMaker : " + pageMaker);
+    List<ShowMovieVo> movie = new ArrayList<ShowMovieVo>();
+    movie = boardService.getShowMovie(cri);
 
+    model.addAttribute("del", del);
     model.addAttribute("movie", movie);
-	model.addAttribute("pageMaker", pageMaker);
+    model.addAttribute("pageMaker", pageMaker);
+    return "admin/movieMain";
+  }
+
+  @RequestMapping(value = "/movie", method = RequestMethod.POST)
+  public String moviePost(Model model, MovieCriteria cri) {
     return "admin/movieMain";
   }
 
   @RequestMapping(value = "/actor", method = RequestMethod.GET)
   public String actorGet(Model model, Criteria cri) {
-    List<ActorVo>  actor = boardService.getActors(cri);
+    List<ActorVo> actor = boardService.getActors(cri);
 
     model.addAttribute("actor", actor);
     return "admin/actor";
@@ -75,6 +83,14 @@ public class AdminController {
   @RequestMapping(value = "/director/addD", method = RequestMethod.GET)
   public String directorAddGet(Model model) {
     return "admin/add/addDirector";
+  }
+
+  @RequestMapping(value="/movie/delete", method=RequestMethod.GET)
+  public String movieDeleteGet(Model model, Integer id, Integer del) {
+    adminService.deleteMovie(id);
+
+    model.addAttribute("del", 0);
+    return "redirect:/admin/movie";
   }
 
 }

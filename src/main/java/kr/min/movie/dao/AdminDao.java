@@ -36,6 +36,7 @@ public interface AdminDao {
   public void addGenreList(@Param("genreListVo")GenreListVo genreListVo);
 
   public void updateMovie(@Param("movieVo")MovieVo movieVo);
+  public void deleteMovie(@Param("id")Integer id);
   
   public void modifyMovie(@Param("movieVo")MovieVo movieVo);
   public void modifyMovieTitle(@Param("title")String title, @Param("id")Integer id);

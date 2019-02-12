@@ -37,16 +37,6 @@
       <h2>MOVIE</h2>
 
       <div class="row2">
-        <div id="myBtnContainer">
-          <button class="btn active" onclick="filterSelection('all')">Show all</button>
-          <button class="btn" onclick="filterSelection('nature')"> Nature</button>
-          <button class="btn" onclick="filterSelection('cars')"> Cars</button>
-          <button class="btn" onclick="filterSelection('people')"> People</button>
-          <button type="button" class="btn btn-outline-dark" id="allCheck">Select all</button>
-        </div>
-      </div>
-
-      <div class="row2">
         <c:forEach var="movie" items="${movie}">
           <div class="column ${movie.genre_name}">
             <div class="content">
@@ -164,6 +154,11 @@ $('#allCheck').click(function() {
 		$(this).prop('checked', check);
 	})
 });
+
+var del = document.getElementById('del');
+if(${del} == 0){
+    alert('영화가 삭제 되었습니다.');
+}
 </script>
 </body>
 </html>

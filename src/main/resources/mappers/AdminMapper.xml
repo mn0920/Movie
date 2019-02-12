@@ -133,6 +133,11 @@
       title=#{title}
     where id = #{id};
   </update>
+  <update id="deleteMovie">
+    update movie set
+      status=0
+    where id = #{id};
+  </update>
   
   <update id="modifyActorCList">
     update m_actor_list set

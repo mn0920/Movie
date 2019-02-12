@@ -49,5 +49,7 @@ public interface AdminService {
   public List<AllDirectorListVo> getOriDirectorList(Integer director_list);
   public List<DirectorListVo> newDirectorList(List<DirectorListVo> oriList, List<DirectorListVo> delList, List<DirectorListVo> list);
   public void updateDirectorList(List<DirectorListVo> list);
+
+  public void deleteMovie(Integer id);
   
 }
