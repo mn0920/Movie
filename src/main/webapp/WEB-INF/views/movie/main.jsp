@@ -18,36 +18,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-
 <style>
-#navbar .topnav #main{
-color: black;
-font-weight: bold;
-}
-p{
-margin-bottom: 5px;
-margin-top: 0;
-font-size: 0.9em;
-}
 a{
-color: black;
-}
-#pagination {
-  display: table;
-  margin: 0 auto;
-}
-.pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
   text-decoration: none;
-  transition: background-color .3s;
 }
-.pagination a.active {
-  background-color: dodgerblue;
-  color: white;
-}
-.pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
 
     <title>main</title>

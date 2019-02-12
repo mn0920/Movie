@@ -89,8 +89,7 @@
     LEFT JOIN actor ON actor.actor_id = m_actor_list.actor_id
     LEFT JOIN m_genre_list ON movie.id = m_genre_list.genre_list
     LEFT JOIN genre ON genre.genre_id = m_genre_list.genre_id
-    WHERE movie.status = 1 AND actor.actor_id = #{aId}
-    OR director.director_id = #{dId} OR genre.genre_id = #{gId} ORDER BY movie.grade DESC;
+    WHERE movie.status = 1 AND (actor.actor_id = #{aId} OR director.director_id = #{dId} OR genre.genre_id = #{gId}) ORDER BY movie.grade DESC;
   </select>
   <select id="getShowMovieByDirector" resultType="kr.min.movie.vo.ShowMovieVo">
     SELECT actor.actor_id, actor.actor_name, m_actor_list.cast, m_actor_list.c_name, director.director_id, director.director_name,
@@ -103,8 +102,7 @@
     LEFT JOIN actor ON actor.actor_id = m_actor_list.actor_id
     LEFT JOIN m_genre_list ON movie.id = m_genre_list.genre_list
     LEFT JOIN genre ON genre.genre_id = m_genre_list.genre_id
-    WHERE movie.status = 1 AND director.director_id = #{dId}
-    OR actor.actor_id = #{aId} OR genre.genre_id = #{gId} ORDER BY movie.grade DESC;
+    WHERE movie.status = 1 AND (actor.actor_id = #{aId} OR director.director_id = #{dId} OR genre.genre_id = #{gId}) ORDER BY movie.grade DESC;
   </select>
   <select id="getShowMovieByGenre" resultType="kr.min.movie.vo.ShowMovieVo">
     SELECT actor.actor_id, actor.actor_name, m_actor_list.cast, m_actor_list.c_name, director.director_id, director.director_name,
@@ -117,8 +115,7 @@
     LEFT JOIN actor ON actor.actor_id = m_actor_list.actor_id
     LEFT JOIN m_genre_list ON movie.id = m_genre_list.genre_list
     LEFT JOIN genre ON genre.genre_id = m_genre_list.genre_id
-    WHERE movie.status = 1 AND genre.genre_id = #{gId}
-    OR director.director_id = #{dId} OR actor.actor_id = #{aId} ORDER BY movie.grade DESC;
+    WHERE movie.status = 1 AND (actor.actor_id = #{aId} OR director.director_id = #{dId} OR genre.genre_id = #{gId}) ORDER BY movie.grade DESC;
   </select>
   
   <insert id="like">

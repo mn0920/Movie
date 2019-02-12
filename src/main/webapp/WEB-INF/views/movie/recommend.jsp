@@ -19,6 +19,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
 <style>
+a{
+  text-decoration: none;
+}
 #navbar .topnav #R{
 color: black;
 font-weight: bold;
@@ -58,19 +61,20 @@ font-weight: bold;
 
 <!-- Portfolio Gallery Grid -->
 
-	<div class="row2">
-	  <c:forEach var="movie" items="${movie}" begin="0" end="7" step="1">
-	    <div class="column ${movie.genre_name}">
-	      <div class="content"> 
-	        <img src="${movie.poster}">
-	        <h4><c:set var="TextValue" value="${movie.title}"/>${fn:replace(movie.title, '(', '<br>(')}</h4>
-	        <p>감독 : <c:set var="TextValue" value="${movie.director_name}"/>${fn:substringBefore(movie.director_name, ',') }</p>
-	        <p>출연 배우 : <c:set var="TextValue" value="${movie.actor_name}"/>${fn:substringBefore(movie.actor_name, ',') }</p>
-	        <p><c:set var="TextValue" value="${movie.synopsis}"/>${fn:substring(TextValue,0,50)}....</p>
-	      </div>
-	    </div>
-	  </c:forEach>
-	</div>
+<div class="row2">
+  <c:forEach var="movie" items="${movie}" begin="0" end="7" step="1">
+     <div class="column">
+        <div class="content"> 
+          <a href="<%= request.getContextPath() %>/m/m/detail?id=${movie.id}&page=${pageMaker.criteria.page}&search=${pageMaker.criteria.search}&type=${pageMaker.criteria.type}"><img src="${movie.poster}">
+          <h4><c:set var="TextValue" value="${movie.title}"/>${fn:replace(movie.title, '(', '<br>(')}</h4>
+          <p>감독 : <c:set var="TextValue" value="${movie.director_name}"/>${fn:substringBefore(movie.director_name, ',') }</p>
+          <p>출연 배우 : <c:set var="TextValue" value="${movie.actor_name}"/>${fn:substringBefore(movie.actor_name, ',') }</p>
+          <p><c:set var="TextValue" value="${movie.synopsis}"/>${fn:substring(TextValue,0,50)}....</p>
+        </div>
+      </div>
+  </a>
+  </c:forEach>
+</div>
 
 <script>
 filterSelection("all")
